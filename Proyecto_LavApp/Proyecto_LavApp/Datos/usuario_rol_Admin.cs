@@ -11,9 +11,11 @@ namespace Proyecto_LavApp.Datos
     {
         public IEnumerable<usuario_rol> Consultar()
         {
+            //IEnumerable<usuario_rol> usuarios_roles = null;
             //var persona = new personas();
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
+                //usuarios_roles = contexto.usuario_rol.Include(x => x.roles).ToList();
                 return contexto.usuario_rol.Include(x => x.roles).ToList();
             }
         }

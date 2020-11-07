@@ -59,7 +59,7 @@ namespace Proyecto_LavApp.Controllers
             admin.Modificar(modelo);
             llenar_documentos();
             ViewBag.lista = listdocumento;
-            return View("Editar", modelo);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Eliminar(int id)

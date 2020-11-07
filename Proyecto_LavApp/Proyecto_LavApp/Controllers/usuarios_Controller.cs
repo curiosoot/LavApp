@@ -60,7 +60,7 @@ namespace Proyecto_LavApp.Controllers
             admin.Modificar(modelo);
             llenar_personas();
             ViewBag.lista = listpersonas;
-            return View("Editar", modelo);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Eliminar(int id)

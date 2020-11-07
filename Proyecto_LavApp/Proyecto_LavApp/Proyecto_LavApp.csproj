@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\login_Controller.cs" />
     <Compile Include="Controllers\marca_vehiculos_Controller.cs" />
     <Compile Include="Controllers\personas_Controller.cs" />
     <Compile Include="Controllers\roles_Controller.cs" />
@@ -284,6 +285,7 @@
     <Content Include="Views\usuario_rol_\Detalle.cshtml" />
     <Content Include="Views\usuario_rol_\Crear.cshtml" />
     <Content Include="Views\usuario_rol_\Editar.cshtml" />
+    <Content Include="Views\login_\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

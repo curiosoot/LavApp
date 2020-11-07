@@ -41,7 +41,7 @@ namespace Proyecto_LavApp.Controllers
         public ActionResult Modificar(marca_vehiculos modelo)
         {
             admin.Modificar(modelo);
-            return View("Editar",modelo);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Eliminar(int id) 
