@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LavApp_BDModelStoreContainer" CdmEntityContainer="LavApp_BDEntities">
+    <EntitySetMapping Name="color_vehiculo">
+      <EntityTypeMapping TypeName="LavApp_BDModel.color_vehiculo">
+        <MappingFragment StoreEntitySet="color_vehiculo">
+          <ScalarProperty Name="id_color_vehiculo" ColumnName="id_color_vehiculo" />
+          <ScalarProperty Name="id_marca_vehiculos" ColumnName="id_marca_vehiculos" />
+          <ScalarProperty Name="txt_desc_color" ColumnName="txt_desc_color" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.detalle_servicio">
+        <MappingFragment StoreEntitySet="detalle_servicio">
+          <ScalarProperty Name="id_detalle_servicio" ColumnName="id_detalle_servicio" />
+          <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+          <ScalarProperty Name="id_tipo_servicio" ColumnName="id_tipo_servicio" />
+          <ScalarProperty Name="imp_valor_servivio" ColumnName="imp_valor_servivio" />
+          <ScalarProperty Name="imp_valor_descuento" ColumnName="imp_valor_descuento" />
+          <ScalarProperty Name="imp_valor_neto" ColumnName="imp_valor_neto" />
+          <ScalarProperty Name="imp_valor_iva" ColumnName="imp_valor_iva" />
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estado_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.estado_servicio">
+        <MappingFragment StoreEntitySet="estado_servicio">
+          <ScalarProperty Name="id_estado_servicio" ColumnName="id_estado_servicio" />
+          <ScalarProperty Name="txt_estado_Servicio" ColumnName="txt_estado_Servicio" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+          <ScalarProperty Name="sn_cancelado" ColumnName="sn_cancelado" />
+          <ScalarProperty Name="sn_finalizado" ColumnName="sn_finalizado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="marca_vehiculos">
+      <EntityTypeMapping TypeName="LavApp_BDModel.marca_vehiculos">
+        <MappingFragment StoreEntitySet="marca_vehiculos">
+          <ScalarProperty Name="id_marca_vehiculos" ColumnName="id_marca_vehiculos" />
+          <ScalarProperty Name="txt_desc_marca" ColumnName="txt_desc_marca" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modelo_vehiculos">
+      <EntityTypeMapping TypeName="LavApp_BDModel.modelo_vehiculos">
+        <MappingFragment StoreEntitySet="modelo_vehiculos">
+          <ScalarProperty Name="id_modelo_vehiculo" ColumnName="id_modelo_vehiculo" />
+          <ScalarProperty Name="id_marca_vehiculos" ColumnName="id_marca_vehiculos" />
+          <ScalarProperty Name="txt_desc_modelo" ColumnName="txt_desc_modelo" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persona_vehiculo">
+      <EntityTypeMapping TypeName="LavApp_BDModel.persona_vehiculo">
+        <MappingFragment StoreEntitySet="persona_vehiculo">
+          <ScalarProperty Name="id_usuario_vehiculo" ColumnName="id_usuario_vehiculo" />
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+          <ScalarProperty Name="txt_observaciones" ColumnName="txt_observaciones" />
+          <ScalarProperty Name="fec_asociacion" ColumnName="fec_asociacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personas">
+      <EntityTypeMapping TypeName="LavApp_BDModel.personas">
+        <MappingFragment StoreEntitySet="personas">
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="txt_documento" ColumnName="txt_documento" />
+          <ScalarProperty Name="txt_nombre" ColumnName="txt_nombre" />
+          <ScalarProperty Name="txt_apellido1" ColumnName="txt_apellido1" />
+          <ScalarProperty Name="txt_apellido2" ColumnName="txt_apellido2" />
+          <ScalarProperty Name="fec_nacimiento" ColumnName="fec_nacimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="registro_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.registro_servicio">
+        <MappingFragment StoreEntitySet="registro_servicio">
+          <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="txt_documento_cliente" ColumnName="txt_documento_cliente" />
+          <ScalarProperty Name="txt_nombre_cliente" ColumnName="txt_nombre_cliente" />
+          <ScalarProperty Name="txt_apellido1_cliente" ColumnName="txt_apellido1_cliente" />
+          <ScalarProperty Name="txt_apellido2" ColumnName="txt_apellido2" />
+          <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+          <ScalarProperty Name="fec_ingreso" ColumnName="fec_ingreso" />
+          <ScalarProperty Name="fec_retiro" ColumnName="fec_retiro" />
+          <ScalarProperty Name="id_usuario_atiende" ColumnName="id_usuario_atiende" />
+          <ScalarProperty Name="txt_observacion" ColumnName="txt_observacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="LavApp_BDModel.roles">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="txt_desc_rol" ColumnName="txt_desc_rol" />
+          <ScalarProperty Name="sn_admin" ColumnName="sn_admin" />
+          <ScalarProperty Name="sn_empleado" ColumnName="sn_empleado" />
+          <ScalarProperty Name="sn_cliente" ColumnName="sn_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_documento">
+      <EntityTypeMapping TypeName="LavApp_BDModel.tipo_documento">
+        <MappingFragment StoreEntitySet="tipo_documento">
+          <ScalarProperty Name="id_tipo_documento" ColumnName="id_tipo_documento" />
+          <ScalarProperty Name="txt_tipo_doc" ColumnName="txt_tipo_doc" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.tipo_servicio">
+        <MappingFragment StoreEntitySet="tipo_servicio">
+          <ScalarProperty Name="id_tipo_servicio" ColumnName="id_tipo_servicio" />
+          <ScalarProperty Name="txt_desc_servicio" ColumnName="txt_desc_servicio" />
+          <ScalarProperty Name="imp_valor" ColumnName="imp_valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_vehiculos">
+      <EntityTypeMapping TypeName="LavApp_BDModel.tipo_vehiculos">
+        <MappingFragment StoreEntitySet="tipo_vehiculos">
+          <ScalarProperty Name="id_tipo_vehiculo" ColumnName="id_tipo_vehiculo" />
+          <ScalarProperty Name="txt_tipo_vehiculo" ColumnName="txt_tipo_vehiculo" />
+          <ScalarProperty Name="sn_activo" ColumnName="sn_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_rol">
+      <EntityTypeMapping TypeName="LavApp_BDModel.usuario_rol">
+        <MappingFragment StoreEntitySet="usuario_rol">
+          <ScalarProperty Name="id_usuario_rol" ColumnName="id_usuario_rol" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="LavApp_BDModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="txt_password" ColumnName="txt_password" />
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+          <ScalarProperty Name="fec_vto_password" ColumnName="fec_vto_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vehiculos">
+      <EntityTypeMapping TypeName="LavApp_BDModel.vehiculos">
+        <MappingFragment StoreEntitySet="vehiculos">
+          <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+          <ScalarProperty Name="id_tipo_vehiculo" ColumnName="id_tipo_vehiculo" />
+          <ScalarProperty Name="txt_placa" ColumnName="txt_placa" />
+          <ScalarProperty Name="id_marca_vehiculo" ColumnName="id_marca_vehiculo" />
+          <ScalarProperty Name="id_modelo_vehiculo" ColumnName="id_modelo_vehiculo" />
+          <ScalarProperty Name="id_color_vehiculo" ColumnName="id_color_vehiculo" />
+          <ScalarProperty Name="ano_vehiculo" ColumnName="ano_vehiculo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

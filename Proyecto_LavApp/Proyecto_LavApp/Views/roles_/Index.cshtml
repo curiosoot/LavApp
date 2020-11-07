@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Proyecto_LavApp.Models.roles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_desc_rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sn_admin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sn_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sn_cliente)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.txt_desc_rol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sn_admin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sn_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sn_cliente)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.id_rol }) |
+            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_rol }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_rol })
+        </td>
+    </tr>
+}
+
+</table>

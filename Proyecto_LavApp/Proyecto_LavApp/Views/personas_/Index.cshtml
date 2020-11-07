@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Proyecto_LavApp.Models.personas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_documento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_apellido1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_apellido2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fec_nacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_documento.txt_tipo_doc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.txt_documento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txt_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txt_apellido1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txt_apellido2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fec_nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_documento.txt_tipo_doc)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.id_persona }) |
+            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_persona }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_persona })
+        </td>
+    </tr>
+}
+
+</table>

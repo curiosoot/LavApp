@@ -1,0 +1,50 @@
+﻿@model Proyecto_LavApp.Models.usuarios
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fec_vto_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_vto_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.txt_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.txt_nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.id_usuario }) |
+    @Html.ActionLink("Usuarios", "Index")
+</p>

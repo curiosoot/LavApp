@@ -1,0 +1,66 @@
+﻿@model Proyecto_LavApp.Models.personas
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>personas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_apellido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_apellido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_apellido2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_apellido2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fec_nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_documento.txt_tipo_doc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_documento.txt_tipo_doc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.id_persona }) |
+    @Html.ActionLink("Personas", "Index")
+</p>

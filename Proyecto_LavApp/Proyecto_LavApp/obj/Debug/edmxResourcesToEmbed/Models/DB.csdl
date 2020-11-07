@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LavApp_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="color_vehiculo">
+    <Key>
+      <PropertyRef Name="id_color_vehiculo" />
+    </Key>
+    <Property Name="id_color_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_marca_vehiculos" Type="Int32" Nullable="false" />
+    <Property Name="txt_desc_color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_color_veh_vehiculos" FromRole="color_vehiculo" ToRole="vehiculos" />
+    <NavigationProperty Name="marca_vehiculos" Relationship="Self.FK_id_marca_vehiculos_color" FromRole="color_vehiculo" ToRole="marca_vehiculos" />
+  </EntityType>
+  <EntityType Name="detalle_servicio">
+    <Key>
+      <PropertyRef Name="id_detalle_servicio" />
+    </Key>
+    <Property Name="id_detalle_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_servicio" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo_servicio" Type="Int32" Nullable="false" />
+    <Property Name="imp_valor_servivio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="imp_valor_descuento" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="imp_valor_neto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="imp_valor_iva" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_estado" Type="Int32" />
+    <NavigationProperty Name="estado_servicio" Relationship="Self.FK_estado_det_serv" FromRole="detalle_servicio" ToRole="estado_servicio" />
+    <NavigationProperty Name="registro_servicio" Relationship="Self.FK_id_servicios_registro" FromRole="detalle_servicio" ToRole="registro_servicio" />
+    <NavigationProperty Name="tipo_servicio" Relationship="Self.FK_tipo_serv_det_serv" FromRole="detalle_servicio" ToRole="tipo_servicio" />
+  </EntityType>
+  <EntityType Name="estado_servicio">
+    <Key>
+      <PropertyRef Name="id_estado_servicio" />
+    </Key>
+    <Property Name="id_estado_servicio" Type="Int32" Nullable="false" />
+    <Property Name="txt_estado_Servicio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Boolean" Nullable="false" />
+    <Property Name="sn_cancelado" Type="Boolean" Nullable="false" />
+    <Property Name="sn_finalizado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="detalle_servicio" Relationship="Self.FK_estado_det_serv" FromRole="estado_servicio" ToRole="detalle_servicio" />
+  </EntityType>
+  <EntityType Name="marca_vehiculos">
+    <Key>
+      <PropertyRef Name="id_marca_vehiculos" />
+    </Key>
+    <Property Name="id_marca_vehiculos" Type="Int32" Nullable="false" />
+    <Property Name="txt_desc_marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="color_vehiculo" Relationship="Self.FK_id_marca_vehiculos_color" FromRole="marca_vehiculos" ToRole="color_vehiculo" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_marca_veh_vehiculos" FromRole="marca_vehiculos" ToRole="vehiculos" />
+    <NavigationProperty Name="modelo_vehiculos" Relationship="Self.FK_marca_vehi_model_vehi" FromRole="marca_vehiculos" ToRole="modelo_vehiculos" />
+  </EntityType>
+  <EntityType Name="modelo_vehiculos">
+    <Key>
+      <PropertyRef Name="id_modelo_vehiculo" />
+    </Key>
+    <Property Name="id_modelo_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_marca_vehiculos" Type="Int32" Nullable="false" />
+    <Property Name="txt_desc_modelo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="marca_vehiculos" Relationship="Self.FK_marca_vehi_model_vehi" FromRole="modelo_vehiculos" ToRole="marca_vehiculos" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_id_mod_veh_veh" FromRole="modelo_vehiculos" ToRole="vehiculos" />
+  </EntityType>
+  <EntityType Name="persona_vehiculo">
+    <Key>
+      <PropertyRef Name="id_usuario_vehiculo" />
+    </Key>
+    <Property Name="id_usuario_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_persona" Type="Int32" Nullable="false" />
+    <Property Name="id_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="txt_observaciones" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fec_asociacion" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="personas" Relationship="Self.FK_id_per_per_veh" FromRole="persona_vehiculo" ToRole="personas" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_vehiculo_pers_veh" FromRole="persona_vehiculo" ToRole="vehiculos" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="id_persona" />
+    </Key>
+    <Property Name="id_persona" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo_documento" Type="Int32" Nullable="false" />
+    <Property Name="txt_documento" Type="Decimal" Precision="16" Scale="0" Nullable="false" />
+    <Property Name="txt_nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="txt_apellido1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="txt_apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="fec_nacimiento" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="persona_vehiculo" Relationship="Self.FK_id_per_per_veh" FromRole="personas" ToRole="persona_vehiculo" />
+    <NavigationProperty Name="registro_servicio" Relationship="Self.FK_id_per_reg_serv" FromRole="personas" ToRole="registro_servicio" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_id_persona_usuario" FromRole="personas" ToRole="usuarios" />
+    <NavigationProperty Name="tipo_documento" Relationship="Self.FK_tipo_doc_persona" FromRole="personas" ToRole="tipo_documento" />
+  </EntityType>
+  <EntityType Name="registro_servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="Int32" Nullable="false" />
+    <Property Name="id_persona" Type="Int32" />
+    <Property Name="id_tipo_documento" Type="Int32" Nullable="false" />
+    <Property Name="txt_documento_cliente" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="txt_nombre_cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="txt_apellido1_cliente" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="txt_apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="id_vehiculo" Type="Int32" />
+    <Property Name="fec_ingreso" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fec_retiro" Type="DateTime" Precision="0" />
+    <Property Name="id_usuario_atiende" Type="Int32" Nullable="false" />
+    <Property Name="txt_observacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="detalle_servicio" Relationship="Self.FK_id_servicios_registro" FromRole="registro_servicio" ToRole="detalle_servicio" />
+    <NavigationProperty Name="personas" Relationship="Self.FK_id_per_reg_serv" FromRole="registro_servicio" ToRole="personas" />
+    <NavigationProperty Name="tipo_documento" Relationship="Self.FK_id_tip_doc_reg_serv" FromRole="registro_servicio" ToRole="tipo_documento" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_id_veh_reg_serv" FromRole="registro_servicio" ToRole="vehiculos" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_usu_atiende_reg_serv" FromRole="registro_servicio" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="txt_desc_rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_admin" Type="Boolean" Nullable="false" />
+    <Property Name="sn_empleado" Type="Boolean" Nullable="false" />
+    <Property Name="sn_cliente" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="usuario_rol" Relationship="Self.FK_rol_roles" FromRole="roles" ToRole="usuario_rol" />
+  </EntityType>
+  <EntityType Name="tipo_documento">
+    <Key>
+      <PropertyRef Name="id_tipo_documento" />
+    </Key>
+    <Property Name="id_tipo_documento" Type="Int32" Nullable="false" />
+    <Property Name="txt_tipo_doc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="personas" Relationship="Self.FK_tipo_doc_persona" FromRole="tipo_documento" ToRole="personas" />
+    <NavigationProperty Name="registro_servicio" Relationship="Self.FK_id_tip_doc_reg_serv" FromRole="tipo_documento" ToRole="registro_servicio" />
+  </EntityType>
+  <EntityType Name="tipo_servicio">
+    <Key>
+      <PropertyRef Name="id_tipo_servicio" />
+    </Key>
+    <Property Name="id_tipo_servicio" Type="Int32" Nullable="false" />
+    <Property Name="txt_desc_servicio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imp_valor" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+    <NavigationProperty Name="detalle_servicio" Relationship="Self.FK_tipo_serv_det_serv" FromRole="tipo_servicio" ToRole="detalle_servicio" />
+  </EntityType>
+  <EntityType Name="tipo_vehiculos">
+    <Key>
+      <PropertyRef Name="id_tipo_vehiculo" />
+    </Key>
+    <Property Name="id_tipo_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="txt_tipo_vehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sn_activo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="vehiculos" Relationship="Self.FK_id_tip_veh_veh" FromRole="tipo_vehiculos" ToRole="vehiculos" />
+  </EntityType>
+  <EntityType Name="usuario_rol">
+    <Key>
+      <PropertyRef Name="id_usuario_rol" />
+    </Key>
+    <Property Name="id_usuario_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="roles" Relationship="Self.FK_rol_roles" FromRole="usuario_rol" ToRole="roles" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_usuario_usu_rol" FromRole="usuario_rol" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="txt_password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_persona" Type="Int32" Nullable="false" />
+    <Property Name="fec_vto_password" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="personas" Relationship="Self.FK_id_persona_usuario" FromRole="usuarios" ToRole="personas" />
+    <NavigationProperty Name="registro_servicio" Relationship="Self.FK_usu_atiende_reg_serv" FromRole="usuarios" ToRole="registro_servicio" />
+    <NavigationProperty Name="usuario_rol" Relationship="Self.FK_usuario_usu_rol" FromRole="usuarios" ToRole="usuario_rol" />
+  </EntityType>
+  <EntityType Name="vehiculos">
+    <Key>
+      <PropertyRef Name="id_vehiculo" />
+    </Key>
+    <Property Name="id_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="txt_placa" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_marca_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_modelo_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="id_color_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="ano_vehiculo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="color_vehiculo" Relationship="Self.FK_color_veh_vehiculos" FromRole="vehiculos" ToRole="color_vehiculo" />
+    <NavigationProperty Name="marca_vehiculos" Relationship="Self.FK_marca_veh_vehiculos" FromRole="vehiculos" ToRole="marca_vehiculos" />
+    <NavigationProperty Name="modelo_vehiculos" Relationship="Self.FK_id_mod_veh_veh" FromRole="vehiculos" ToRole="modelo_vehiculos" />
+    <NavigationProperty Name="persona_vehiculo" Relationship="Self.FK_vehiculo_pers_veh" FromRole="vehiculos" ToRole="persona_vehiculo" />
+    <NavigationProperty Name="registro_servicio" Relationship="Self.FK_id_veh_reg_serv" FromRole="vehiculos" ToRole="registro_servicio" />
+    <NavigationProperty Name="tipo_vehiculos" Relationship="Self.FK_id_tip_veh_veh" FromRole="vehiculos" ToRole="tipo_vehiculos" />
+  </EntityType>
+  <Association Name="FK_color_veh_vehiculos">
+    <End Role="color_vehiculo" Type="Self.color_vehiculo" Multiplicity="1" />
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="color_vehiculo">
+        <PropertyRef Name="id_color_vehiculo" />
+      </Principal>
+      <Dependent Role="vehiculos">
+        <PropertyRef Name="id_color_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_marca_vehiculos_color">
+    <End Role="marca_vehiculos" Type="Self.marca_vehiculos" Multiplicity="1" />
+    <End Role="color_vehiculo" Type="Self.color_vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="marca_vehiculos">
+        <PropertyRef Name="id_marca_vehiculos" />
+      </Principal>
+      <Dependent Role="color_vehiculo">
+        <PropertyRef Name="id_marca_vehiculos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_estado_det_serv">
+    <End Role="estado_servicio" Type="Self.estado_servicio" Multiplicity="0..1" />
+    <End Role="detalle_servicio" Type="Self.detalle_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado_servicio">
+        <PropertyRef Name="id_estado_servicio" />
+      </Principal>
+      <Dependent Role="detalle_servicio">
+        <PropertyRef Name="id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_servicios_registro">
+    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="1" />
+    <End Role="detalle_servicio" Type="Self.detalle_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="registro_servicio">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="detalle_servicio">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tipo_serv_det_serv">
+    <End Role="tipo_servicio" Type="Self.tipo_servicio" Multiplicity="1" />
+    <End Role="detalle_servicio" Type="Self.detalle_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_servicio">
+        <PropertyRef Name="id_tipo_servicio" />
+      </Principal>
+      <Dependent Role="detalle_servicio">
+        <PropertyRef Name="id_tipo_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_marca_veh_vehiculos">
+    <End Role="marca_vehiculos" Type="Self.marca_vehiculos" Multiplicity="1" />
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="marca_vehiculos">
+        <PropertyRef Name="id_marca_vehiculos" />
+      </Principal>
+      <Dependent Role="vehiculos">
+        <PropertyRef Name="id_marca_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_marca_vehi_model_vehi">
+    <End Role="marca_vehiculos" Type="Self.marca_vehiculos" Multiplicity="1" />
+    <End Role="modelo_vehiculos" Type="Self.modelo_vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="marca_vehiculos">
+        <PropertyRef Name="id_marca_vehiculos" />
+      </Principal>
+      <Dependent Role="modelo_vehiculos">
+        <PropertyRef Name="id_marca_vehiculos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_mod_veh_veh">
+    <End Role="modelo_vehiculos" Type="Self.modelo_vehiculos" Multiplicity="1" />
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="modelo_vehiculos">
+        <PropertyRef Name="id_modelo_vehiculo" />
+      </Principal>
+      <Dependent Role="vehiculos">
+        <PropertyRef Name="id_modelo_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_per_per_veh">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="persona_vehiculo" Type="Self.persona_vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="persona_vehiculo">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vehiculo_pers_veh">
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="1" />
+    <End Role="persona_vehiculo" Type="Self.persona_vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculos">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="persona_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_per_reg_serv">
+    <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="registro_servicio">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_persona_usuario">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="usuarios">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tipo_doc_persona">
+    <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="1" />
+    <End Role="personas" Type="Self.personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_documento">
+        <PropertyRef Name="id_tipo_documento" />
+      </Principal>
+      <Dependent Role="personas">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_tip_doc_reg_serv">
+    <End Role="tipo_documento" Type="Self.tipo_documento" Multiplicity="1" />
+    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_documento">
+        <PropertyRef Name="id_tipo_documento" />
+      </Principal>
+      <Dependent Role="registro_servicio">
+        <PropertyRef Name="id_tipo_documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_veh_reg_serv">
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="0..1" />
+    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculos">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="registro_servicio">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usu_atiende_reg_serv">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="registro_servicio">
+        <PropertyRef Name="id_usuario_atiende" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rol_roles">
+    <End Role="roles" Type="Self.roles" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_tip_veh_veh">
+    <End Role="tipo_vehiculos" Type="Self.tipo_vehiculos" Multiplicity="1" />
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_vehiculos">
+        <PropertyRef Name="id_tipo_vehiculo" />
+      </Principal>
+      <Dependent Role="vehiculos">
+        <PropertyRef Name="id_tipo_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usuario_usu_rol">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="usuario_rol" Type="Self.usuario_rol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="usuario_rol">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LavApp_BDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="color_vehiculo" EntityType="Self.color_vehiculo" />
+    <EntitySet Name="detalle_servicio" EntityType="Self.detalle_servicio" />
+    <EntitySet Name="estado_servicio" EntityType="Self.estado_servicio" />
+    <EntitySet Name="marca_vehiculos" EntityType="Self.marca_vehiculos" />
+    <EntitySet Name="modelo_vehiculos" EntityType="Self.modelo_vehiculos" />
+    <EntitySet Name="persona_vehiculo" EntityType="Self.persona_vehiculo" />
+    <EntitySet Name="personas" EntityType="Self.personas" />
+    <EntitySet Name="registro_servicio" EntityType="Self.registro_servicio" />
+    <EntitySet Name="roles" EntityType="Self.roles" />
+    <EntitySet Name="tipo_documento" EntityType="Self.tipo_documento" />
+    <EntitySet Name="tipo_servicio" EntityType="Self.tipo_servicio" />
+    <EntitySet Name="tipo_vehiculos" EntityType="Self.tipo_vehiculos" />
+    <EntitySet Name="usuario_rol" EntityType="Self.usuario_rol" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <EntitySet Name="vehiculos" EntityType="Self.vehiculos" />
+    <AssociationSet Name="FK_color_veh_vehiculos" Association="Self.FK_color_veh_vehiculos">
+      <End Role="color_vehiculo" EntitySet="color_vehiculo" />
+      <End Role="vehiculos" EntitySet="vehiculos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_marca_vehiculos_color" Association="Self.FK_id_marca_vehiculos_color">
+      <End Role="marca_vehiculos" EntitySet="marca_vehiculos" />
+      <End Role="color_vehiculo" EntitySet="color_vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_estado_det_serv" Association="Self.FK_estado_det_serv">
+      <End Role="estado_servicio" EntitySet="estado_servicio" />
+      <End Role="detalle_servicio" EntitySet="detalle_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_servicios_registro" Association="Self.FK_id_servicios_registro">
+      <End Role="registro_servicio" EntitySet="registro_servicio" />
+      <End Role="detalle_servicio" EntitySet="detalle_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tipo_serv_det_serv" Association="Self.FK_tipo_serv_det_serv">
+      <End Role="tipo_servicio" EntitySet="tipo_servicio" />
+      <End Role="detalle_servicio" EntitySet="detalle_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_marca_veh_vehiculos" Association="Self.FK_marca_veh_vehiculos">
+      <End Role="marca_vehiculos" EntitySet="marca_vehiculos" />
+      <End Role="vehiculos" EntitySet="vehiculos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_marca_vehi_model_vehi" Association="Self.FK_marca_vehi_model_vehi">
+      <End Role="marca_vehiculos" EntitySet="marca_vehiculos" />
+      <End Role="modelo_vehiculos" EntitySet="modelo_vehiculos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_mod_veh_veh" Association="Self.FK_id_mod_veh_veh">
+      <End Role="modelo_vehiculos" EntitySet="modelo_vehiculos" />
+      <End Role="vehiculos" EntitySet="vehiculos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_per_per_veh" Association="Self.FK_id_per_per_veh">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="persona_vehiculo" EntitySet="persona_vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vehiculo_pers_veh" Association="Self.FK_vehiculo_pers_veh">
+      <End Role="vehiculos" EntitySet="vehiculos" />
+      <End Role="persona_vehiculo" EntitySet="persona_vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_per_reg_serv" Association="Self.FK_id_per_reg_serv">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="registro_servicio" EntitySet="registro_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_persona_usuario" Association="Self.FK_id_persona_usuario">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tipo_doc_persona" Association="Self.FK_tipo_doc_persona">
+      <End Role="tipo_documento" EntitySet="tipo_documento" />
+      <End Role="personas" EntitySet="personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_tip_doc_reg_serv" Association="Self.FK_id_tip_doc_reg_serv">
+      <End Role="tipo_documento" EntitySet="tipo_documento" />
+      <End Role="registro_servicio" EntitySet="registro_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_veh_reg_serv" Association="Self.FK_id_veh_reg_serv">
+      <End Role="vehiculos" EntitySet="vehiculos" />
+      <End Role="registro_servicio" EntitySet="registro_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usu_atiende_reg_serv" Association="Self.FK_usu_atiende_reg_serv">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="registro_servicio" EntitySet="registro_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rol_roles" Association="Self.FK_rol_roles">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_tip_veh_veh" Association="Self.FK_id_tip_veh_veh">
+      <End Role="tipo_vehiculos" EntitySet="tipo_vehiculos" />
+      <End Role="vehiculos" EntitySet="vehiculos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usuario_usu_rol" Association="Self.FK_usuario_usu_rol">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="usuario_rol" EntitySet="usuario_rol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
