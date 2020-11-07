@@ -134,11 +134,13 @@
     <Compile Include="Controllers\roles_Controller.cs" />
     <Compile Include="Controllers\tipo_documento_Controller.cs" />
     <Compile Include="Controllers\usuarios_Controller.cs" />
+    <Compile Include="Controllers\usuario_rol_Controller.cs" />
     <Compile Include="Datos\marca_vehiculos_Admin.cs" />
     <Compile Include="Datos\personas_Admin.cs" />
     <Compile Include="Datos\roles_Admin.cs" />
     <Compile Include="Datos\tipo_documento_Admin.cs" />
     <Compile Include="Datos\usuarios_Admin.cs" />
+    <Compile Include="Datos\usuario_rol_Admin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +280,10 @@
     <Content Include="Views\roles_\Detalle.cshtml" />
     <Content Include="Views\roles_\Crear.cshtml" />
     <Content Include="Views\roles_\Editar.cshtml" />
+    <Content Include="Views\usuario_rol_\Index.cshtml" />
+    <Content Include="Views\usuario_rol_\Detalle.cshtml" />
+    <Content Include="Views\usuario_rol_\Crear.cshtml" />
+    <Content Include="Views\usuario_rol_\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
