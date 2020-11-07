@@ -18,6 +18,7 @@ namespace Proyecto_LavApp.Controllers
         public ActionResult Index()
         {
             return View(admin.Consultar());
+            //return View(admin.Consultar2());
         }
 
         public ActionResult Detalle(int id)

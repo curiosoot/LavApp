@@ -1,52 +1,61 @@
 ﻿@model IEnumerable<Proyecto_LavApp.Models.usuarios>
+@*@model IEnumerable<Proyecto_LavApp.Models.usuariosCls>*@
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Index";
+    }
 
-<h2>Index</h2>
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Crear Nuevo", "Crear")
-</p>
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fec_vto_password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.personas.txt_nombre)
-        </th>
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Crear")
+    </p>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fec_vto_password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_persona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_asoc)
+                @*@Html.DisplayNameFor(model => model.personas.txt_apellido1)*@
+            </th>
         <th></th>
-    </tr>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fec_vto_password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.personas.txt_nombre)
-            @*@Html.DisplayFor(modelItem => item.personas.txt_nombre + " " + item.personas.txt_apellido1 + " " + item.personas.txt_apellido2)*@
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.id_usuario }) |
-            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_usuario }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_usuario })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fec_vto_password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_persona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom_asoc)
+                    @*@Html.DisplayFor(modelItem => item.personas.txt_nombre)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.id_usuario }) |
+                    @Html.ActionLink("Detalles", "Detalle", new { id = item.id_usuario }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_usuario })
+                </td>
+            </tr>
+        }
 
-</table>
+        </table>

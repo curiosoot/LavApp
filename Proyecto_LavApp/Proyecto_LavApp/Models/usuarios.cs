@@ -38,7 +38,16 @@ namespace Proyecto_LavApp.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
         public System.DateTime fec_vto_password { get; set; }
-    
+
+        [Display(Name = "Nombre Asociado")]
+        public string nom_asoc
+        {
+            get
+            {
+                return personas.txt_nombre + " " + personas.txt_apellido1 + " " + personas.txt_apellido2;
+            }
+        }
+
         public virtual personas personas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }

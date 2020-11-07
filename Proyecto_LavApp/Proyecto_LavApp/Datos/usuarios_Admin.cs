@@ -44,7 +44,7 @@ namespace Proyecto_LavApp.Datos
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 //return contexto.usuarios.AsNoTracking().FirstOrDefault(c => c.id_usuario == id);
-                return contexto.usuarios.Include(x => x.personas).FirstOrDefault(c => c.id_persona == id);
+                return contexto.usuarios.Include(x => x.personas).FirstOrDefault(c => c.id_usuario == id);
             }
         }
 
