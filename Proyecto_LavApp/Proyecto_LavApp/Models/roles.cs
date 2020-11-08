@@ -33,7 +33,7 @@ namespace Proyecto_LavApp.Models
         [Display(Name = "Es Empleado")]
         public bool sn_empleado { get; set; }
 
-        [Display(Name = "Es Cleinte")]
+        [Display(Name = "Es Cliente")]
         public bool sn_cliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

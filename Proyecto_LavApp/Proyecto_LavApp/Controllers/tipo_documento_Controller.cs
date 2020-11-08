@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
+    [Acceder]
     public class tipo_documento_Controller : Controller
     {
         tipo_documento_Admin admin = new tipo_documento_Admin();

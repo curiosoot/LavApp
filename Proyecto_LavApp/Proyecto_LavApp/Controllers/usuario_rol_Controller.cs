@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
+    [Acceder]
     public class usuario_rol_Controller : Controller
     {
         List<SelectListItem> listroles;
@@ -17,12 +19,12 @@ namespace Proyecto_LavApp.Controllers
         // GET: usuario_rol_
         public ActionResult Index()
         {
-            return View(admin.Consultar());
+            return View(admin.Consultar2());
         }
 
         public ActionResult Detalle(int id)
         {
-            return View(admin.Consultar(id));
+            return View(admin.Consultar2(id));
         }
 
         public ActionResult Crear()
@@ -78,7 +80,7 @@ namespace Proyecto_LavApp.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            usuario_rol modelo = admin.Consultar(id);
+            usuario_rol modelo = admin.Consultar2(id);
             admin.Eliminar(modelo);
             return View("Index", admin.Consultar());
         }

@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
+    [Acceder]
     public class marca_vehiculos_Controller : Controller
     {
         marca_vehiculos_Admin admin = new marca_vehiculos_Admin();
