@@ -131,6 +131,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\login_Controller.cs" />
     <Compile Include="Controllers\marca_vehiculos_Controller.cs" />
+    <Compile Include="Controllers\modelo_vehiculos_Controller.cs" />
     <Compile Include="Controllers\personas_Controller.cs" />
     <Compile Include="Controllers\ptallappalController.cs" />
     <Compile Include="Controllers\roles_Controller.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Controllers\usuarios_Controller.cs" />
     <Compile Include="Controllers\usuario_rol_Controller.cs" />
     <Compile Include="Datos\marca_vehiculos_Admin.cs" />
+    <Compile Include="Datos\modelo_vehiculos_Admin.cs" />
     <Compile Include="Datos\personas_Admin.cs" />
     <Compile Include="Datos\roles_Admin.cs" />
     <Compile Include="Datos\tipo_documento_Admin.cs" />
@@ -293,6 +295,10 @@
     <Content Include="Views\usuario_rol_\Editar.cshtml" />
     <Content Include="Views\login_\Index.cshtml" />
     <Content Include="Views\ptallappal\Index.cshtml" />
+    <Content Include="Views\modelo_vehiculos_\Index.cshtml" />
+    <Content Include="Views\modelo_vehiculos_\Detalle.cshtml" />
+    <Content Include="Views\modelo_vehiculos_\Crear.cshtml" />
+    <Content Include="Views\modelo_vehiculos_\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
