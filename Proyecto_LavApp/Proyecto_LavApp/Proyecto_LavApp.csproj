@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\color_vehiculo_Controller.cs" />
+    <Compile Include="Controllers\estado_servicio_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\login_Controller.cs" />
     <Compile Include="Controllers\marca_vehiculos_Controller.cs" />
@@ -137,14 +138,19 @@
     <Compile Include="Controllers\ptallappalController.cs" />
     <Compile Include="Controllers\roles_Controller.cs" />
     <Compile Include="Controllers\tipo_documento_Controller.cs" />
+    <Compile Include="Controllers\tipo_servicio_Controller.cs" />
+    <Compile Include="Controllers\tipo_vehiculos_Controller.cs" />
     <Compile Include="Controllers\usuarios_Controller.cs" />
     <Compile Include="Controllers\usuario_rol_Controller.cs" />
     <Compile Include="Datos\color_vehiculos_Admin.cs" />
+    <Compile Include="Datos\estado_servicio_Admin.cs" />
     <Compile Include="Datos\marca_vehiculos_Admin.cs" />
     <Compile Include="Datos\modelo_vehiculos_Admin.cs" />
     <Compile Include="Datos\personas_Admin.cs" />
     <Compile Include="Datos\roles_Admin.cs" />
     <Compile Include="Datos\tipo_documento_Admin.cs" />
+    <Compile Include="Datos\tipo_servicio_Admin.cs" />
+    <Compile Include="Datos\tipo_vehiculos_Admin.cs" />
     <Compile Include="Datos\usuarios_Admin.cs" />
     <Compile Include="Datos\usuario_rol_Admin.cs" />
     <Compile Include="Filters\Acceder.cs" />
@@ -203,6 +209,7 @@
     <Compile Include="Models\tipo_vehiculos.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tipo_vehiculos_Cls.cs" />
     <Compile Include="Models\usuarios.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -305,6 +312,18 @@
     <Content Include="Views\color_vehiculo_\Detalle.cshtml" />
     <Content Include="Views\color_vehiculo_\Crear.cshtml" />
     <Content Include="Views\color_vehiculo_\Editar.cshtml" />
+    <Content Include="Views\tipo_vehiculos_\Index.cshtml" />
+    <Content Include="Views\tipo_vehiculos_\Detalle.cshtml" />
+    <Content Include="Views\tipo_vehiculos_\Crear.cshtml" />
+    <Content Include="Views\tipo_vehiculos_\Editar.cshtml" />
+    <Content Include="Views\tipo_servicio_\Index.cshtml" />
+    <Content Include="Views\tipo_servicio_\Detalle.cshtml" />
+    <Content Include="Views\tipo_servicio_\Crear.cshtml" />
+    <Content Include="Views\tipo_servicio_\Editar.cshtml" />
+    <Content Include="Views\estado_servicio_\Index.cshtml" />
+    <Content Include="Views\estado_servicio_\Detalle.cshtml" />
+    <Content Include="Views\estado_servicio_\Crear.cshtml" />
+    <Content Include="Views\estado_servicio_\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

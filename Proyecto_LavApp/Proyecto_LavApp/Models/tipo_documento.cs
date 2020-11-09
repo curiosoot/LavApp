@@ -11,8 +11,7 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tipo_documento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +20,9 @@ namespace Proyecto_LavApp.Models
             this.personas = new HashSet<personas>();
             this.registro_servicio = new HashSet<registro_servicio>();
         }
-        [Display (Name ="Id Tipo Documento")]
+    
         public int id_tipo_documento { get; set; }
-
-        [Display(Name = "Tipo Documento")]
         public string txt_tipo_doc { get; set; }
-
-        [Display(Name = "Activo")]
         public bool sn_activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

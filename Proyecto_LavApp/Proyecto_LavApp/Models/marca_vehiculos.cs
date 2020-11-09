@@ -11,8 +11,7 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class marca_vehiculos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +21,9 @@ namespace Proyecto_LavApp.Models
             this.vehiculos = new HashSet<vehiculos>();
             this.modelo_vehiculos = new HashSet<modelo_vehiculos>();
         }
-        [Display(Name = "Id Marca Vehiculo")]
+    
         public int id_marca_vehiculos { get; set; }
-
-        [Display(Name = "Descripción Marca")]
         public string txt_desc_marca { get; set; }
-
-        [Display(Name = "Activo")]
         public bool sn_activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
