@@ -168,5 +168,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="reserva_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.reserva_servicio">
+        <MappingFragment StoreEntitySet="reserva_servicio">
+          <ScalarProperty Name="txt_observacion" ColumnName="txt_observacion" />
+          <ScalarProperty Name="id_usuario_atiende" ColumnName="id_usuario_atiende" />
+          <ScalarProperty Name="hora_servicio" ColumnName="hora_servicio" />
+          <ScalarProperty Name="fecha_servicio" ColumnName="fecha_servicio" />
+          <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="txt_email" ColumnName="txt_email" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="txt_nombre" ColumnName="txt_nombre" />
+          <ScalarProperty Name="id_cita" ColumnName="id_cita" />
+          <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reserva_tipo_servicio">
+      <EntityTypeMapping TypeName="LavApp_BDModel.reserva_tipo_servicio">
+        <MappingFragment StoreEntitySet="reserva_tipo_servicio">
+          <ScalarProperty Name="total_servicios_sol" ColumnName="total_servicios_sol" />
+          <ScalarProperty Name="id_tipo_servicio" ColumnName="id_tipo_servicio" />
+          <ScalarProperty Name="id_cita" ColumnName="id_cita" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

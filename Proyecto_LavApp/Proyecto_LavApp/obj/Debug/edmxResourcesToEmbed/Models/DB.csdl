@@ -139,6 +139,7 @@
     <Property Name="txt_desc_servicio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="imp_valor" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
     <NavigationProperty Name="detalle_servicio" Relationship="Self.FK_tipo_serv_det_serv" FromRole="tipo_servicio" ToRole="detalle_servicio" />
+    <NavigationProperty Name="reserva_tipo_servicio" Relationship="LavApp_BDModel.FK_id_tip_serv_tipo_serv" FromRole="tipo_servicio" ToRole="reserva_tipo_servicio" />
   </EntityType>
   <EntityType Name="tipo_vehiculos">
     <Key>
@@ -171,6 +172,7 @@
     <NavigationProperty Name="personas" Relationship="Self.FK_id_persona_usuario" FromRole="usuarios" ToRole="personas" />
     <NavigationProperty Name="registro_servicio" Relationship="Self.FK_usu_atiende_reg_serv" FromRole="usuarios" ToRole="registro_servicio" />
     <NavigationProperty Name="usuario_rol" Relationship="Self.FK_usuario_usu_rol" FromRole="usuarios" ToRole="usuario_rol" />
+    <NavigationProperty Name="reserva_servicio" Relationship="LavApp_BDModel.FK_id_usr_ati_usuarios" FromRole="usuarios" ToRole="reserva_servicio" />
   </EntityType>
   <EntityType Name="vehiculos">
     <Key>
@@ -189,6 +191,7 @@
     <NavigationProperty Name="persona_vehiculo" Relationship="Self.FK_vehiculo_pers_veh" FromRole="vehiculos" ToRole="persona_vehiculo" />
     <NavigationProperty Name="registro_servicio" Relationship="Self.FK_id_veh_reg_serv" FromRole="vehiculos" ToRole="registro_servicio" />
     <NavigationProperty Name="tipo_vehiculos" Relationship="Self.FK_id_tip_veh_veh" FromRole="vehiculos" ToRole="tipo_vehiculos" />
+    <NavigationProperty Name="reserva_servicio" Relationship="LavApp_BDModel.FK_id_veh_reser_servicio" FromRole="vehiculos" ToRole="reserva_servicio" />
   </EntityType>
   <Association Name="FK_color_veh_vehiculos">
     <End Role="color_vehiculo" Type="Self.color_vehiculo" Multiplicity="1" />
@@ -510,5 +513,100 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="usuario_rol" EntitySet="usuario_rol" />
     </AssociationSet>
+    <EntitySet Name="reserva_servicio" EntityType="LavApp_BDModel.reserva_servicio" />
+    <EntitySet Name="reserva_tipo_servicio" EntityType="LavApp_BDModel.reserva_tipo_servicio" />
+    <AssociationSet Name="FK_id_cita_reser_servicio" Association="LavApp_BDModel.FK_id_cita_reser_servicio">
+      <End Role="reserva_tipo_servicio" EntitySet="reserva_tipo_servicio" />
+      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_usr_ati_usuarios" Association="LavApp_BDModel.FK_id_usr_ati_usuarios">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_veh_reser_servicio" Association="LavApp_BDModel.FK_id_veh_reser_servicio">
+      <End Role="vehiculos" EntitySet="vehiculos" />
+      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_tip_serv_tipo_serv" Association="LavApp_BDModel.FK_id_tip_serv_tipo_serv">
+      <End Role="tipo_servicio" EntitySet="tipo_servicio" />
+      <End Role="reserva_tipo_servicio" EntitySet="reserva_tipo_servicio" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="reserva_servicio">
+    <Key>
+      <PropertyRef Name="id_reserva" />
+    </Key>
+    <Property Name="id_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cita" Type="Int32" Nullable="false" />
+    <Property Name="txt_nombre" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="cedula" Type="Int32" Nullable="false" />
+    <Property Name="txt_email" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="Int32" Nullable="false" />
+    <Property Name="id_vehiculo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_servicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hora_servicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_usuario_atiende" Type="Int32" Nullable="false" />
+    <Property Name="txt_observacion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="reserva_tipo_servicio" Relationship="LavApp_BDModel.FK_id_cita_reser_servicio" FromRole="reserva_servicio" ToRole="reserva_tipo_servicio" />
+    <NavigationProperty Name="usuarios" Relationship="LavApp_BDModel.FK_id_usr_ati_usuarios" FromRole="reserva_servicio" ToRole="usuarios" />
+    <NavigationProperty Name="vehiculos" Relationship="LavApp_BDModel.FK_id_veh_reser_servicio" FromRole="reserva_servicio" ToRole="vehiculos" />
+  </EntityType>
+  <EntityType Name="reserva_tipo_servicio">
+    <Key>
+      <PropertyRef Name="id_cita" />
+    </Key>
+    <Property Name="id_cita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_servicio" Type="Int32" Nullable="false" />
+    <Property Name="total_servicios_sol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="reserva_servicio" Relationship="LavApp_BDModel.FK_id_cita_reser_servicio" FromRole="reserva_tipo_servicio" ToRole="reserva_servicio" />
+    <NavigationProperty Name="tipo_servicio" Relationship="LavApp_BDModel.FK_id_tip_serv_tipo_serv" FromRole="reserva_tipo_servicio" ToRole="tipo_servicio" />
+  </EntityType>
+  <Association Name="FK_id_cita_reser_servicio">
+    <End Type="LavApp_BDModel.reserva_tipo_servicio" Role="reserva_tipo_servicio" Multiplicity="1" />
+    <End Type="LavApp_BDModel.reserva_servicio" Role="reserva_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reserva_tipo_servicio">
+        <PropertyRef Name="id_cita" />
+      </Principal>
+      <Dependent Role="reserva_servicio">
+        <PropertyRef Name="id_cita" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_usr_ati_usuarios">
+    <End Type="LavApp_BDModel.usuarios" Role="usuarios" Multiplicity="1" />
+    <End Type="LavApp_BDModel.reserva_servicio" Role="reserva_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="reserva_servicio">
+        <PropertyRef Name="id_usuario_atiende" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_veh_reser_servicio">
+    <End Type="LavApp_BDModel.vehiculos" Role="vehiculos" Multiplicity="1" />
+    <End Type="LavApp_BDModel.reserva_servicio" Role="reserva_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculos">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="reserva_servicio">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_tip_serv_tipo_serv">
+    <End Type="LavApp_BDModel.tipo_servicio" Role="tipo_servicio" Multiplicity="1" />
+    <End Type="LavApp_BDModel.reserva_tipo_servicio" Role="reserva_tipo_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_servicio">
+        <PropertyRef Name="id_tipo_servicio" />
+      </Principal>
+      <Dependent Role="reserva_tipo_servicio">
+        <PropertyRef Name="id_tipo_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

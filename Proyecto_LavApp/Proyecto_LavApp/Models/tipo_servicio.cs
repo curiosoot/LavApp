@@ -18,6 +18,7 @@ namespace Proyecto_LavApp.Models
         public tipo_servicio()
         {
             this.detalle_servicio = new HashSet<detalle_servicio>();
+            this.reserva_tipo_servicio = new HashSet<reserva_tipo_servicio>();
         }
     
         public int id_tipo_servicio { get; set; }
@@ -26,5 +27,7 @@ namespace Proyecto_LavApp.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_servicio> detalle_servicio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reserva_tipo_servicio> reserva_tipo_servicio { get; set; }
     }
 }

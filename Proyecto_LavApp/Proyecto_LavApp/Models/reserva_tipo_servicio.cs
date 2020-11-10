@@ -12,28 +12,20 @@ namespace Proyecto_LavApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class usuarios
+    public partial class reserva_tipo_servicio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuarios()
+        public reserva_tipo_servicio()
         {
-            this.registro_servicio = new HashSet<registro_servicio>();
-            this.usuario_rol = new HashSet<usuario_rol>();
             this.reserva_servicio = new HashSet<reserva_servicio>();
         }
     
-        public int id_usuario { get; set; }
-        public string Username { get; set; }
-        public string txt_password { get; set; }
-        public int id_persona { get; set; }
-        public System.DateTime fec_vto_password { get; set; }
+        public int id_cita { get; set; }
+        public int id_tipo_servicio { get; set; }
+        public int total_servicios_sol { get; set; }
     
-        public virtual personas personas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<registro_servicio> registro_servicio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario_rol> usuario_rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reserva_servicio> reserva_servicio { get; set; }
+        public virtual tipo_servicio tipo_servicio { get; set; }
     }
 }

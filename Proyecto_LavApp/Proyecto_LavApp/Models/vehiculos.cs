@@ -19,6 +19,7 @@ namespace Proyecto_LavApp.Models
         {
             this.persona_vehiculo = new HashSet<persona_vehiculo>();
             this.registro_servicio = new HashSet<registro_servicio>();
+            this.reserva_servicio = new HashSet<reserva_servicio>();
         }
     
         public int id_vehiculo { get; set; }
@@ -37,5 +38,7 @@ namespace Proyecto_LavApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }
         public virtual tipo_vehiculos tipo_vehiculos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reserva_servicio> reserva_servicio { get; set; }
     }
 }
