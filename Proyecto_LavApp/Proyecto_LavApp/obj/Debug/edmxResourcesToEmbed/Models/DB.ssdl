@@ -119,7 +119,7 @@
       <PropertyRef Name="id_tipo_vehiculo" />
     </Key>
     <Property Name="id_tipo_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="txt_tipo_vehiculo" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="txt_tipo_vehiculo" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="sn_activo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="usuario_rol">

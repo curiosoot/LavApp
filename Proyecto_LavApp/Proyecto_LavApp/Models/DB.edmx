@@ -124,7 +124,7 @@
             <PropertyRef Name="id_tipo_vehiculo" />
           </Key>
           <Property Name="id_tipo_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="txt_tipo_vehiculo" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="txt_tipo_vehiculo" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="sn_activo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="usuario_rol">
@@ -627,7 +627,7 @@
             <PropertyRef Name="id_tipo_vehiculo" />
           </Key>
           <Property Name="id_tipo_vehiculo" Type="Int32" Nullable="false" />
-          <Property Name="txt_tipo_vehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="txt_tipo_vehiculo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="sn_activo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="vehiculos" Relationship="Self.FK_id_tip_veh_veh" FromRole="tipo_vehiculos" ToRole="vehiculos" />
         </EntityType>

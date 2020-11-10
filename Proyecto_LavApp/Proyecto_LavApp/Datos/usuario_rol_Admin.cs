@@ -36,14 +36,12 @@ namespace Proyecto_LavApp.Datos
             return asociacion;
         }
 
-        public IEnumerable<usuario_rol> Consultar2()
+        public List<usuario_rol> Consultar2()
         {
             roles_Admin rolAdmin = new roles_Admin();
             usuarios_Admin usrAdmin = new usuarios_Admin();
             IEnumerable<usuario_rol_Cls> asociacion;
-            //IEnumerable<usuario_rol> modelo = null;
-            IEnumerable<usuario_rol> modelo = new List<usuario_rol>();
-            usuario_rol modelo_rol = new usuario_rol();
+            List<usuario_rol> modelo = new List<usuario_rol>();
 
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
@@ -66,14 +64,16 @@ namespace Proyecto_LavApp.Datos
 
             foreach (usuario_rol_Cls Item in asociacion) 
             {
+                usuario_rol modelo_rol = new usuario_rol();
+
                 modelo_rol.id_usuario_rol = Item.id_usuario_rol;
                 modelo_rol.id_usuario = Item.id_usuario;
                 modelo_rol.id_rol = Item.id_rol;
                 modelo_rol.roles = rolAdmin.Consultar(Item.id_rol);
                 modelo_rol.usuarios = usrAdmin.Consultar(Item.id_usuario);
 
-                //modelo.Add(modelo_rol);
-                modelo.ToList().Add(modelo_rol);
+                modelo.Add(modelo_rol);
+                //modelo.ToList().Add(modelo_rol);
             }
             return modelo;
         }
@@ -145,17 +145,6 @@ namespace Proyecto_LavApp.Datos
 
         public void Guardar(usuario_rol modelo)
         {
-            //roles_Admin rolAdmin = new roles_Admin();
-            //usuarios_Admin usrAdmin = new usuarios_Admin();
-
-            //usuario_rol usuario = null;
-
-            //usuario.id_usuario_rol = modelo.id_usuario_rol;
-            //usuario.id_usuario = modelo.id_usuario;
-            //usuario.id_usuario_rol = modelo.id_rol;
-            //usuario.roles = rolAdmin.Consultar(modelo.id_rol);
-            //usuario.usuarios = usrAdmin.Consultar(modelo.id_usuario);
-
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 contexto.usuario_rol.Add(modelo);

@@ -3,6 +3,7 @@ using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -64,7 +65,7 @@ namespace Proyecto_LavApp.Controllers
 
             llenar_usuarios();
             ViewBag.listausuarios = listusuarios;
-            return View(admin.Consultar(id));
+            return View(admin.Consultar2(id));
         }
 
         public ActionResult Modificar(usuario_rol modelo)
@@ -82,7 +83,7 @@ namespace Proyecto_LavApp.Controllers
         {
             usuario_rol modelo = admin.Consultar2(id);
             admin.Eliminar(modelo);
-            return View("Index", admin.Consultar());
+            return View("Index", admin.Consultar2());
         }
 
         private void llenar_roles()

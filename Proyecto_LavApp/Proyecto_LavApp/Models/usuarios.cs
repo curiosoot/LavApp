@@ -11,7 +11,8 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,7 +27,15 @@ namespace Proyecto_LavApp.Models
         public string txt_password { get; set; }
         public int id_persona { get; set; }
         public System.DateTime fec_vto_password { get; set; }
-    
+
+        public string nom_asoc 
+        {
+            get 
+            {
+                return personas.txt_apellido1 + " " + personas.txt_apellido2 + " " + personas.txt_nombre;
+            }
+        }
+
         public virtual personas personas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }
