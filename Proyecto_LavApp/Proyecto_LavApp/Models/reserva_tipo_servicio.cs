@@ -11,7 +11,8 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class reserva_tipo_servicio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,14 @@ namespace Proyecto_LavApp.Models
         {
             this.reserva_servicio = new HashSet<reserva_servicio>();
         }
-    
+
+        [Display(Name = "Id Cita")]
         public int id_cita { get; set; }
+
+        [Display(Name = "Id Tipo Servicio")]
         public int id_tipo_servicio { get; set; }
+
+        [Display(Name = "Total Servicios Solicitados")]
         public int total_servicios_sol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

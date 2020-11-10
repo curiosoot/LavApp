@@ -11,7 +11,8 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,22 @@ namespace Proyecto_LavApp.Models
         {
             this.usuario_rol = new HashSet<usuario_rol>();
         }
-    
+
+        [Display(Name = "Id Rol")]
         public int id_rol { get; set; }
+
+        [Display(Name = "Descripción Rol")]
         public string txt_desc_rol { get; set; }
+
+        [Display(Name = "Administrador")]
         public bool sn_admin { get; set; }
+
+        [Display(Name = "Empleado")]
         public bool sn_empleado { get; set; }
+
+        [Display(Name = "Cliente")]
         public bool sn_cliente { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario_rol> usuario_rol { get; set; }
     }

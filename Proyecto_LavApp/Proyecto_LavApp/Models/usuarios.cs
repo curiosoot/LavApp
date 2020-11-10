@@ -11,7 +11,8 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +22,24 @@ namespace Proyecto_LavApp.Models
             this.usuario_rol = new HashSet<usuario_rol>();
             this.reserva_servicio = new HashSet<reserva_servicio>();
         }
-    
+
+        [Display(Name = "Id Usuario")]
         public int id_usuario { get; set; }
+
+        [Display(Name = "Username")]
         public string Username { get; set; }
+
+        [Display(Name = "Password")]
         public string txt_password { get; set; }
+
+        [Display(Name = "Id Persona")]
         public int id_persona { get; set; }
+
+        [Display(Name = "Fecha Vecimiento Password")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fec_vto_password { get; set; }
-    
+
         public virtual personas personas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }

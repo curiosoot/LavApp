@@ -11,19 +11,45 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class reserva_servicio
     {
+        [Display(Name = "Id Reserva")]
         public int id_reserva { get; set; }
+
+        [Display(Name = "Id Cita")]
         public int id_cita { get; set; }
+
+        [Display(Name = "Nombre")]
         public string txt_nombre { get; set; }
+
+        [Display(Name = "Cedula")]
         public int cedula { get; set; }
+
+        [Display(Name = "Correo")]
         public string txt_email { get; set; }
+
+        [Display(Name = "Telefono")]
         public int telefono { get; set; }
+
+        [Display(Name = "Id Vehiculo")]
         public int id_vehiculo { get; set; }
+
+        [Display(Name = "Fecha Servicio")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fecha_servicio { get; set; }
+
+        [Display(Name = "Hora Servicio")]
+        [DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime hora_servicio { get; set; }
+
+        [Display(Name = "Id Usuario Atiende")]
         public int id_usuario_atiende { get; set; }
+
+        [Display(Name = "Observación")]
         public string txt_observacion { get; set; }
     
         public virtual reserva_tipo_servicio reserva_tipo_servicio { get; set; }
