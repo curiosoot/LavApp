@@ -196,6 +196,12 @@
     <Compile Include="Models\registro_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\reserva_servicio.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\reserva_tipo_servicio.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\roles.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

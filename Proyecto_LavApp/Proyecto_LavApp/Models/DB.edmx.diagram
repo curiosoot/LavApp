@@ -39,6 +39,12 @@
         <AssociationConnector Association="LavApp_BDModel.FK_rol_roles" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_tip_veh_veh" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_usuario_usu_rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LavApp_BDModel.reserva_servicio" Width="1.5" PointX="15.5" PointY="5.125" />
+        <EntityTypeShape EntityType="LavApp_BDModel.reserva_tipo_servicio" Width="1.5" PointX="13.25" PointY="10" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_cita_reser_servicio" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_usr_ati_usuarios" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_veh_reser_servicio" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_tip_serv_tipo_serv" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

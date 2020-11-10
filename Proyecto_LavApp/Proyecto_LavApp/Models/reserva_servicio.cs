@@ -12,15 +12,22 @@ namespace Proyecto_LavApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class persona_vehiculo
+    public partial class reserva_servicio
     {
-        public int id_usuario_vehiculo { get; set; }
-        public int id_persona { get; set; }
+        public int id_reserva { get; set; }
+        public int id_cita { get; set; }
+        public string txt_nombre { get; set; }
+        public int cedula { get; set; }
+        public string txt_email { get; set; }
+        public int telefono { get; set; }
         public int id_vehiculo { get; set; }
-        public string txt_observaciones { get; set; }
-        public System.DateTime fec_asociacion { get; set; }
+        public System.DateTime fecha_servicio { get; set; }
+        public System.DateTime hora_servicio { get; set; }
+        public int id_usuario_atiende { get; set; }
+        public string txt_observacion { get; set; }
     
-        public virtual personas personas { get; set; }
+        public virtual reserva_tipo_servicio reserva_tipo_servicio { get; set; }
+        public virtual usuarios usuarios { get; set; }
         public virtual vehiculos vehiculos { get; set; }
     }
 }

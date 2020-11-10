@@ -40,5 +40,7 @@ namespace Proyecto_LavApp.Models
         public virtual DbSet<usuario_rol> usuario_rol { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<vehiculos> vehiculos { get; set; }
+        public virtual DbSet<reserva_servicio> reserva_servicio { get; set; }
+        public virtual DbSet<reserva_tipo_servicio> reserva_tipo_servicio { get; set; }
     }
 }

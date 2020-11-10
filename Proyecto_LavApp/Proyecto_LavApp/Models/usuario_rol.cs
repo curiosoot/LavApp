@@ -11,17 +11,11 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class usuario_rol
     {
-        [Display(Name = "Id Usuario Rol")]
         public int id_usuario_rol { get; set; }
-
-        [Display(Name = "Id Usuario")]
         public int id_usuario { get; set; }
-
-        [Display(Name = "Id Rol")]
         public int id_rol { get; set; }
     
         public virtual roles roles { get; set; }

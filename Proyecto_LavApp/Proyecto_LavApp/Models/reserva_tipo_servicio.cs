@@ -12,21 +12,20 @@ namespace Proyecto_LavApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class modelo_vehiculos
+    public partial class reserva_tipo_servicio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public modelo_vehiculos()
+        public reserva_tipo_servicio()
         {
-            this.vehiculos = new HashSet<vehiculos>();
+            this.reserva_servicio = new HashSet<reserva_servicio>();
         }
     
-        public int id_modelo_vehiculo { get; set; }
-        public int id_marca_vehiculos { get; set; }
-        public string txt_desc_modelo { get; set; }
-        public bool sn_activo { get; set; }
+        public int id_cita { get; set; }
+        public int id_tipo_servicio { get; set; }
+        public int total_servicios_sol { get; set; }
     
-        public virtual marca_vehiculos marca_vehiculos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vehiculos> vehiculos { get; set; }
+        public virtual ICollection<reserva_servicio> reserva_servicio { get; set; }
+        public virtual tipo_servicio tipo_servicio { get; set; }
     }
 }
