@@ -11,16 +11,32 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class detalle_servicio
     {
+        [Display(Name = "Id Detalle Servicio")]
         public int id_detalle_servicio { get; set; }
+
+        [Display(Name = "Id Servicio")]
         public int id_servicio { get; set; }
+
+        [Display(Name = "Id tipo Servicio")]
         public int id_tipo_servicio { get; set; }
+
+        [Display(Name = "Valor Servicio")]
         public decimal imp_valor_servivio { get; set; }
+
+        [Display(Name = "Valor Descuento")]
         public decimal imp_valor_descuento { get; set; }
+
+        [Display(Name = "Valor Neto")]
         public decimal imp_valor_neto { get; set; }
+
+        [Display(Name = "Valor Iva")]
         public decimal imp_valor_iva { get; set; }
+
+        [Display(Name = "Activo")]
         public Nullable<int> id_estado { get; set; }
     
         public virtual estado_servicio estado_servicio { get; set; }

@@ -21,7 +21,7 @@ namespace Proyecto_LavApp.Models
             this.detalle_servicio = new HashSet<detalle_servicio>();
         }
 
-        [Display(Name = "Id Tipo Servicio")]
+        [Display(Name = "Id Tipo Servicio")] 
         public int id_tipo_servicio { get; set; }
 
         [Display(Name = "Descripción Servicio")]

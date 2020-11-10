@@ -11,13 +11,25 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class persona_vehiculo
     {
+        [Display(Name = "Id Usuario Vehiculo")]
         public int id_usuario_vehiculo { get; set; }
+
+        [Display(Name = "Id Persona")]
         public int id_persona { get; set; }
+
+        [Display(Name = "Id Vehiculo")]
         public int id_vehiculo { get; set; }
+
+        [Display(Name = "Observaciones")]
         public string txt_observaciones { get; set; }
+
+        [Display(Name = "Fecha Asociación")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fec_asociacion { get; set; }
     
         public virtual personas personas { get; set; }
