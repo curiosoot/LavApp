@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Proyecto_LavApp.Models.vehiculos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Crear")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_placa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ano_vehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.color_vehiculo.txt_desc_color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.marca_vehiculos.txt_desc_marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modelo_vehiculos.txt_desc_modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_vehiculos.txt_tipo_vehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personas.txt_apellido1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.txt_placa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ano_vehiculo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.color_vehiculo.txt_desc_color)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.marca_vehiculos.txt_desc_marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.modelo_vehiculos.txt_desc_modelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tipo_vehiculos.txt_tipo_vehiculo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.personas.txt_apellido1)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.id_vehiculo }) |
+        @Html.ActionLink("Detailes", "Detaile", new { id = item.id_vehiculo }) |
+        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_vehiculo })
+    </td>
+</tr>
+}
+
+</table>

@@ -30,7 +30,6 @@ namespace Proyecto_LavApp.Models
         public virtual DbSet<estado_servicio> estado_servicio { get; set; }
         public virtual DbSet<marca_vehiculos> marca_vehiculos { get; set; }
         public virtual DbSet<modelo_vehiculos> modelo_vehiculos { get; set; }
-        public virtual DbSet<persona_vehiculo> persona_vehiculo { get; set; }
         public virtual DbSet<personas> personas { get; set; }
         public virtual DbSet<registro_servicio> registro_servicio { get; set; }
         public virtual DbSet<roles> roles { get; set; }

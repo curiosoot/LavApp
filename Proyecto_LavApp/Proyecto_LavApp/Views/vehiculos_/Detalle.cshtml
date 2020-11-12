@@ -1,0 +1,74 @@
+﻿@model Proyecto_LavApp.Models.vehiculos
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>vehiculos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.txt_placa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txt_placa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ano_vehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ano_vehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.color_vehiculo.txt_desc_color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color_vehiculo.txt_desc_color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marca_vehiculos.txt_desc_marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marca_vehiculos.txt_desc_marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modelo_vehiculos.txt_desc_modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelo_vehiculos.txt_desc_modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_vehiculos.txt_tipo_vehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_vehiculos.txt_tipo_vehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.txt_apellido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.txt_apellido1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.id_vehiculo }) |
+    @Html.ActionLink("Vehiculos", "Index")
+</p>

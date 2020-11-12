@@ -15,7 +15,6 @@ namespace Proyecto_LavApp.Models
     public partial class reserva_servicio
     {
         public int id_reserva { get; set; }
-        public int id_cita { get; set; }
         public string txt_nombre { get; set; }
         public int cedula { get; set; }
         public string txt_email { get; set; }
@@ -26,8 +25,6 @@ namespace Proyecto_LavApp.Models
         public int id_usuario_atiende { get; set; }
         public string txt_observacion { get; set; }
     
-        public virtual reserva_tipo_servicio reserva_tipo_servicio { get; set; }
         public virtual usuarios usuarios { get; set; }
-        public virtual vehiculos vehiculos { get; set; }
     }
 }

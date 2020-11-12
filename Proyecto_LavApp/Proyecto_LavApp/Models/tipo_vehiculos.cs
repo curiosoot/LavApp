@@ -22,7 +22,7 @@ namespace Proyecto_LavApp.Models
     
         public int id_tipo_vehiculo { get; set; }
         public string txt_tipo_vehiculo { get; set; }
-        public int sn_activo { get; set; }
+        public bool sn_activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<vehiculos> vehiculos { get; set; }

@@ -55,17 +55,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="persona_vehiculo">
-      <EntityTypeMapping TypeName="LavApp_BDModel.persona_vehiculo">
-        <MappingFragment StoreEntitySet="persona_vehiculo">
-          <ScalarProperty Name="id_usuario_vehiculo" ColumnName="id_usuario_vehiculo" />
-          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
-          <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
-          <ScalarProperty Name="txt_observaciones" ColumnName="txt_observaciones" />
-          <ScalarProperty Name="fec_asociacion" ColumnName="fec_asociacion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="personas">
       <EntityTypeMapping TypeName="LavApp_BDModel.personas">
         <MappingFragment StoreEntitySet="personas">
@@ -158,6 +147,7 @@
     <EntitySetMapping Name="vehiculos">
       <EntityTypeMapping TypeName="LavApp_BDModel.vehiculos">
         <MappingFragment StoreEntitySet="vehiculos">
+          <ScalarProperty Name="id_persona" ColumnName="id_persona" />
           <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
           <ScalarProperty Name="id_tipo_vehiculo" ColumnName="id_tipo_vehiculo" />
           <ScalarProperty Name="txt_placa" ColumnName="txt_placa" />
@@ -180,7 +170,6 @@
           <ScalarProperty Name="txt_email" ColumnName="txt_email" />
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="txt_nombre" ColumnName="txt_nombre" />
-          <ScalarProperty Name="id_cita" ColumnName="id_cita" />
           <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -188,9 +177,10 @@
     <EntitySetMapping Name="reserva_tipo_servicio">
       <EntityTypeMapping TypeName="LavApp_BDModel.reserva_tipo_servicio">
         <MappingFragment StoreEntitySet="reserva_tipo_servicio">
+          <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
+          <ScalarProperty Name="id_cita_tipo_reserva" ColumnName="id_cita_tipo_reserva" />
           <ScalarProperty Name="total_servicios_sol" ColumnName="total_servicios_sol" />
           <ScalarProperty Name="id_tipo_servicio" ColumnName="id_tipo_servicio" />
-          <ScalarProperty Name="id_cita" ColumnName="id_cita" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -17,9 +17,9 @@ namespace Proyecto_LavApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public personas()
         {
-            this.persona_vehiculo = new HashSet<persona_vehiculo>();
             this.registro_servicio = new HashSet<registro_servicio>();
             this.usuarios = new HashSet<usuarios>();
+            this.vehiculos = new HashSet<vehiculos>();
         }
     
         public int id_persona { get; set; }
@@ -31,11 +31,11 @@ namespace Proyecto_LavApp.Models
         public Nullable<System.DateTime> fec_nacimiento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<persona_vehiculo> persona_vehiculo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuarios> usuarios { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<vehiculos> vehiculos { get; set; }
     }
 }

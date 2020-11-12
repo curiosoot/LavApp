@@ -49,16 +49,6 @@
     <Property Name="txt_desc_modelo" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="sn_activo" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="persona_vehiculo">
-    <Key>
-      <PropertyRef Name="id_usuario_vehiculo" />
-    </Key>
-    <Property Name="id_usuario_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_persona" Type="int" Nullable="false" />
-    <Property Name="id_vehiculo" Type="int" Nullable="false" />
-    <Property Name="txt_observaciones" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="fec_asociacion" Type="smalldatetime" Nullable="false" />
-  </EntityType>
   <EntityType Name="personas">
     <Key>
       <PropertyRef Name="id_persona" />
@@ -93,7 +83,6 @@
       <PropertyRef Name="id_reserva" />
     </Key>
     <Property Name="id_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_cita" Type="int" Nullable="false" />
     <Property Name="txt_nombre" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="cedula" Type="int" Nullable="false" />
     <Property Name="txt_email" Type="varchar" MaxLength="60" Nullable="false" />
@@ -106,9 +95,10 @@
   </EntityType>
   <EntityType Name="reserva_tipo_servicio">
     <Key>
-      <PropertyRef Name="id_cita" />
+      <PropertyRef Name="id_cita_tipo_reserva" />
     </Key>
-    <Property Name="id_cita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cita_tipo_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_reserva" Type="int" Nullable="false" />
     <Property Name="id_tipo_servicio" Type="int" Nullable="false" />
     <Property Name="total_servicios_sol" Type="int" Nullable="false" />
   </EntityType>
@@ -144,7 +134,7 @@
     </Key>
     <Property Name="id_tipo_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="txt_tipo_vehiculo" Type="varchar" MaxLength="60" Nullable="false" />
-    <Property Name="sn_activo" Type="int" Nullable="false" />
+    <Property Name="sn_activo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="usuario_rol">
     <Key>
@@ -170,6 +160,7 @@
     </Key>
     <Property Name="id_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_tipo_vehiculo" Type="int" Nullable="false" />
+    <Property Name="id_persona" Type="int" Nullable="false" />
     <Property Name="txt_placa" Type="varchar" MaxLength="7" Nullable="false" />
     <Property Name="id_marca_vehiculo" Type="int" Nullable="false" />
     <Property Name="id_modelo_vehiculo" Type="int" Nullable="false" />
@@ -201,14 +192,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_id_cita_reser_servicio">
-    <End Role="reserva_tipo_servicio" Type="Self.reserva_tipo_servicio" Multiplicity="1" />
-    <End Role="reserva_servicio" Type="Self.reserva_servicio" Multiplicity="*" />
+    <End Role="reserva_servicio" Type="Self.reserva_servicio" Multiplicity="1" />
+    <End Role="reserva_tipo_servicio" Type="Self.reserva_tipo_servicio" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="reserva_tipo_servicio">
-        <PropertyRef Name="id_cita" />
+      <Principal Role="reserva_servicio">
+        <PropertyRef Name="id_reserva" />
       </Principal>
-      <Dependent Role="reserva_servicio">
-        <PropertyRef Name="id_cita" />
+      <Dependent Role="reserva_tipo_servicio">
+        <PropertyRef Name="id_reserva" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -236,18 +227,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_id_per_per_veh">
-    <End Role="personas" Type="Self.personas" Multiplicity="1" />
-    <End Role="persona_vehiculo" Type="Self.persona_vehiculo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="personas">
-        <PropertyRef Name="id_persona" />
-      </Principal>
-      <Dependent Role="persona_vehiculo">
-        <PropertyRef Name="id_persona" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_id_per_reg_serv">
     <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
     <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
@@ -268,6 +247,18 @@
         <PropertyRef Name="id_persona" />
       </Principal>
       <Dependent Role="usuarios">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_persona_vehiculo">
+    <End Role="personas" Type="Self.personas" Multiplicity="1" />
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personas">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="vehiculos">
         <PropertyRef Name="id_persona" />
       </Dependent>
     </ReferentialConstraint>
@@ -329,30 +320,6 @@
       </Principal>
       <Dependent Role="reserva_servicio">
         <PropertyRef Name="id_usuario_atiende" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_id_veh_reg_serv">
-    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="0..1" />
-    <End Role="registro_servicio" Type="Self.registro_servicio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="vehiculos">
-        <PropertyRef Name="id_vehiculo" />
-      </Principal>
-      <Dependent Role="registro_servicio">
-        <PropertyRef Name="id_vehiculo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_id_veh_reser_servicio">
-    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="1" />
-    <End Role="reserva_servicio" Type="Self.reserva_servicio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="vehiculos">
-        <PropertyRef Name="id_vehiculo" />
-      </Principal>
-      <Dependent Role="reserva_servicio">
-        <PropertyRef Name="id_vehiculo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -440,25 +407,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_vehiculo_pers_veh">
-    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="1" />
-    <End Role="persona_vehiculo" Type="Self.persona_vehiculo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="vehiculos">
-        <PropertyRef Name="id_vehiculo" />
-      </Principal>
-      <Dependent Role="persona_vehiculo">
-        <PropertyRef Name="id_vehiculo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="LavApp_BDModelStoreContainer">
     <EntitySet Name="color_vehiculo" EntityType="Self.color_vehiculo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="detalle_servicio" EntityType="Self.detalle_servicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estado_servicio" EntityType="Self.estado_servicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="marca_vehiculos" EntityType="Self.marca_vehiculos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="modelo_vehiculos" EntityType="Self.modelo_vehiculos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="persona_vehiculo" EntityType="Self.persona_vehiculo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="registro_servicio" EntityType="Self.registro_servicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="reserva_servicio" EntityType="Self.reserva_servicio" Schema="dbo" store:Type="Tables" />
@@ -479,8 +433,8 @@
       <End Role="detalle_servicio" EntitySet="detalle_servicio" />
     </AssociationSet>
     <AssociationSet Name="FK_id_cita_reser_servicio" Association="Self.FK_id_cita_reser_servicio">
-      <End Role="reserva_tipo_servicio" EntitySet="reserva_tipo_servicio" />
       <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+      <End Role="reserva_tipo_servicio" EntitySet="reserva_tipo_servicio" />
     </AssociationSet>
     <AssociationSet Name="FK_id_marca_vehiculos_color" Association="Self.FK_id_marca_vehiculos_color">
       <End Role="marca_vehiculos" EntitySet="marca_vehiculos" />
@@ -490,10 +444,6 @@
       <End Role="modelo_vehiculos" EntitySet="modelo_vehiculos" />
       <End Role="vehiculos" EntitySet="vehiculos" />
     </AssociationSet>
-    <AssociationSet Name="FK_id_per_per_veh" Association="Self.FK_id_per_per_veh">
-      <End Role="personas" EntitySet="personas" />
-      <End Role="persona_vehiculo" EntitySet="persona_vehiculo" />
-    </AssociationSet>
     <AssociationSet Name="FK_id_per_reg_serv" Association="Self.FK_id_per_reg_serv">
       <End Role="personas" EntitySet="personas" />
       <End Role="registro_servicio" EntitySet="registro_servicio" />
@@ -501,6 +451,10 @@
     <AssociationSet Name="FK_id_persona_usuario" Association="Self.FK_id_persona_usuario">
       <End Role="personas" EntitySet="personas" />
       <End Role="usuarios" EntitySet="usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_persona_vehiculo" Association="Self.FK_id_persona_vehiculo">
+      <End Role="personas" EntitySet="personas" />
+      <End Role="vehiculos" EntitySet="vehiculos" />
     </AssociationSet>
     <AssociationSet Name="FK_id_servicios_registro" Association="Self.FK_id_servicios_registro">
       <End Role="registro_servicio" EntitySet="registro_servicio" />
@@ -520,14 +474,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_id_usr_ati_usuarios" Association="Self.FK_id_usr_ati_usuarios">
       <End Role="usuarios" EntitySet="usuarios" />
-      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_id_veh_reg_serv" Association="Self.FK_id_veh_reg_serv">
-      <End Role="vehiculos" EntitySet="vehiculos" />
-      <End Role="registro_servicio" EntitySet="registro_servicio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_id_veh_reser_servicio" Association="Self.FK_id_veh_reser_servicio">
-      <End Role="vehiculos" EntitySet="vehiculos" />
       <End Role="reserva_servicio" EntitySet="reserva_servicio" />
     </AssociationSet>
     <AssociationSet Name="FK_marca_veh_vehiculos" Association="Self.FK_marca_veh_vehiculos">
@@ -557,10 +503,6 @@
     <AssociationSet Name="FK_usuario_usu_rol" Association="Self.FK_usuario_usu_rol">
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="usuario_rol" EntitySet="usuario_rol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_vehiculo_pers_veh" Association="Self.FK_vehiculo_pers_veh">
-      <End Role="vehiculos" EntitySet="vehiculos" />
-      <End Role="persona_vehiculo" EntitySet="persona_vehiculo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

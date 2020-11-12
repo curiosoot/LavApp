@@ -20,12 +20,12 @@ namespace Proyecto_LavApp.Controllers
         // GET: usuario_rol_
         public ActionResult Index()
         {
-            return View(admin.Consultar2());
+            return View(admin.Consultar());
         }
 
         public ActionResult Detalle(int id)
         {
-            return View(admin.Consultar2(id));
+            return View(admin.Consultar(id));
         }
 
         public ActionResult Crear()
@@ -65,7 +65,7 @@ namespace Proyecto_LavApp.Controllers
 
             llenar_usuarios();
             ViewBag.listausuarios = listusuarios;
-            return View(admin.Consultar2(id));
+            return View(admin.Consultar(id));
         }
 
         public ActionResult Modificar(usuario_rol modelo)
@@ -81,9 +81,9 @@ namespace Proyecto_LavApp.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            usuario_rol modelo = admin.Consultar2(id);
+            usuario_rol modelo = admin.Consultar(id);
             admin.Eliminar(modelo);
-            return View("Index", admin.Consultar2());
+            return View("Index", admin.Consultar());
         }
 
         private void llenar_roles()

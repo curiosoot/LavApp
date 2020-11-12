@@ -136,23 +136,27 @@
     <Compile Include="Controllers\modelo_vehiculos_Controller.cs" />
     <Compile Include="Controllers\personas_Controller.cs" />
     <Compile Include="Controllers\ptallappalController.cs" />
+    <Compile Include="Controllers\reserva_servicio_Controller.cs" />
     <Compile Include="Controllers\roles_Controller.cs" />
     <Compile Include="Controllers\tipo_documento_Controller.cs" />
     <Compile Include="Controllers\tipo_servicio_Controller.cs" />
     <Compile Include="Controllers\tipo_vehiculos_Controller.cs" />
     <Compile Include="Controllers\usuarios_Controller.cs" />
     <Compile Include="Controllers\usuario_rol_Controller.cs" />
+    <Compile Include="Controllers\vehiculos_Controller.cs" />
     <Compile Include="Datos\color_vehiculos_Admin.cs" />
     <Compile Include="Datos\estado_servicio_Admin.cs" />
     <Compile Include="Datos\marca_vehiculos_Admin.cs" />
     <Compile Include="Datos\modelo_vehiculos_Admin.cs" />
     <Compile Include="Datos\personas_Admin.cs" />
+    <Compile Include="Datos\reserva_servicio_Admin.cs" />
     <Compile Include="Datos\roles_Admin.cs" />
     <Compile Include="Datos\tipo_documento_Admin.cs" />
     <Compile Include="Datos\tipo_servicio_Admin.cs" />
     <Compile Include="Datos\tipo_vehiculos_Admin.cs" />
     <Compile Include="Datos\usuarios_Admin.cs" />
     <Compile Include="Datos\usuario_rol_Admin.cs" />
+    <Compile Include="Datos\vehiculos_Admin.cs" />
     <Compile Include="Filters\Acceder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,15 +194,14 @@
     <Compile Include="Models\personas.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\persona_vehiculo.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\persona_vehiculo_Cls.cs" />
     <Compile Include="Models\registro_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\reserva_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\reserva_servicio_Cls.cs" />
     <Compile Include="Models\reserva_tipo_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -215,7 +218,6 @@
     <Compile Include="Models\tipo_vehiculos.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tipo_vehiculos_Cls.cs" />
     <Compile Include="Models\usuarios.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -330,9 +332,14 @@
     <Content Include="Views\estado_servicio_\Detalle.cshtml" />
     <Content Include="Views\estado_servicio_\Crear.cshtml" />
     <Content Include="Views\estado_servicio_\Editar.cshtml" />
+    <Content Include="Views\vehiculos_\Index.cshtml" />
+    <Content Include="Views\vehiculos_\Detalle.cshtml" />
+    <Content Include="Views\vehiculos_\Crear.cshtml" />
+    <Content Include="Views\vehiculos_\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\reserva_servicio_\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

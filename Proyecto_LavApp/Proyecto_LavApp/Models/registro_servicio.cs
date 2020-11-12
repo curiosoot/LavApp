@@ -37,7 +37,6 @@ namespace Proyecto_LavApp.Models
         public virtual ICollection<detalle_servicio> detalle_servicio { get; set; }
         public virtual personas personas { get; set; }
         public virtual tipo_documento tipo_documento { get; set; }
-        public virtual vehiculos vehiculos { get; set; }
         public virtual usuarios usuarios { get; set; }
     }
 }

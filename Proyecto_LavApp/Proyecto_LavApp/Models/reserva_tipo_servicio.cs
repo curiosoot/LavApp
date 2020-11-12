@@ -14,18 +14,12 @@ namespace Proyecto_LavApp.Models
     
     public partial class reserva_tipo_servicio
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public reserva_tipo_servicio()
-        {
-            this.reserva_servicio = new HashSet<reserva_servicio>();
-        }
-    
-        public int id_cita { get; set; }
         public int id_tipo_servicio { get; set; }
         public int total_servicios_sol { get; set; }
+        public int id_cita_tipo_reserva { get; set; }
+        public int id_reserva { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<reserva_servicio> reserva_servicio { get; set; }
         public virtual tipo_servicio tipo_servicio { get; set; }
+        public virtual reserva_servicio reserva_servicio { get; set; }
     }
 }

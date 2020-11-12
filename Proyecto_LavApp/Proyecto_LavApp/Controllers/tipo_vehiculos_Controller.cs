@@ -26,7 +26,7 @@ namespace Proyecto_LavApp.Controllers
         {
             return View();
         }
-        public ActionResult Guardar(tipo_vehiculos_Cls modelo)
+        public ActionResult Guardar(tipo_vehiculos modelo)
         {
             admin.Guardar(modelo);
             //return View("Crear",modelo);
@@ -38,7 +38,7 @@ namespace Proyecto_LavApp.Controllers
             return View(admin.Consultar(id));
         }
 
-        public ActionResult Modificar(tipo_vehiculos_Cls modelo)
+        public ActionResult Modificar(tipo_vehiculos modelo)
         {
             admin.Modificar(modelo);
             return RedirectToAction("Index");
@@ -46,7 +46,7 @@ namespace Proyecto_LavApp.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            tipo_vehiculos_Cls modelo = admin.Consultar(id);
+            tipo_vehiculos modelo = admin.Consultar(id);
             admin.Eliminar(modelo);
             return View("Index", admin.Consultar());
         }

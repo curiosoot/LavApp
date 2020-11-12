@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="LavApp_BDModel.estado_servicio" Width="1.5" PointX="10.5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LavApp_BDModel.marca_vehiculos" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LavApp_BDModel.modelo_vehiculos" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="LavApp_BDModel.persona_vehiculo" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LavApp_BDModel.personas" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LavApp_BDModel.registro_servicio" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LavApp_BDModel.roles" Width="1.5" PointX="11.25" PointY="13.5" IsExpanded="true" />
@@ -28,23 +27,20 @@
         <AssociationConnector Association="LavApp_BDModel.FK_marca_veh_vehiculos" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_marca_vehi_model_vehi" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_mod_veh_veh" ManuallyRouted="false" />
-        <AssociationConnector Association="LavApp_BDModel.FK_id_per_per_veh" ManuallyRouted="false" />
-        <AssociationConnector Association="LavApp_BDModel.FK_vehiculo_pers_veh" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_per_reg_serv" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_persona_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_tipo_doc_persona" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_tip_doc_reg_serv" ManuallyRouted="false" />
-        <AssociationConnector Association="LavApp_BDModel.FK_id_veh_reg_serv" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_usu_atiende_reg_serv" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_rol_roles" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_tip_veh_veh" ManuallyRouted="false" />
         <AssociationConnector Association="LavApp_BDModel.FK_usuario_usu_rol" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LavApp_BDModel.reserva_servicio" Width="1.5" PointX="15.5" PointY="5.125" />
-        <EntityTypeShape EntityType="LavApp_BDModel.reserva_tipo_servicio" Width="1.5" PointX="13.25" PointY="10" />
-        <AssociationConnector Association="LavApp_BDModel.FK_id_cita_reser_servicio" />
+        <EntityTypeShape EntityType="LavApp_BDModel.reserva_servicio" Width="1.5" PointX="15.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LavApp_BDModel.reserva_tipo_servicio" Width="1.5" PointX="19" PointY="9.875" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_usr_ati_usuarios" />
-        <AssociationConnector Association="LavApp_BDModel.FK_id_veh_reser_servicio" />
         <AssociationConnector Association="LavApp_BDModel.FK_id_tip_serv_tipo_serv" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_cita_reser_servicio1" />
+        <AssociationConnector Association="LavApp_BDModel.FK_id_persona_vehiculo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

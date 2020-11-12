@@ -10,33 +10,7 @@ namespace Proyecto_LavApp.Datos
 {
     public class usuario_rol_Admin
     {
-        public IEnumerable<usuario_rol_Cls> Consultar()
-        {
-            IEnumerable<usuario_rol_Cls> asociacion = null;
-            //IEnumerable<usuario_rol> usuarios_roles = null;
-            //var persona = new personas();
-            using (LavApp_BDEntities contexto = new LavApp_BDEntities())
-            {
-                //usuarios_roles = contexto.usuario_rol.Include(x => x.roles).ToList();
-                //return contexto.usuario_rol.Include(x => x.roles).ToList();
-                asociacion = (from usuarios in contexto.usuarios
-                              join usuario_rol in contexto.usuario_rol
-                              on usuarios.id_usuario equals usuario_rol.id_usuario
-                              join roles in contexto.roles
-                              on usuario_rol.id_rol equals roles.id_rol
-                              select new usuario_rol_Cls
-                              {
-                                id_usuario_rol = usuario_rol.id_usuario_rol,
-                                id_usuario = usuario_rol.id_usuario,
-                                id_rol = usuario_rol.id_rol,
-                                txt_desc_rol = roles.txt_desc_rol,
-                                Username = usuarios.Username
-                              }).ToList();
-            }
-            return asociacion;
-        }
-
-        public List<usuario_rol> Consultar2()
+        public List<usuario_rol> Consultar()
         {
             roles_Admin rolAdmin = new roles_Admin();
             usuarios_Admin usrAdmin = new usuarios_Admin();
@@ -45,8 +19,6 @@ namespace Proyecto_LavApp.Datos
 
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                //usuarios_roles = contexto.usuario_rol.Include(x => x.roles).ToList();
-                //return contexto.usuario_rol.Include(x => x.roles).ToList();
                 asociacion = (from usuarios in contexto.usuarios
                               join usuario_rol in contexto.usuario_rol
                               on usuarios.id_usuario equals usuario_rol.id_usuario
@@ -78,7 +50,7 @@ namespace Proyecto_LavApp.Datos
             return modelo;
         }
 
-        public usuario_rol Consultar2(int id)
+        public usuario_rol Consultar(int id)
         {
             roles_Admin rolAdmin = new roles_Admin();
             usuarios_Admin usrAdmin = new usuarios_Admin();
@@ -87,8 +59,6 @@ namespace Proyecto_LavApp.Datos
 
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                //usuarios_roles = contexto.usuario_rol.Include(x => x.roles).ToList();
-                //return contexto.usuario_rol.Include(x => x.roles).ToList();
                 asociacion = (from usuarios in contexto.usuarios
                               join usuario_rol in contexto.usuario_rol
                               on usuarios.id_usuario equals usuario_rol.id_usuario
@@ -105,42 +75,13 @@ namespace Proyecto_LavApp.Datos
                               }).FirstOrDefault();
             }
 
-            //foreach (usuario_rol_Cls Item in asociacion)
-            //{
                 modelo.id_usuario_rol = asociacion.id_usuario_rol;
                 modelo.id_usuario = asociacion.id_usuario;
                 modelo.id_usuario_rol = asociacion.id_rol;
                 modelo.roles = rolAdmin.Consultar(asociacion.id_rol);
                 modelo.usuarios = usrAdmin.Consultar(asociacion.id_usuario);
 
-                //modelo.ToList().Add(modelo_rol);
-            //}
             return modelo;
-        }
-
-        public usuario_rol_Cls Consultar(int id)
-        {
-            usuario_rol_Cls asociacion = null;
-
-            using (LavApp_BDEntities contexto = new LavApp_BDEntities())
-            {
-                //return contexto.usuario_rol.Include(x => x.usuarios).FirstOrDefault(c => c.id_usuario_rol == id);
-                    asociacion = (from usuarios in contexto.usuarios
-                                  join usuario_rol in contexto.usuario_rol
-                                  on usuarios.id_usuario equals usuario_rol.id_usuario
-                                  join roles in contexto.roles
-                                  on usuario_rol.id_rol equals roles.id_rol
-                                  where usuario_rol.id_usuario_rol == id
-                                  select new usuario_rol_Cls
-                                  {
-                                      id_usuario_rol = usuario_rol.id_usuario_rol,
-                                      id_usuario = usuario_rol.id_usuario,
-                                      id_rol = usuario_rol.id_rol,
-                                      txt_desc_rol = roles.txt_desc_rol,
-                                      Username = usuarios.Username
-                                  }).FirstOrDefault();
-            }
-                return asociacion;
         }
 
         public void Guardar(usuario_rol modelo)
