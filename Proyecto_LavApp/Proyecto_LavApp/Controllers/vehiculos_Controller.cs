@@ -66,16 +66,16 @@ namespace Proyecto_LavApp.Controllers
             }
         }
 
-        public ActionResult Editar(int id, vehiculos modelo)
+        public ActionResult Editar(int id)
         {
             llenar_marcas();
             ViewBag.lista = listmarcas;
             llenar_tipo_veh();
             ViewBag.listaveh = listtipoveh;
-            llenar_modelos(modelo.id_marca_vehiculo);
-            ViewBag.listmodelo = listmodelo;
-            llenar_colores(modelo.id_marca_vehiculo);
-            ViewBag.listcol = listcolor;
+            //llenar_modelos(modelo.id_marca_vehiculo);
+            //ViewBag.listmodelo = listmodelo;
+            //llenar_colores(modelo.id_marca_vehiculo);
+            //ViewBag.listcol = listcolor;
             llenar_personas();
             ViewBag.listapersonas = listpersonas;
             return View(admin.Consultar(id));

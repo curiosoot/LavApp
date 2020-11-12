@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.tipo_vehiculos.txt_tipo_vehiculo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.personas.txt_apellido1)
+            @Html.DisplayNameFor(model => model.nom_asoc)
         </th>
         <th></th>
     </tr>
@@ -56,11 +56,11 @@
         @Html.DisplayFor(modelItem => item.tipo_vehiculos.txt_tipo_vehiculo)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.personas.txt_apellido1)
+        @Html.DisplayFor(modelItem => item.nom_asoc)
     </td>
     <td>
         @Html.ActionLink("Editar", "Editar", new { id = item.id_vehiculo }) |
-        @Html.ActionLink("Detailes", "Detaile", new { id = item.id_vehiculo }) |
+        @Html.ActionLink("Detalles", "Detalle", new { id = item.id_vehiculo }) |
         @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_vehiculo })
     </td>
 </tr>
