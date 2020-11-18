@@ -196,7 +196,6 @@
     <Compile Include="Models\personas.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\persona_vehiculo_Cls.cs" />
     <Compile Include="Models\registro_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -249,6 +248,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\image1.jpg" />
+    <Content Include="Images\image2.jpg" />
+    <Content Include="Images\image3.jpg" />
+    <Content Include="Images\image4.jpg" />
+    <Content Include="Images\image5.jpg" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DB.Context.cs</LastGenOutput>

@@ -46,12 +46,12 @@ namespace Proyecto_LavApp.Models
         public Nullable<int> id_vehiculo { get; set; }
 
         [Display(Name = "Fecha Ingreso")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fec_ingreso { get; set; }
 
         [Display(Name = "Fecha Retiro")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fec_retiro { get; set; }
 

@@ -37,7 +37,7 @@ namespace Proyecto_LavApp.Models
         public int id_persona { get; set; }
 
         [Display(Name = "Fecha Vencimiento Password")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fec_vto_password { get; set; }
 

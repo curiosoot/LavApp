@@ -28,7 +28,7 @@ namespace Proyecto_LavApp.Models
         public int id_vehiculo { get; set; }
 
         [Display(Name = "Fecha Servicio")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
         public System.DateTime fecha_servicio { get; set; }

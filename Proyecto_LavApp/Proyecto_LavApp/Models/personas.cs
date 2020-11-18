@@ -43,7 +43,7 @@ namespace Proyecto_LavApp.Models
         public string txt_apellido2 { get; set; }
 
         [Display(Name = "Fecha Nacimiento")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fec_nacimiento { get; set; }
     
