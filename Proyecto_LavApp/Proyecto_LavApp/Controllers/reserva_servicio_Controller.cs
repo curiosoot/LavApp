@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
+    [Acceder]
     public class reserva_servicio_Controller : Controller
     {
         List<SelectListItem> lisusr_atiende;
@@ -28,10 +30,10 @@ namespace Proyecto_LavApp.Controllers
         public ActionResult Crear()
         {
             llenar_usr_atiende();
-            ViewBag.listaroles = lisusr_atiende;
+            ViewBag.listausr = lisusr_atiende;
 
             llenar_vehiculos();
-            ViewBag.listausuarios = listvehiculos;
+            ViewBag.listavehiculos = listvehiculos;
 
             return View();
         }
@@ -40,10 +42,10 @@ namespace Proyecto_LavApp.Controllers
             if (!ModelState.IsValid)
             {
                 llenar_usr_atiende();
-                ViewBag.listaroles = lisusr_atiende;
+                ViewBag.listausr = lisusr_atiende;
 
                 llenar_vehiculos();
-                ViewBag.listausuarios = listvehiculos;
+                ViewBag.listavehiculos = listvehiculos;
 
                 return View(modelo);
             }
@@ -51,17 +53,17 @@ namespace Proyecto_LavApp.Controllers
             {
                 admin.Guardar(modelo);
                 //return View("Crear", modelo);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","reserva_tipo_serv_");
             }
         }
 
         public ActionResult Editar(int id)
         {
             llenar_usr_atiende();
-            ViewBag.listaroles = lisusr_atiende;
+            ViewBag.listausr = lisusr_atiende;
 
             llenar_vehiculos();
-            ViewBag.listausuarios = listvehiculos;
+            ViewBag.listavehiculos = listvehiculos;
             return View(admin.Consultar(id));
         }
 
@@ -69,10 +71,10 @@ namespace Proyecto_LavApp.Controllers
         {
             admin.Modificar(modelo);
             llenar_usr_atiende();
-            ViewBag.listaroles = lisusr_atiende;
+            ViewBag.listausr = lisusr_atiende;
 
             llenar_vehiculos();
-            ViewBag.listausuarios = listvehiculos;
+            ViewBag.listavehiculos = listvehiculos;
             return RedirectToAction("Index");
         }
 
@@ -87,27 +89,30 @@ namespace Proyecto_LavApp.Controllers
         {
             usuarios usuario = new usuarios();
 
-            //usuario = Session["Usuario"];
-
+            if (Session["Usuario"] != null)
+            {
+                usuario = (usuarios)Session["Usuario"];
+            }
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 listvehiculos = (from vehiculos in contexto.vehiculos
-                                 join marca_vehiculos in contexto.marca_vehiculos
-                                 on vehiculos.id_marca_vehiculo equals marca_vehiculos.id_marca_vehiculos
-                                 join modelo_vehiculos in contexto.modelo_vehiculos
-                                 on vehiculos.id_modelo_vehiculo equals modelo_vehiculos.id_modelo_vehiculo
-                                 //where tipo_documento.sn_activo == true
-                             select new SelectListItem
-                             {
-                                 Text = marca_vehiculos.txt_desc_marca + " - " + modelo_vehiculos.txt_desc_modelo,
-                                 Value = vehiculos.id_vehiculo.ToString()
-                             }).ToList();
+                                    join marca_vehiculos in contexto.marca_vehiculos
+                                    on vehiculos.id_marca_vehiculo equals marca_vehiculos.id_marca_vehiculos
+                                    join modelo_vehiculos in contexto.modelo_vehiculos
+                                    on vehiculos.id_modelo_vehiculo equals modelo_vehiculos.id_modelo_vehiculo
+                                    where vehiculos.id_persona == usuario.id_persona
+                                    select new SelectListItem
+                                    {
+                                        Text = marca_vehiculos.txt_desc_marca + " " + modelo_vehiculos.txt_desc_modelo,
+                                        Value = vehiculos.id_vehiculo.ToString()
+                                    }).ToList();
                 listvehiculos.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
         }
 
         private void llenar_usr_atiende()
         {
+
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 lisusr_atiende = (from usuarios in contexto.usuarios

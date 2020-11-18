@@ -77,7 +77,7 @@ namespace Proyecto_LavApp.Datos
 
                 modelo.id_usuario_rol = asociacion.id_usuario_rol;
                 modelo.id_usuario = asociacion.id_usuario;
-                modelo.id_usuario_rol = asociacion.id_rol;
+                modelo.id_rol = asociacion.id_rol;
                 modelo.roles = rolAdmin.Consultar(asociacion.id_rol);
                 modelo.usuarios = usrAdmin.Consultar(asociacion.id_usuario);
 
@@ -107,6 +107,8 @@ namespace Proyecto_LavApp.Datos
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 contexto.Entry(modelo).State = EntityState.Deleted;
+                //contexto.usuario_rol.Attach(modelo);
+                //contexto.usuario_rol.Remove(modelo);
                 contexto.SaveChanges();
             }
         }

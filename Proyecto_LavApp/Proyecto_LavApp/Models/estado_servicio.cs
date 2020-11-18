@@ -11,8 +11,7 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class estado_servicio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,21 +19,13 @@ namespace Proyecto_LavApp.Models
         {
             this.detalle_servicio = new HashSet<detalle_servicio>();
         }
-        [Display(Name = "Id Estado Servicio")]
+    
         public int id_estado_servicio { get; set; }
-
-        [Display(Name = "Descipción Estado Servicio")]
         public string txt_estado_Servicio { get; set; }
-
-        [Display(Name = "Activo")]
         public bool sn_activo { get; set; }
-
-        [Display(Name = "Cancelado")]
         public bool sn_cancelado { get; set; }
-
-        [Display(Name = "Finalizado")]
         public bool sn_finalizado { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_servicio> detalle_servicio { get; set; }
     }

@@ -47,6 +47,7 @@ namespace Proyecto_LavApp.Datos
 
         public void Eliminar(personas modelo)
         {
+            usuarios_Admin usr_Admin = new usuarios_Admin();
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 contexto.Entry(modelo).State = EntityState.Deleted;

@@ -14,27 +14,35 @@ namespace Proyecto_LavApp.Models
     
     public partial class vehiculos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public vehiculos()
+        {
+            this.reserva_servicio = new HashSet<reserva_servicio>();
+        }
+    
         public int id_vehiculo { get; set; }
         public int id_tipo_vehiculo { get; set; }
-        public int id_persona { get; set; }
         public string txt_placa { get; set; }
         public int id_marca_vehiculo { get; set; }
         public int id_modelo_vehiculo { get; set; }
         public int id_color_vehiculo { get; set; }
         public int ano_vehiculo { get; set; }
+        public int id_persona { get; set; }
 
-        public string nom_asoc
+        public string nom_vehiculo
         {
             get
             {
-                return personas.txt_apellido1 + " " + personas.txt_apellido2 + " " + personas.txt_nombre;
+                return marca_vehiculos.txt_desc_marca + " " + modelo_vehiculos.txt_desc_modelo;
             }
         }
 
+        public virtual color_vehiculo color_vehiculo { get; set; }
         public virtual marca_vehiculos marca_vehiculos { get; set; }
         public virtual modelo_vehiculos modelo_vehiculos { get; set; }
-        public virtual color_vehiculo color_vehiculo { get; set; }
         public virtual tipo_vehiculos tipo_vehiculos { get; set; }
         public virtual personas personas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<reserva_servicio> reserva_servicio { get; set; }
     }
 }

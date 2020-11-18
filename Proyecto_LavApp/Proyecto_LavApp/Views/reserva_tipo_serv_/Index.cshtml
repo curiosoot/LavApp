@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Proyecto_LavApp.Models.reserva_tipo_servicio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar Servicio", "Crear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.total_servicios_sol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_servicio.txt_desc_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reserva_servicio.txt_nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_servicios_sol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_servicio.txt_desc_servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reserva_servicio.txt_nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_cita_tipo_reserva })
+        </td>
+    </tr>
+}
+
+</table>

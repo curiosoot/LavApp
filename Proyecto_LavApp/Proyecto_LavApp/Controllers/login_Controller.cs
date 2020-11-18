@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
-{
+{ 
     public class login_Controller : Controller
     {
         // GET: login_

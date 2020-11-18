@@ -57,6 +57,27 @@ namespace Proyecto_LavApp.Datos
             }
         }
 
+        public void Guardar_usr(usuarios modelo) 
+        {
+                usuario_rol usr_rol = new usuario_rol();
+                usuarios_Admin usr_Admin = new usuarios_Admin();
+                roles roles_new = new roles();
+
+            using (LavApp_BDEntities contexto = new LavApp_BDEntities()) 
+            {
+                int Maxid = contexto.usuario_rol.Max(p => p.id_usuario_rol);
+
+                roles_new = contexto.roles.Where(p=>p.sn_cliente == true).FirstOrDefault();
+
+                usr_rol.id_usuario_rol = Maxid + 1;
+                usr_rol.id_usuario = modelo.id_usuario;
+                usr_rol.id_rol = roles_new.id_rol;
+
+                contexto.usuario_rol.Add(usr_rol);
+                contexto.SaveChanges();
+            }
+        }
+
         public void Modificar(usuarios modelo)
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())

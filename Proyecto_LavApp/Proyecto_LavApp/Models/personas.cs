@@ -11,8 +11,7 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class personas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,30 +21,15 @@ namespace Proyecto_LavApp.Models
             this.usuarios = new HashSet<usuarios>();
             this.vehiculos = new HashSet<vehiculos>();
         }
-
-        [Display(Name = "Id Persona")]
+    
         public int id_persona { get; set; }
-
-        [Display(Name = "Id Tipo Documento")]
         public int id_tipo_documento { get; set; }
-
-        [Display(Name = "Documento")]
         public decimal txt_documento { get; set; }
-
-        [Display(Name = "Nombre")]
         public string txt_nombre { get; set; }
-
-        [Display(Name = "Primer Apellido")]
         public string txt_apellido1 { get; set; }
-
-        [Display(Name = "Segundo Apellido")]
         public string txt_apellido2 { get; set; }
-
-        [Display(Name = "Fecha Nacimiento")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fec_nacimiento { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<registro_servicio> registro_servicio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Proyecto_LavApp.Models.reserva_servicio>
+@using Proyecto_LavApp.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    if (Session["rol"] != null)
+    {
+        foreach (rolesCls item in (List<rolesCls>)Session["rol"])
+        {
+            if (item.sn_cliente == true)
+            {
+                <p>
+                    @Html.ActionLink("Crear Nuevo", "Crear")
+                </p>
+            }
+        }
+    }
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_vehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hora_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txt_observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuarios.Username)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.txt_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.txt_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vehiculos.nom_vehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora_txt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.txt_observacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarios.Username)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.id_reserva }) |
+                @Html.ActionLink("Detalles", "Detalle", new { id = item.id_reserva }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_reserva })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -130,7 +130,18 @@
     var cboMarcas = document.getElementById("id_marca_vehiculo");
     cboMarcas.onchange = function ()
     {
-        var frmbuscaveh = document.getElementById("frmeditarveh");
-        frmbuscaveh.submit();
+        //var frmbuscaveh = document.getElementById("frmeditarveh");
+        //frmbuscaveh.submit();
+
+        $.ajax({
+            // edit to add steve's suggestion.
+            //url: "/ControllerName/ActionName",
+            url: '<%= Url.Action("llenar_modelos", "vehiculos_") %>',
+            success: function (data) {
+                // your data could be a View or Json or what ever you returned in your action method 
+                // parse your data here
+                alert(data);
+            }
+        });
     }
 </script>

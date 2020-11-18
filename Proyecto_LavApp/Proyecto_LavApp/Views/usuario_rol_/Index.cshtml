@@ -12,6 +12,9 @@
 <table class="table table-bordered table-hover">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.id_rol)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.roles.txt_desc_rol)
         </th>
         <th>
@@ -22,19 +25,22 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.roles.txt_desc_rol)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.usuarios.Username)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.id_usuario_rol }) |
-                @Html.ActionLink("Detalles", "Detalle", new { id = item.id_usuario_rol }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_usuario_rol })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_rol)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.roles.txt_desc_rol)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.usuarios.Username)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.id_usuario_rol }) |
+        @Html.ActionLink("Detalles", "Detalle", new { id = item.id_usuario_rol }) |
+        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_usuario_rol })
+    </td>
+</tr>
     }
 
 </table>

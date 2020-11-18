@@ -323,6 +323,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_id_veh_reser_servicio">
+    <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="1" />
+    <End Role="reserva_servicio" Type="Self.reserva_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculos">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="reserva_servicio">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_marca_veh_vehiculos">
     <End Role="marca_vehiculos" Type="Self.marca_vehiculos" Multiplicity="1" />
     <End Role="vehiculos" Type="Self.vehiculos" Multiplicity="*" />
@@ -474,6 +486,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_id_usr_ati_usuarios" Association="Self.FK_id_usr_ati_usuarios">
       <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_veh_reser_servicio" Association="Self.FK_id_veh_reser_servicio">
+      <End Role="vehiculos" EntitySet="vehiculos" />
       <End Role="reserva_servicio" EntitySet="reserva_servicio" />
     </AssociationSet>
     <AssociationSet Name="FK_marca_veh_vehiculos" Association="Self.FK_marca_veh_vehiculos">

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
-    [Acceder]
+    //[Acceder]
     public class usuarios_Controller : Controller
     {
         List<SelectListItem> listpersonas;
@@ -45,8 +45,15 @@ namespace Proyecto_LavApp.Controllers
             else
             {
                 admin.Guardar(modelo);
-                //return View("Crear", modelo);
-                return RedirectToAction("Index");
+                if (Session["Usuario"] == null)
+                {
+                    admin.Guardar_usr(modelo);
+                    return RedirectToAction("Index", "login_");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
         }
 

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
-    [Acceder]
+    //[Acceder]
     public class personas_Controller : Controller
     {
         List<SelectListItem> listdocumento;
@@ -44,8 +44,14 @@ namespace Proyecto_LavApp.Controllers
             else
             {
                 admin.Guardar(modelo);
-                //return View("Crear", modelo);
-                return RedirectToAction("Index");
+                if (Session["Usuario"] == null)
+                {
+                    return RedirectToAction("Crear","usuarios_");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
         }
 

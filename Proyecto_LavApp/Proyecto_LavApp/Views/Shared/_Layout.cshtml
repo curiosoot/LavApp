@@ -3,78 +3,190 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.LavApp - Smart car wash</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Dashboard Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @*@media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }*@
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="~/Content/dashboard.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("LavApp - Smart car wash", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="~/ptallappal/Index">LavApp - Smart car wash</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="@Url.Action("cerrarsesion", "login_")">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
 
-                    @{
-                        if (Session["rol"] != null)
-                        {
-                            foreach (rolesCls roles in (List<rolesCls>)Session["rol"])
-                            {
-                                if (roles.sn_admin == true)
+    @*<div class="container-fluid">*@
+    <div class="container body-content">
+        <div class="row">
+            <div class="position-fixed">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="sidebar-sticky pt-3">
+                        <ul class="nav flex-column">
+
+                            @{
+                                usuarios usuario = new usuarios();
+
+                                if (Session["rol"] != null)
                                 {
-                                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Tipo Documento", "Index", "tipo_documento_")</li>
-                                    <li>@Html.ActionLink("Roles", "Index", "roles_")</li>
-                                    <li>@Html.ActionLink("Personas", "Index", "personas_")</li>
-                                    <li>@Html.ActionLink("Usuarios", "Index", "usuarios_")</li>
-                                    <li>@Html.ActionLink("Usuarios por Rol", "Index", "usuario_rol_")</li>
-                                    <li>@Html.ActionLink("Marcas Vehiculos", "Index", "marca_vehiculos_")</li>
-                                    <li>@Html.ActionLink("Tipos Vehiculos", "Index", "tipo_vehiculos_")</li>
-                                    <li>@Html.ActionLink("Vehiculos", "Index", "vehiculos_")</li>
-                                }
-                                if (roles.sn_empleado == true)
-                                {
-                                    <li>@Html.ActionLink("Personas", "Index", "personas_")</li>
-                                    <li>@Html.ActionLink("Usuarios", "Index", "usuarios_")</li>
-                                    <li>@Html.ActionLink("Usuarios por Rol", "Index", "usuario_rol_")</li>
-                                    <li>@Html.ActionLink("Marcas Vehiculos", "Index", "marca_vehiculos_")</li>
-                                }
-                                if (roles.sn_cliente == true)
-                                {
-                                    <li>@Html.ActionLink("Personas", "Index", "personas_")</li>
-                                    <li>@Html.ActionLink("Usuarios", "Index", "usuarios_")</li>
+
+                                    foreach (rolesCls roles in (List<rolesCls>)Session["rol"])
+                                    {
+                                        if (roles.sn_admin == true)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#" )">
+                                                    <span data-feather="home"></span>
+                                                    Parametrización <span class="sr-only">(current)</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "tipo_documento_")">
+                                                    <span data-feather="file"></span>
+                                                    Tipo Documento
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "roles_")">
+                                                    <span data-feather="file"></span>
+                                                    Roles
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "personas_")">
+                                                    <span data-feather="shopping-cart"></span>
+                                                    Personas
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "usuarios_")">
+                                                    <span data-feather="users"></span>
+                                                    Usuarios
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "usuario_rol_")">
+                                                    <span data-feather="bar-chart-2"></span>
+                                                    Usuarios por Rol
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "tipo_vehiculos_")">
+                                                    <span data-feather="layers"></span>
+                                                    Tipos Vehiculos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "marca_vehiculos_")">
+                                                    <span data-feather="layers"></span>
+                                                    Marcas Vehiculos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "modelo_vehiculos_")">
+                                                    <span data-feather="layers"></span>
+                                                    Modelos Vehiculos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "color_vehiculo_")">
+                                                    <span data-feather="layers"></span>
+                                                    Colores Vehiculos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "tipo_servicio_")">
+                                                    <span data-feather="layers"></span>
+                                                    Servicios Prestados
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "estado_servicio_")">
+                                                    <span data-feather="layers"></span>
+                                                    Estados Servicios
+                                                </a>
+                                            </li>
+                                        }
+                                        if (roles.sn_cliente == true)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "vehiculos_")">
+                                                    <span data-feather="layers"></span>
+                                                    Vehiculos
+                                                </a>
+                                            </li>
+                                        }
+                                        if (roles.sn_cliente == true || roles.sn_empleado == true)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index", "reserva_servicio_")">
+                                                    <span data-feather="layers"></span>
+                                                    Reservas
+                                                </a>
+                                            </li>
+                                        }
+                                    }
                                 }
                             }
-                            <li>@Html.ActionLink("Cerrar Sesión", "cerrarsesion", "login_")</li>
-                        }
 
-                    }
-
-
-
-                </ul>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                @RenderBody()
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+
+    @*<div class="container body-content">
+
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            </footer>
+        </div>*@
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    @*<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>*@
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>*@
+    @*<script src="~/Scripts/dashboard.js"></script>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

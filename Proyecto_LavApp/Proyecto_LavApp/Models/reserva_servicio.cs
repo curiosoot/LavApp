@@ -24,7 +24,16 @@ namespace Proyecto_LavApp.Models
         public System.DateTime hora_servicio { get; set; }
         public int id_usuario_atiende { get; set; }
         public string txt_observacion { get; set; }
+
+        public string hora_txt 
+        {
+            get 
+            {
+                return hora_servicio.ToString("HH:mm");
+            }
+        }
     
         public virtual usuarios usuarios { get; set; }
+        public virtual vehiculos vehiculos { get; set; }
     }
 }

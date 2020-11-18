@@ -11,57 +11,28 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class registro_servicio
     {
-       
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public registro_servicio()
         {
             this.detalle_servicio = new HashSet<detalle_servicio>();
         }
-
-        [Display(Name = "Id Servicio")]
+    
         public int id_servicio { get; set; }
-
-        [Display(Name = "Id Persona")]
         public Nullable<int> id_persona { get; set; }
-
-        [Display(Name = "Tipo Documento Cliente")]
         public int id_tipo_documento { get; set; }
-
-        [Display(Name = "Documento Cliente")]
         public string txt_documento_cliente { get; set; }
-
-        [Display(Name = "Nombre Cliente")]
         public string txt_nombre_cliente { get; set; }
-
-        [Display(Name = "Primer Apellido Cliente")]
         public string txt_apellido1_cliente { get; set; }
-
-        [Display(Name = "Segundo Apellido Cliente")]
         public string txt_apellido2 { get; set; }
-
-        [Display(Name = "Id Vehiculo")]
         public Nullable<int> id_vehiculo { get; set; }
-
-        [Display(Name = "Fecha Ingreso")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime fec_ingreso { get; set; }
-
-        [Display(Name = "Fecha Retiro")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fec_retiro { get; set; }
-
-        [Display(Name = "Id Usuario Atiende")]
         public int id_usuario_atiende { get; set; }
-
-        [Display(Name = "Observaciones")]
         public string txt_observacion { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_servicio> detalle_servicio { get; set; }
         public virtual personas personas { get; set; }

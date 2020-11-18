@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using Proyecto_LavApp.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Proyecto_LavApp.Controllers
 {
+    [Acceder]
     public class vehiculos_Controller : Controller
     {
         List<SelectListItem> listmarcas;
@@ -166,10 +168,16 @@ namespace Proyecto_LavApp.Controllers
 
         private void llenar_personas()
         {
-            using (LavApp_BDEntities contexto = new LavApp_BDEntities())
+            usuarios usuario = new usuarios();
+
+            if (Session["Usuario"] != null)
+            {
+                usuario = (usuarios)Session["Usuario"];
+            }
+                using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
                 listpersonas = (from personas in contexto.personas
-                                    //where personas.id_persona in 
+                                where personas.id_persona == usuario.id_persona
                                 select new SelectListItem
                                 {
                                     Text = personas.txt_apellido1 + " " + personas.txt_apellido2 + " " + personas.txt_nombre,
@@ -177,6 +185,16 @@ namespace Proyecto_LavApp.Controllers
                                 }).ToList();
                 listpersonas.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
+        }
+
+        public JsonResult SaveEmployeeRecord(int id)
+        {
+            llenar_modelos(id);
+            llenar_colores(id);
+            ViewBag.listmodelo = listmodelo;
+            ViewBag.listcol = listcolor;
+
+            return Json(new { listmodelo, listcolor }, JsonRequestBehavior.AllowGet);
         }
     }
 }

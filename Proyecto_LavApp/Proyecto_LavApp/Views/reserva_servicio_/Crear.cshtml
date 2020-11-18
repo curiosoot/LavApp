@@ -1,0 +1,156 @@
+﻿@model Proyecto_LavApp.Models.reserva_servicio
+
+@{
+    ViewBag.Title = "Crear";
+    List<SelectListItem> listusr = (List<SelectListItem>)ViewBag.listausr;
+    List<SelectListItem> listveh = (List<SelectListItem>)ViewBag.listavehiculos;
+}
+
+<h2>Crear</h2>
+
+@using (Html.BeginForm("Guardar", "reserva_servicio_", FormMethod.Post, new { @id = "frmcrearrva", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>reserva_servicio</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.txt_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.txt_nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.txt_nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.txt_email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.txt_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.txt_email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.id_vehiculo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_vehiculo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_vehiculo, "id_vehiculo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_vehiculo", listveh, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha_servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_servicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fecha_servicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hora_servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hora_servicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hora_servicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!--<br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">-->
+            <!-- Button trigger modal -->
+            <!--<button type="button" class="btn btn-primary" data-toggle="modal" onclick="AdicionarSrv()">
+            Agregar Servicio
+            </button>
+            Html.Partial("../reserva_tipo_serv_/Index")
+        </div>
+    </div>
+    <br/>-->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_usuario_atiende, "id_usuario_atiende", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_usuario_atiende", listusr, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.usuarios.nom_asoc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.txt_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.txt_observacion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.txt_observacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <!--<input type="submit" value="Create" class="btn btn-default" />-->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Agregar Servicios
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div style="padding:1em">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" onclick="Agregar()" class="btn btn-primary">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Close Button trigger modal -->
+
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function Agregar() {
+        var frmcrearrva = document.getElementById("frmcrearrva");
+        frmcrearrva.submit();
+    }
+
+    @*function AdicionarSrv() {
+        @Html.Partial("../reserva_tipo_serv_/Index")
+    }*@
+
+</script>

@@ -178,6 +178,7 @@
     <NavigationProperty Name="tipo_vehiculos" Relationship="Self.FK_id_tip_veh_veh" FromRole="vehiculos" ToRole="tipo_vehiculos" />
     <Property Name="id_persona" Type="Int32" Nullable="false" />
     <NavigationProperty Name="personas" Relationship="LavApp_BDModel.FK_id_persona_vehiculo" FromRole="vehiculos" ToRole="personas" />
+    <NavigationProperty Name="reserva_servicio" Relationship="LavApp_BDModel.FK_id_veh_reser_servicio" FromRole="vehiculos" ToRole="reserva_servicio" />
   </EntityType>
   <Association Name="FK_color_veh_vehiculos">
     <End Role="color_vehiculo" Type="Self.color_vehiculo" Multiplicity="1" />
@@ -468,6 +469,10 @@
       <End Role="personas" EntitySet="personas" />
       <End Role="vehiculos" EntitySet="vehiculos" />
     </AssociationSet>
+    <AssociationSet Name="FK_id_veh_reser_servicio" Association="LavApp_BDModel.FK_id_veh_reser_servicio">
+      <End Role="vehiculos" EntitySet="vehiculos" />
+      <End Role="reserva_servicio" EntitySet="reserva_servicio" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="reserva_servicio">
     <Key>
@@ -484,6 +489,7 @@
     <Property Name="id_usuario_atiende" Type="Int32" Nullable="false" />
     <Property Name="txt_observacion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="usuarios" Relationship="LavApp_BDModel.FK_id_usr_ati_usuarios" FromRole="reserva_servicio" ToRole="usuarios" />
+    <NavigationProperty Name="vehiculos" Relationship="LavApp_BDModel.FK_id_veh_reser_servicio" FromRole="reserva_servicio" ToRole="vehiculos" />
   </EntityType>
   <EntityType Name="reserva_tipo_servicio">
     <Key>
@@ -541,6 +547,18 @@
       </Principal>
       <Dependent Role="vehiculos">
         <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_veh_reser_servicio">
+    <End Type="LavApp_BDModel.vehiculos" Role="vehiculos" Multiplicity="1" />
+    <End Type="LavApp_BDModel.reserva_servicio" Role="reserva_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculos">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="reserva_servicio">
+        <PropertyRef Name="id_vehiculo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
