@@ -134,7 +134,7 @@
             type: 'POST',
             dataType: 'json',
             url: '/vehiculos_/SaveEmployeeRecord',
-            data: { id: 1 },
+            data: { id: $(this).val() },
             success: function (Data) {
                 //console.log(Data.listmodelo);
                 //console.log(Data.listcolor);

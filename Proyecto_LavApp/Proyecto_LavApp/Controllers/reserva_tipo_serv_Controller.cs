@@ -63,5 +63,16 @@ namespace Proyecto_LavApp.Controllers
                 listtiposerv.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
         }
+
+        public JsonResult obtenerValorServicio(int id)
+        {
+            tipo_servicio_Admin srv_Admin = new tipo_servicio_Admin();
+            tipo_servicio servicio = srv_Admin.Consultar(id);
+
+            llenar_tipos_serv();
+            ViewBag.lista = listtiposerv;
+
+            return Json(new { servicio.imp_valor }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

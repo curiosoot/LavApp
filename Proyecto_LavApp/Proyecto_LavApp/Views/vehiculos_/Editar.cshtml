@@ -128,19 +128,32 @@
     }
 
     var cboMarcas = document.getElementById("id_marca_vehiculo");
-    cboMarcas.onchange = function ()
-    {
-        //var frmbuscaveh = document.getElementById("frmeditarveh");
-        //frmbuscaveh.submit();
-
+    cboMarcas.onchange = function () {
+        $("#id_modelo_vehiculo").empty();
         $.ajax({
-            // edit to add steve's suggestion.
-            //url: "/ControllerName/ActionName",
-            url: '<%= Url.Action("llenar_modelos", "vehiculos_") %>',
-            success: function (data) {
-                // your data could be a View or Json or what ever you returned in your action method 
-                // parse your data here
-                alert(data);
+            type: 'POST',
+            dataType: 'json',
+            url: '/vehiculos_/SaveEmployeeRecord',
+            data: { id: $(this).val() },
+            success: function (Data) {
+                //console.log(Data.listmodelo);
+                //console.log(Data.listcolor);
+
+                $.each(Data.listmodelo, function (i, data) {
+                    $("#id_modelo_vehiculo").append('<option value="' + data.Value + '">' +
+                        data.Text + '</option>');
+                    // here we are adding option for States  
+                });
+
+                $.each(Data.listcolor, function (i, data) {
+                    $("#id_color_vehiculo").append('<option value="' + data.Value + '">' +
+                        data.Text + '</option>');
+                    // here we are adding option for States  
+                });
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
             }
         });
     }

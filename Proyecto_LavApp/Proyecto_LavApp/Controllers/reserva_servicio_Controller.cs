@@ -75,7 +75,7 @@ namespace Proyecto_LavApp.Controllers
 
             llenar_vehiculos();
             ViewBag.listavehiculos = listvehiculos;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "reserva_tipo_serv_");
         }
 
         public ActionResult Eliminar(int id)

@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.total_servicios_sol, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.total_servicios_sol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.total_servicios_sol, new { htmlAttributes = new {@id="txtvalorserv", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.total_servicios_sol, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -79,5 +79,25 @@
         var frmcrearrestip = document.getElementById("frmcrearrestip");
         frmcrearrestip.submit();
     }
+
+    var cboTipoServ = document.getElementById("id_tipo_servicio");
+    cboTipoServ.onchange = function () {
+        //$("#id_tipo_servicio").empty();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/reserva_tipo_serv_/obtenerValorServicio',
+            data: { id: $(this).val() },
+            success: function (Data) {
+                $.each(Data, function (i, data) {
+                    //alert(data);
+                    $("#txtvalorserv").val(data);
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+    }
+
 </script>
 

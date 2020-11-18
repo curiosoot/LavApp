@@ -360,6 +360,7 @@
     <Content Include="Views\reserva_servicio_\Index.cshtml" />
     <Content Include="Views\reserva_tipo_serv_\Index.cshtml" />
     <Content Include="Views\reserva_tipo_serv_\Crear.cshtml" />
+    <Content Include="Views\reserva_servicio_\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

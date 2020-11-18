@@ -74,10 +74,10 @@ namespace Proyecto_LavApp.Controllers
             ViewBag.lista = listmarcas;
             llenar_tipo_veh();
             ViewBag.listaveh = listtipoveh;
-            //llenar_modelos(modelo.id_marca_vehiculo);
-            //ViewBag.listmodelo = listmodelo;
-            //llenar_colores(modelo.id_marca_vehiculo);
-            //ViewBag.listcol = listcolor;
+            llenar_modelos(0);
+            ViewBag.listmodelo = listmodelo;
+            llenar_colores(0);
+            ViewBag.listcol = listcolor;
             llenar_personas();
             ViewBag.listapersonas = listpersonas;
             return View(admin.Consultar(id));
