@@ -15,6 +15,7 @@ namespace Proyecto_LavApp.Models
         public string Username { get; set; }
 
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string txt_password { get; set; }
 
         [Display(Name = "Id Persona Asignada")]
@@ -26,6 +27,8 @@ namespace Proyecto_LavApp.Models
         [Display(Name = "Fecha de Vencimiento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         public System.DateTime fec_vto_password { get; set; }
+
     }
 }

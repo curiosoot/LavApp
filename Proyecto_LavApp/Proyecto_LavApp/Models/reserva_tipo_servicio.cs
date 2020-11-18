@@ -11,12 +11,20 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class reserva_tipo_servicio
     {
+        [Display(Name = "Tipo Servicio")]
         public int id_tipo_servicio { get; set; }
+
+        [Display(Name = "Total Servicios Solicitados")]
         public int total_servicios_sol { get; set; }
+
+        [Display(Name = "Id Cita Tipo Reserva")]
         public int id_cita_tipo_reserva { get; set; }
+
+        [Display(Name = "Id Reserva")]
         public int id_reserva { get; set; }
     
         public virtual tipo_servicio tipo_servicio { get; set; }

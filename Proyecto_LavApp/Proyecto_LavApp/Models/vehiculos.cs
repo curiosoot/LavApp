@@ -11,7 +11,8 @@ namespace Proyecto_LavApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class vehiculos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,32 @@ namespace Proyecto_LavApp.Models
         {
             this.reserva_servicio = new HashSet<reserva_servicio>();
         }
-    
+
+        [Display(Name = "Id Vehículo ")]
         public int id_vehiculo { get; set; }
+
+        [Display(Name = "Id Tipo Vehículo ")]
         public int id_tipo_vehiculo { get; set; }
+
+        [Display(Name = "Placa")]
         public string txt_placa { get; set; }
+
+        [Display(Name = "Id Marca Vehículo ")]
         public int id_marca_vehiculo { get; set; }
+
+        [Display(Name = "Id Modelo Vehículo ")]
         public int id_modelo_vehiculo { get; set; }
+
+        [Display(Name = "Id Color Vehículo ")]
         public int id_color_vehiculo { get; set; }
+
+        [Display(Name = "Año Vehículo ")]
         public int ano_vehiculo { get; set; }
+
+        [Display(Name = "Id Persona")]
         public int id_persona { get; set; }
 
+        [Display(Name = "Nombre Vehículo ")]
         public string nom_vehiculo
         {
             get
