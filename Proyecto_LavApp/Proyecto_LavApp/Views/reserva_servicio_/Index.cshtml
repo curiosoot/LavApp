@@ -5,7 +5,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+<h2 class="text-center"><i class="fas fa-ticket-alt"></i> Tus Reservas</h2>
 
 @{
     if (Session["rol"] != null)
@@ -14,14 +15,14 @@
         {
             if (item.sn_cliente == true)
             {
-                <p>
-                    @Html.ActionLink("Crear Nuevo", "Crear")
+                <p class="text-right">
+                    <a href="/reserva_servicio_/Crear" class="btn btn-primary"><span class="mr-2">Crear Reserva </span><i class="fas fa-plus-circle text-white"></i></a>
                 </p>
             }
         }
     }
 }
-<table class="table">
+<table id="table_id" class="table table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.txt_nombre)
@@ -38,19 +39,13 @@
         <th>
             @Html.DisplayNameFor(model => model.id_vehiculo)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_servicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hora_servicio)
+        <th style="width:200px">
+            @Html.DisplayNameFor(model => model.Fecha_Servcio_Full)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.txt_observacion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuarios.Username)
-        </th>
-        <th></th>
+        <th style="width:250px">Acciones</th>
     </tr>
 
     @foreach (var item in Model)
@@ -72,23 +67,17 @@
                 @Html.DisplayFor(modelItem => item.vehiculos.nom_vehiculo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_servicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hora_txt)
+                @Html.DisplayFor(modelItem => item.Fecha_Servcio_Full)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.txt_observacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.usuarios.Username)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.id_reserva }) |
-                @Html.ActionLink("Detalles", "Detalle", new { id = item.id_reserva }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_reserva })
+                <a href="/reserva_servicio_/Editar/@item.id_reserva" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <a href="/reserva_servicio_/Eliminar/@item.id_reserva" class="btn btn-danger"><i class="fas fa-minus-circle"></i></a>
             </td>
         </tr>
     }
 
 </table>
+

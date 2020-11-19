@@ -482,7 +482,7 @@
     <Property Name="txt_nombre" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
     <Property Name="cedula" Type="Int32" Nullable="false" />
     <Property Name="txt_email" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-    <Property Name="telefono" Type="Int32" Nullable="false" />
+    <Property Name="telefono" Type="Double" Nullable="false" />
     <Property Name="id_vehiculo" Type="Int32" Nullable="false" />
     <Property Name="fecha_servicio" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="hora_servicio" Type="DateTime" Nullable="false" Precision="0" />

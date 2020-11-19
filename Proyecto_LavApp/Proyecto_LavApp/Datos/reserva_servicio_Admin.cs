@@ -85,21 +85,21 @@ namespace Proyecto_LavApp.Datos
                                   txt_observacion = reserva_servicio.txt_observacion
                                   //usuarios = usr_Admin.Consultar(reserva_servicio.id_usuario_atiende)//,
                                   //vehiculos = veh_Admin.Consultar(reserva_servicio.id_vehiculo)
-                              }).FirstOrDefault();
+                              }).Where(x => x.id_reserva == id).FirstOrDefault();
             }
 
-                modelo.id_reserva = modelo_new.id_reserva;
-                modelo.txt_nombre = modelo_new.txt_nombre;
-                modelo.cedula = modelo_new.cedula;
-                modelo.txt_email = modelo_new.txt_email;
-                modelo.telefono = modelo_new.telefono;
-                modelo.id_vehiculo = modelo_new.id_vehiculo;
-                modelo.fecha_servicio = modelo_new.fecha_servicio;
-                modelo.hora_servicio = modelo_new.hora_servicio;
-                modelo.id_usuario_atiende = modelo_new.id_usuario_atiende;
-                modelo.txt_observacion = modelo_new.txt_observacion;
-                modelo.usuarios = usr_Admin.Consultar(modelo_new.id_usuario_atiende);
-                modelo.vehiculos = veh_Admin.Consultar(modelo_new.id_vehiculo);
+            modelo.id_reserva = modelo_new.id_reserva;
+            modelo.txt_nombre = modelo_new.txt_nombre;
+            modelo.cedula = modelo_new.cedula;
+            modelo.txt_email = modelo_new.txt_email;
+            modelo.telefono = modelo_new.telefono;
+            modelo.id_vehiculo = modelo_new.id_vehiculo;
+            modelo.fecha_servicio = modelo_new.fecha_servicio;
+            modelo.hora_servicio = modelo_new.hora_servicio;
+            modelo.id_usuario_atiende = modelo_new.id_usuario_atiende;
+            modelo.txt_observacion = modelo_new.txt_observacion;
+            modelo.usuarios = usr_Admin.Consultar(modelo_new.id_usuario_atiende);
+            modelo.vehiculos = veh_Admin.Consultar(modelo_new.id_vehiculo);
 
             return modelo;
         }

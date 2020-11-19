@@ -14,6 +14,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/libs/fontawesome/css/all.css" rel="stylesheet" />
+    
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -164,8 +167,10 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                @RenderBody()
+            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-2">
+                <div class="my-4">
+                    @RenderBody()
+                </div>
             </div>
         </div>
     </div>
@@ -188,6 +193,7 @@
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>*@
     @*<script src="~/Scripts/dashboard.js"></script>*@
 
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

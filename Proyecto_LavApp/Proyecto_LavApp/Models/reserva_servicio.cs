@@ -22,7 +22,7 @@ namespace Proyecto_LavApp.Models
         [Display(Name = "Nombre")]
         public string txt_nombre { get; set; }
 
-        [Display(Name = "Número Identificación")]
+        [Display(Name = "Documento")]
         public int cedula { get; set; }
 
         [Display(Name = "Email")]
@@ -32,9 +32,9 @@ namespace Proyecto_LavApp.Models
 
         [Display(Name = "Teléfono")]
         [DataType(DataType.PhoneNumber)]
-        public int telefono { get; set; }
+        public double telefono { get; set; }
 
-        [Display(Name = "Id Vehículo ")]
+        [Display(Name = "Vehículo ")]
         public int id_vehiculo { get; set; }
 
         [Display(Name = "Fecha Servicio")]
@@ -43,16 +43,24 @@ namespace Proyecto_LavApp.Models
         public System.DateTime fecha_servicio { get; set; }
 
         [Display(Name = "Hora Servicio")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
-
         public System.DateTime hora_servicio { get; set; }
 
-        [Display(Name = "Id Usuario Atiende")]
+        [Display(Name = "Empleado")]
         public int id_usuario_atiende { get; set; }
 
         [Display(Name = "Observación")]
         public string txt_observacion { get; set; }
+
+        [Display(Name = "Fecha Servcio")]
+        public string Fecha_Servcio_Full 
+        {
+            get
+            {
+                return $"{fecha_servicio.ToString("yyyy-MM-dd")} {hora_servicio.ToString("HH:mm")}";
+            }
+        }
 
         public string hora_txt 
         {

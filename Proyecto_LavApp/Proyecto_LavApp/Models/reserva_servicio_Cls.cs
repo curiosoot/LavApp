@@ -22,7 +22,7 @@ namespace Proyecto_LavApp.Models
         public string txt_email { get; set; }
 
         [Display(Name = "Teléfono ")]
-        public int telefono { get; set; }
+        public double telefono { get; set; }
 
         [Display(Name = "Id Vehículo")]
         public int id_vehiculo { get; set; }

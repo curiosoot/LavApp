@@ -196,6 +196,7 @@
     <Compile Include="Models\personas.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POCO\ReservaPOCO.cs" />
     <Compile Include="Models\registro_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -244,6 +245,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\libs\fontawesome\css\all.css" />
+    <Content Include="Content\libs\fontawesome\css\all.min.css" />
+    <Content Include="Content\libs\fontawesome\css\brands.css" />
+    <Content Include="Content\libs\fontawesome\css\brands.min.css" />
+    <Content Include="Content\libs\fontawesome\css\fontawesome.css" />
+    <Content Include="Content\libs\fontawesome\css\fontawesome.min.css" />
+    <Content Include="Content\libs\fontawesome\css\regular.css" />
+    <Content Include="Content\libs\fontawesome\css\regular.min.css" />
+    <Content Include="Content\libs\fontawesome\css\solid.css" />
+    <Content Include="Content\libs\fontawesome\css\solid.min.css" />
+    <Content Include="Content\libs\fontawesome\css\svg-with-js.css" />
+    <Content Include="Content\libs\fontawesome\css\svg-with-js.min.css" />
+    <Content Include="Content\libs\fontawesome\css\v4-shims.css" />
+    <Content Include="Content\libs\fontawesome\css\v4-shims.min.css" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -282,6 +300,18 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -86,7 +86,7 @@
     <Property Name="txt_nombre" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="cedula" Type="int" Nullable="false" />
     <Property Name="txt_email" Type="varchar" MaxLength="60" Nullable="false" />
-    <Property Name="telefono" Type="int" Nullable="false" />
+    <Property Name="telefono" Type="float" Nullable="false" />
     <Property Name="id_vehiculo" Type="int" Nullable="false" />
     <Property Name="fecha_servicio" Type="smalldatetime" Nullable="false" />
     <Property Name="hora_servicio" Type="smalldatetime" Nullable="false" />
