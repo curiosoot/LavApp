@@ -6,7 +6,7 @@
     List<SelectListItem> listveh = (List<SelectListItem>)ViewBag.listavehiculos;
 }
 
-<h2 class="text-center">Crear Reserva</h2>
+<h2 class="text-center"><i class="fas fa-ticket-alt"></i> Crear Reserva</h2>
 
 @using (Html.BeginForm("Crear", "reserva_servicio_", FormMethod.Post, new { @id = "frmcrearrva", @class = "form-horizontal", role = "form" }))
 {
@@ -112,6 +112,14 @@
             </div>
         </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-12 ml-3">
+                <button type="button" class="btn btn-primary" id="addServices">
+                    Agregar Servicios
+                </button>
+            </div>
+        </div>
+
         <!--<br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">-->
@@ -124,16 +132,16 @@
         </div>
         <br/>-->
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <!--<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">-->
                 <!--<input type="submit" value="Create" class="btn btn-default" />-->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Agregar Servicios
-                </button>
+                </button>-->
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -148,17 +156,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- Close Button trigger modal -->
 
-            </div>
-        </div>
+            <!--</div>
+        </div>-->
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 <script>
     function Agregar() {
         var frmcrearrva = document.getElementById("frmcrearrva");
@@ -256,6 +261,22 @@
 
             });
         }
+
+        $("#addServices").click(function () {
+            Swal.fire({
+                title: '¿Desea crear el registro?',
+                showCancelButton: true,
+                confirmButtonText: `Aceptar`,
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire('Saved!', '', 'success')
+                    Agregar();
+                } else if (result.isDenied) {
+                    // Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+        });
 
     </script>
     }

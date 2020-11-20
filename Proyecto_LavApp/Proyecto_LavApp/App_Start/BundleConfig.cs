@@ -17,6 +17,14 @@ namespace Proyecto_LavApp
                "~/Content/libs/sweetalert/sweetalert2.css"
                ));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables/js").Include(
+                "~/Content/libs/datatables/datatables.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/bundles/datatables/css").Include(
+               "~/Content/libs/datatables/datatables.css"
+               ));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -29,11 +37,17 @@ namespace Proyecto_LavApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Content/libs/datatables/datatables.js",
+                      "~/Content/libs/sweetalert/sweetalert2.all.js"                      
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/dashboard.css",
+                      "~/Content/libs/sweetalert/sweetalert2.css",
+                      "~/Content/libs/datatables/datatables.css",
+                      "~/Content/libs/fontawesome/css/all.css",
                       "~/Content/site.css"));
         }
     }

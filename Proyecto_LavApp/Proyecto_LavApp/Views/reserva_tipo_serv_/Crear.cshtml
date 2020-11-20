@@ -5,41 +5,41 @@
     List<SelectListItem> listtiposerv = (List<SelectListItem>)ViewBag.lista;
 }
 
-<h2>Crear</h2>
+<h2 class="text-center"><i class="fas fa-concierge-bell"></i> Agregar Servicio</h2>
+
 
 @using (Html.BeginForm("Guardar", "reserva_tipo_serv_", FormMethod.Post, new { @id = "frmcrearrestip", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>reserva_tipo_servicio</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_tipo_servicio, "id_tipo_servicio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group offset-2">
+            @Html.LabelFor(model => model.id_tipo_servicio, "Tipo Servicio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("id_tipo_servicio", listtiposerv, null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_tipo_servicio, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.total_servicios_sol, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group offset-2">
+            @Html.LabelFor(model => model.total_servicios_sol, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.total_servicios_sol, new { htmlAttributes = new {@id="txtvalorserv", @class = "form-control" } })
+                @Html.EditorFor(model => model.total_servicios_sol, new { htmlAttributes = new { @id = "txtvalorserv", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.total_servicios_sol, "", new { @class = "text-danger" })
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.id_reserva, "id_reserva", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_reserva", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_reserva, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.id_reserva, "id_reserva", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_reserva", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_reserva, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
-        <div class="form-group">
+        <div class="form-group offset-2">
             <div class="col-md-offset-2 col-md-10">
                 <!--<input type="submit" value="Create" class="btn btn-default" />-->
                 <!-- Button trigger modal -->
@@ -71,9 +71,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Reservas", "Index")
-</div>
 <script>
     function Agregar() {
         var frmcrearrestip = document.getElementById("frmcrearrestip");

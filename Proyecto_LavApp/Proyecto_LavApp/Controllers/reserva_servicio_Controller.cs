@@ -37,7 +37,26 @@ namespace Proyecto_LavApp.Controllers
             llenar_vehiculos();
             ViewBag.listavehiculos = listvehiculos;
 
-            return View();
+            var usuario = new usuarios();
+            var modelo = new reserva_servicio();
+            if (Session["Usuario"] != null)
+            {
+                usuario = (usuarios)Session["Usuario"];
+                using (LavApp_BDEntities contexto = new LavApp_BDEntities())
+                {
+                    var persona = contexto.personas.Where(x => x.id_persona == usuario.id_persona).FirstOrDefault();
+                    if(persona != null)
+                    {
+                        modelo.cedula = (int)persona.txt_documento;
+                        modelo.txt_nombre = persona.txt_nombre + " " + persona.txt_apellido1 + " " + persona.txt_apellido2;
+                        modelo.fecha_servicio = DateTime.Now;
+                        modelo.hora_servicio = DateTime.Now;
+
+                    }
+                }
+            }
+
+            return View(modelo);
         }
          
         [HttpPost]
@@ -147,7 +166,7 @@ namespace Proyecto_LavApp.Controllers
             }
         }
 
-        public async Task<ActionResult> ValidarHorarioEmpleado(DateTime fecha, DateTime hora)
+        public ActionResult ValidarHorarioEmpleado(DateTime fecha, DateTime hora)
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {

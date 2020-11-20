@@ -6,146 +6,175 @@
     List<SelectListItem> listveh = (List<SelectListItem>)ViewBag.listavehiculos;
 }
 
-<h2 class="text-center">Editar Reserva</h2>
+<h2 class="text-center"><i class="fas fa-ticket-alt"></i> Editar Reserva</h2>
+
 
 @using (Html.BeginForm("Editar", "reserva_servicio_", FormMethod.Post, new { @id = "frmmodifrva", @class = "form-horizontal", role = "form" }))
 {
 
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id_reserva)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_reserva)
 
 
-    <div class="form-row">
-        <div class="col-md-12">
-            <h6 class="ml-3">Datos Contacto</h6>
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.txt_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-row">
             <div class="col-md-12">
-                @Html.EditorFor(model => model.txt_nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.txt_nombre, "", new { @class = "text-danger" })
+                <h6 class="ml-3">Datos Contacto</h6>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.txt_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.txt_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.txt_nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.cedula, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.txt_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.txt_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.txt_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.txt_email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <hr />
+
+        <div class="form-row">
             <div class="col-md-12">
-                @Html.EditorFor(model => model.txt_email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.txt_email, "", new { @class = "text-danger" })
+                <h6 class="ml-3">Datos Reserva</h6>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.fecha_servicio, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.fecha_servicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha_servicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.hora_servicio, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.hora_servicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hora_servicio, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.id_vehiculo, "Vehículo", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.DropDownList("id_vehiculo", listveh, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.id_usuario_atiende, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownList("id_usuario_atiende", listusr, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_usuario_atiende, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
 
-    <hr />
-
-    <div class="form-row">
-        <div class="col-md-12">
-            <h6 class="ml-3">Datos Reserva</h6>
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.fecha_servicio, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.fecha_servicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_servicio, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.txt_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.txt_observacion, new { @class = "form-control", @rows = 3 })
+                    @Html.ValidationMessageFor(model => model.txt_observacion, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.hora_servicio, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.hora_servicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.hora_servicio, "", new { @class = "text-danger" })
-            </div>
-        </div>        
-    </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.id_vehiculo, "Vehículo", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-12">
-                @Html.DropDownList("id_vehiculo", listveh, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-12 ml-3">
+                <button type="button" class="btn btn-primary" id="updateServices">
+                    Editar Servicios
+                </button>
             </div>
         </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(model => model.id_usuario_atiende, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.DropDownList("id_usuario_atiende", listusr, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_usuario_atiende, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            @Html.LabelFor(model => model.txt_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.TextAreaFor(model => model.txt_observacion, new { @class = "form-control", @rows = 3 })
-                @Html.ValidationMessageFor(model => model.txt_observacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <!--<input type="submit" value="Save" class="btn btn-default" />-->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Editar Servicios
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Desea modificar el registro?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div style="padding:1em">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" onclick="Editar()" class="btn btn-primary">Aceptar</button>
-                        </div>
+        <!--<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">-->
+        <!--<input type="submit" value="Save" class="btn btn-default" />-->
+        <!-- Button trigger modal -->
+        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Editar Servicios
+        </button>-->
+        <!-- Modal -->
+        <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Desea modificar el registro?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div style="padding:1em">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" onclick="Editar()" class="btn btn-primary">Aceptar</button>
                     </div>
                 </div>
             </div>
-            <!-- Close Button trigger modal -->
-
-        </div>
+        </div>-->
+        <!-- Close Button trigger modal -->
+        <!--</div>
+        </div>-->
     </div>
-</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-    <script>
-        function Editar() {
-            var frmmodifrva = document.getElementById("frmmodifrva");
-            frmmodifrva.submit();
-        }
+
+<script>
+    function Editar() {
+        var frmmodifrva = document.getElementById("frmmodifrva");
+        frmmodifrva.submit();
+    }
+</script>
+
+
+
+@section scripts{
+    <script>     
+
+        $("#updateServices").click(function () {
+            Swal.fire({
+                title: '¿Desea modificar el registro?',
+                showCancelButton: true,
+                confirmButtonText: `Aceptar`,
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire('Saved!', '', 'success')
+                    Editar();
+                } else if (result.isDenied) {
+                    // Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
+        });
+
     </script>
+}

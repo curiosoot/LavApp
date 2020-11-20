@@ -22,62 +22,102 @@
         }
     }
 }
-<table id="table_id" class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cedula)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_vehiculo)
-        </th>
-        <th style="width:200px">
-            @Html.DisplayNameFor(model => model.Fecha_Servcio_Full)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_observacion)
-        </th>
-        <th style="width:250px">Acciones</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="table_id" class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.txt_nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.txt_email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.vehiculos.nom_vehiculo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Servcio_Full)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.txt_observacion)
-            </td>
-            <td>
-                <a href="/reserva_servicio_/Editar/@item.id_reserva" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a href="/reserva_servicio_/Eliminar/@item.id_reserva" class="btn btn-danger"><i class="fas fa-minus-circle"></i></a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_vehiculo)
+            </th>
+            <th style="width:200px">
+                @Html.DisplayNameFor(model => model.Fecha_Servcio_Full)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_observacion)
+            </th>
+            <th style="width:250px" class="text-center">Acciones</th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vehiculos.nom_vehiculo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_Servcio_Full)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_observacion)
+                </td>
+                <td class="text-center">
+                    <a href="/reserva_servicio_/Editar/@item.id_reserva" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                    <a href="/reserva_servicio_/Eliminar/@item.id_reserva" class="btn btn-danger"><i class="fas fa-minus-circle"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -30,22 +30,26 @@ namespace Proyecto_LavApp.Controllers
             return View(admin.Consultar(id));
         }
 
-        public ActionResult Crear(vehiculos modelo)
+        // public ActionResult Crear(vehiculos modelo)
+        public ActionResult Crear()
         {
             llenar_marcas();
             ViewBag.lista = listmarcas;
             llenar_tipo_veh();
             ViewBag.listaveh = listtipoveh;
-            llenar_modelos(modelo.id_marca_vehiculo);
+            // llenar_modelos(modelo.id_marca_vehiculo);
+            llenar_modelos(0);
             ViewBag.listmodelo = listmodelo;
-            llenar_colores(modelo.id_marca_vehiculo);
+            // llenar_colores(modelo.id_marca_vehiculo);
+            llenar_colores(0);
             ViewBag.listcol = listcolor;
             llenar_personas();
             ViewBag.listapersonas = listpersonas;
             return View();
         }
 
-        public ActionResult Guardar(vehiculos modelo)
+        [HttpPost]
+        public ActionResult Crear(vehiculos modelo) 
         {
             if (!ModelState.IsValid)
             {
@@ -63,8 +67,14 @@ namespace Proyecto_LavApp.Controllers
             }
             else
             {
-                admin.Guardar(modelo);
-                //return View("Crear", modelo);
+                var usuario = new usuarios();
+                if (Session["Usuario"] != null)
+                {
+                    usuario = (usuarios)Session["Usuario"];
+                    modelo.id_persona = usuario.id_persona;
+                    admin.Guardar(modelo);
+                }
+                
                 return RedirectToAction("Index");
             }
         }

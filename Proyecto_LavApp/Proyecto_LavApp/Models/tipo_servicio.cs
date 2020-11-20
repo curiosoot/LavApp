@@ -22,7 +22,7 @@ namespace Proyecto_LavApp.Models
             this.reserva_tipo_servicio = new HashSet<reserva_tipo_servicio>();
         }
 
-        [Display(Name = "Id Tipo Servicio")]
+        [Display(Name = "Tipo Servicio")]
         public int id_tipo_servicio { get; set; }
 
         [Display(Name = "Descripción Tipo Servicio")]

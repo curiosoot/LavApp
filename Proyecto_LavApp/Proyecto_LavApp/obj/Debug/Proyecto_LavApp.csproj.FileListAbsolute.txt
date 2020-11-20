@@ -353,8 +353,8 @@ D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\bin\es\System.Web.Razor.resour
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\bin\es\System.Web.WebPages.resources.dll
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.csprojAssemblyReference.cache
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.csproj.CoreCompileInputs.cache
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.csproj.CopyComplete
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.dll
 D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.pdb
+D:\pro_jor\LavApp\Proyecto_LavApp\Proyecto_LavApp\obj\Debug\Proyecto_LavApp.csprojAssemblyReference.cache

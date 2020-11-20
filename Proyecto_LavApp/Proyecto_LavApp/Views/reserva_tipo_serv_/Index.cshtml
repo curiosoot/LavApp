@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center"><i class="fas fa-concierge-bell"></i> Servicios</h2>
 
-<p>
-    @Html.ActionLink("Agregar Servicio", "Crear")
+<p class="text-right">
+    <a href="/reserva_tipo_serv_/Crear" class="btn btn-primary"><span class="mr-2">Agregar Servicio </span><i class="fas fa-plus-circle text-white"></i></a>
 </p>
-<table class="table">
+
+<table class="table table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.total_servicios_sol)
@@ -23,21 +24,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.total_servicios_sol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo_servicio.txt_desc_servicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.reserva_servicio.txt_nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_cita_tipo_reserva })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_servicios_sol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo_servicio.txt_desc_servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reserva_servicio.txt_nombre)
+            </td>
+            <td class="text-center">                
+                <a href="/reserva_tipo_serv_/Eliminar/@item.id_cita_tipo_reserva" class="btn btn-danger"><i class="fas fa-minus-circle"></i></a>
+            </td>           
+        </tr>
+    }
 
 </table>

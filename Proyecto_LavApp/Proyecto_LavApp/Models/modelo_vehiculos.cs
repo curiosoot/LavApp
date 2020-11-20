@@ -27,7 +27,7 @@ namespace Proyecto_LavApp.Models
         [Display(Name = "Id Marca Vehículo")]
         public int id_marca_vehiculos { get; set; }
 
-        [Display(Name = "Descripción Modelo Vehículo")]
+        [Display(Name = "Modelo Vehículo")]
         public string txt_desc_modelo { get; set; }
 
         [Display(Name = "Activo")]
