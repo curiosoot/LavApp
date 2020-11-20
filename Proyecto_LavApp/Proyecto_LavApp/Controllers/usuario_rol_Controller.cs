@@ -105,13 +105,14 @@ namespace Proyecto_LavApp.Controllers
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                listusuarios = (from usuarios in contexto.usuarios
-                                 //where tipo_documento.sn_activo == true 
-                                 select new SelectListItem
-                                 {
-                                     Text = usuarios.Username,
-                                     Value = usuarios.id_usuario.ToString()
-                                 }).ToList();
+                var usuario_rol = contexto.usuario_rol.Select(x => x.id_usuario).ToList();
+                listusuarios = contexto.usuarios.Where(x => !usuario_rol.Contains(x.id_usuario)).Select(x => new SelectListItem
+                {
+                    Text = x.Username,
+                    Value = x.id_usuario.ToString()
+                }).ToList();
+
+
                 listusuarios.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
         }

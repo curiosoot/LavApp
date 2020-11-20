@@ -16,6 +16,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/libs/fontawesome/css/all.css" rel="stylesheet" />
     
+    @Styles.Render("~/bundles/sweetalert/css");
 
     <style>
       .bd-placeholder-img {
@@ -193,9 +194,10 @@
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>*@
     @*<script src="~/Scripts/dashboard.js"></script>*@
 
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert/js");
     @RenderSection("scripts", required: false)
 </body>
 </html>

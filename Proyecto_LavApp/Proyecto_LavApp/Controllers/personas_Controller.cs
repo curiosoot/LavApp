@@ -31,7 +31,7 @@ namespace Proyecto_LavApp.Controllers
         {
             llenar_documentos();
             ViewBag.lista = listdocumento;
-            return View();
+            return View(); 
         }
         public ActionResult Guardar(personas modelo)
         {

@@ -262,6 +262,12 @@
     <Content Include="Content\libs\fontawesome\webfonts\fa-brands-400.svg" />
     <Content Include="Content\libs\fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\libs\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.all.js" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.all.min.js" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.css" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.js" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.min.css" />
+    <Content Include="Content\libs\sweetalert\sweetalert2.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

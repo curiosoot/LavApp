@@ -213,9 +213,18 @@
                 headers: sendHeaders,
                 success: function (data) {
                     if (data.error == true) {
-
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'No hay empleados disponibles en el horario ingresado',
+                        });
+                    } else {
+                        $("#id_usuario_atiende").removeAttr("disabled");
+                        if (data.empleados_no_disponibles.length > 0) {
+                            data.empleados_no_disponibles.forEach(function (item) {
+                                $("#id_usuario_atiende option[value='" + item + "']").remove();
+                            });
+                        }
                     }
-                    console.log(data);
                 },
                 error: function (jqXHR, exception) {
                     var errorAjax = "";

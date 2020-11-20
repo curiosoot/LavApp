@@ -44,6 +44,7 @@ namespace Proyecto_LavApp.Controllers
             ViewBag.listapersonas = listpersonas;
             return View();
         }
+
         public ActionResult Guardar(vehiculos modelo)
         {
             if (!ModelState.IsValid)

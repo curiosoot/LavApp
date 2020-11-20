@@ -83,13 +83,13 @@ namespace Proyecto_LavApp.Controllers
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                listpersonas = (from personas in contexto.personas
-                                 //where personas.id_persona in 
-                                 select new SelectListItem
-                                 {
-                                     Text =  personas.txt_apellido1 + " " + personas.txt_apellido2 + " " + personas.txt_nombre,
-                                     Value = personas.id_persona.ToString()
-                                 }).ToList();
+                var usuarios = contexto.usuarios.Select(x => x.id_persona).ToList();
+                listpersonas = contexto.personas.Where(x => !usuarios.Contains(x.id_persona)).Select(x => new SelectListItem
+                {
+                    Text = x.txt_apellido1 + " " + x.txt_apellido2 + " " + x.txt_nombre,
+                    Value = x.id_persona.ToString()
+                }).ToList();
+
                 listpersonas.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
         }

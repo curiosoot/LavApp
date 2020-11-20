@@ -126,11 +126,16 @@ namespace Proyecto_LavApp.Datos
             }
         }
 
-        public void Eliminar(reserva_servicio modelo)
+        public void Eliminar(int id)
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                contexto.Entry(modelo).State = EntityState.Deleted;
+                var servicios = contexto.reserva_tipo_servicio.Where(x => x.id_reserva == id).ToList();
+                contexto.reserva_tipo_servicio.RemoveRange(servicios);
+
+                var modelo = contexto.reserva_servicio.Find(id);
+                contexto.reserva_servicio.Remove(modelo);
+                // contexto.Entry(modelo).State = EntityState.Deleted;
                 contexto.SaveChanges();
             }
         }

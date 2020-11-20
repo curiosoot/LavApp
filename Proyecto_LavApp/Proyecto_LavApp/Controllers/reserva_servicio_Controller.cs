@@ -95,9 +95,8 @@ namespace Proyecto_LavApp.Controllers
         }
 
         public ActionResult Eliminar(int id)
-        {
-            reserva_servicio modelo = admin.Consultar(id);
-            admin.Eliminar(modelo);
+        {            
+            admin.Eliminar(id);
             return View("Index", admin.Consultar());
         }
 
