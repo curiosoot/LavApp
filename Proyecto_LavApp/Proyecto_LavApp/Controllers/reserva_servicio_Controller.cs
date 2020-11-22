@@ -215,7 +215,7 @@ namespace Proyecto_LavApp.Controllers
                                                     (x.hora_servicio.Hour == hora.Hour) ||
                                                     (x.hora_servicio.Hour + 1 == hora.Hour && x.hora_servicio.Minute > hora.Minute))
                                                     // (x.hora_servicio.Hour < hora.Hour && x.hora_servicio.Minute < hora.Minute))
-                                                    .Select(x => x.id_usuario_atiende).ToList();
+                                                    .Select(x => x.id_usuario_atiende).Distinct().ToList();
                     llenar_usr_atiende();
                     var objeto = new { lisusr_atiende, empleados_no_disponibles, error = empleados_no_disponibles.Count == empleados.Count };
                     

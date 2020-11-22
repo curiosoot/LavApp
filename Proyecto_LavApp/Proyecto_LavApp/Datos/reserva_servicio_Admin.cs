@@ -108,7 +108,7 @@ namespace Proyecto_LavApp.Datos
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                modelo.hora_servicio = DateTime.Now;
+                // modelo.hora_servicio = DateTime.Now;
 
                 contexto.reserva_servicio.Add(modelo);
                 contexto.SaveChanges();
@@ -119,7 +119,7 @@ namespace Proyecto_LavApp.Datos
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                modelo.hora_servicio = DateTime.Now;
+                // modelo.hora_servicio = DateTime.Now;
 
                 contexto.Entry(modelo).State = EntityState.Modified;
                 contexto.SaveChanges();
