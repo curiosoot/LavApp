@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center"><i class="fas fa-concierge-bell"></i> Tipo de Servicios</h2>
 
-<p>
-    @Html.ActionLink("Crear Nuevo", "Crear")
+<p class="text-right">
+    <a href="/tipo_servicio_/Crear" class="btn btn-primary"><span class="mr-2">Crear Tipo Servicio</span><i class="fas fa-plus-circle text-white"></i></a>
 </p>
+
 <table class="table table-bordered table-hover">
     <tr>
         <th>
@@ -20,20 +21,20 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_desc_servicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imp_valor)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.id_tipo_servicio }) |
-            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_tipo_servicio }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_tipo_servicio })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.txt_desc_servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imp_valor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.id_tipo_servicio }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id_tipo_servicio })
+            </td>
+        </tr>
+    }
 
 </table>

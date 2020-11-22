@@ -4,39 +4,33 @@
     ViewBag.Title = "Crear";
 }
 
-<h2>Crear</h2>
+<h2 class="text-center"><i class="fas fa-car"></i> Crear Marca</h2>
 
 
-@using (Html.BeginForm("Guardar", "marca_vehiculos_", FormMethod.Post, new { @id="frmcrearmarca", @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Guardar", "marca_vehiculos_", FormMethod.Post, new { @id = "frmcrearmarca", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>marca_vehiculos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_marca_vehiculos, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_marca_vehiculos, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_marca_vehiculos, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.txt_desc_marca, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.txt_desc_marca, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.txt_desc_marca, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.txt_desc_marca, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.txt_desc_marca, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.txt_desc_marca, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sn_activo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.sn_activo)
-                    @Html.ValidationMessageFor(model => model.sn_activo, "", new { @class = "text-danger" })
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.sn_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.sn_activo)
+                        @Html.ValidationMessageFor(model => model.sn_activo, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +68,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 @section Scripts {

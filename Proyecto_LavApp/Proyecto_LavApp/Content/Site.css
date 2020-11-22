@@ -22,3 +22,61 @@ select,
 textarea {
     max-width: 280px;
 }*/
+
+
+.on {
+    color: #fff;
+    transition: all 1s;
+}
+
+.off {
+    color: #000;
+    transition: all 1s;
+}
+
+.ml-10{
+    margin-left: 150px !important;
+}
+
+.mr-10 {
+    margin-right: 150px !important;
+}
+
+.card-main{
+    height: 400px !important;    
+}
+
+.card-autos {
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-position: -100px 0px;
+    background: linear-gradient(0deg, rgba(115,115,115,0.5838493112088585) 0%, rgba(0,0,0,0.9) 62%, rgba(0,0,0,1) 100%), url('../Images/vehiculos.jpg');
+    background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.card-reservas {
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-position: -100px 0px;
+    background-size: cover;
+    background: linear-gradient(0deg, rgba(115,115,115,0.5838493112088585) 0%, rgba(0,0,0,0.9) 62%, rgba(0,0,0,1) 100%), url('../Images/image3.jpg');
+    background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+.rounded-card{
+    border-radius: 25px;
+}
+
+#card_reserva:hover, #card_vehiculo:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+

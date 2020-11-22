@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center">Roles</h2>
 
-<p>
-    @Html.ActionLink("Crear Nuevo", "Crear")
+<p class="text-right">
+    <a href="/roles_/Crear" class="btn btn-primary"><span class="mr-2">Crear Rol </span><i class="fas fa-plus-circle text-white"></i></a>
 </p>
+
 <table class="table table-bordered table-hover">
     <tr>
         <th>
@@ -42,7 +43,6 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "Editar", new { id=item.id_rol }) |
-            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_rol }) |
             @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_rol })
         </td>
     </tr>

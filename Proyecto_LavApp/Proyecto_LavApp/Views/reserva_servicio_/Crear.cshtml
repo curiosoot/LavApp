@@ -1,9 +1,31 @@
-﻿@model Proyecto_LavApp.Models.reserva_servicio
-
+﻿@using Proyecto_LavApp.Models.POCO
+@using Proyecto_LavApp.Models
+@model Proyecto_LavApp.Models.reserva_servicio
+ 
 @{
     ViewBag.Title = "Crear";
     List<SelectListItem> listusr = (List<SelectListItem>)ViewBag.listausr;
     List<SelectListItem> listveh = (List<SelectListItem>)ViewBag.listavehiculos;
+
+
+    var persona = new PersonaPOCO();
+    var fullName = string.Empty;
+    if (Session["Usuario"] != null)
+    {
+        var usuario = new usuarios();
+        usuario = (usuarios)Session["Usuario"];
+        using (LavApp_BDEntities contexto = new LavApp_BDEntities())
+        {
+            persona = contexto.personas.Where(x => x.id_persona == usuario.id_persona)
+                .Select(x => new PersonaPOCO {
+                    Documento = x.txt_documento,
+                    Apellido1 = x.txt_apellido1,
+                    Apellido2 = x.txt_apellido2,
+                    Nombre = x.txt_nombre }).FirstOrDefault();
+        }
+        fullName = $"{persona.Nombre} {persona.Apellido1} {persona.Apellido2}";
+    }
+
 }
 
 <h2 class="text-center"><i class="fas fa-ticket-alt"></i> Crear Reserva</h2>
@@ -52,14 +74,7 @@
                 </div>
             </div>
         </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.id_vehiculo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.id_vehiculo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+              
         <hr />
 
         <div class="form-row">
@@ -94,8 +109,8 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.id_usuario_atiende, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-12">
-                    @Html.DropDownList("id_usuario_atiende", listusr, null, htmlAttributes: new { @class = "form-control", disabled="true" })
-                    @Html.ValidationMessageFor(model => model.usuarios.nom_asoc, "", new { @class = "text-danger" })
+                    @Html.DropDownList("id_usuario_atiende", listusr, null, htmlAttributes: new { @class = "form-control", disabled = "true" })
+                    @Html.ValidationMessageFor(model => model.id_usuario_atiende, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -120,47 +135,6 @@
             </div>
         </div>
 
-        <!--<br />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">-->
-        <!-- Button trigger modal -->
-        <!--<button type="button" class="btn btn-primary" data-toggle="modal" onclick="AdicionarSrv()">
-                Agregar Servicio
-                </button>
-                Html.Partial("../reserva_tipo_serv_/Index")
-            </div>
-        </div>
-        <br/>-->
-
-        <!--<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">-->
-                <!--<input type="submit" value="Create" class="btn btn-default" />-->
-                <!-- Button trigger modal -->
-                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Agregar Servicios
-                </button>-->
-
-                <!-- Modal -->
-                <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div style="padding:1em">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" onclick="Agregar()" class="btn btn-primary">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <!-- Close Button trigger modal -->
-
-            <!--</div>
-        </div>-->
     </div>
 }
 
@@ -178,105 +152,130 @@
 
 @section scripts{
     <script>
-        var hora = $("#hora_servicio");
-        var fecha = $("#fecha_servicio");
-        var id_employee = $("#id_usuario_atiende");
 
-        hora.focusout(function () {
-            if (fecha.val() != "" && hora.val() !== "") {
-                console.log(fecha.val(), hora.val());
-                EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+        $(document).ready(function () {
+
+            $("#cedula").val("@persona.Documento");
+            $("#txt_nombre").val("@fullName");
+
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#fecha_servicio').attr('min', maxDate);
+
+            var hora = $("#hora_servicio");
+            var fecha = $("#fecha_servicio");
+
+            hora.change(function () {
+                if (fecha.val() != "" && hora.val() !== "") {
+                    EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                }
+            });
+
+            fecha.change(function () {
+                if (fecha.val() != "" && hora.val() !== "") {
+                    EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                }
+            });
+
+            function GetRequestVerificationToken() {
+                return $("input:hidden[name=\"__RequestVerificationToken\"]").val();
             }
-        });
 
-        fecha.focusout(function () {
-            if (fecha.val() != "" && hora.val() !== "") {
-                console.log(fecha.val(), hora.val());
-                EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
-            }
-        });
+            function EjecutarAjax(url, type, values, funcionSuccess, variable) {
 
-        function GetRequestVerificationToken() {
-            return $("input:hidden[name=\"__RequestVerificationToken\"]").val();
-        }
+                var types = ["POST", "PUT", "DELETE"];
+                var token = GetRequestVerificationToken();
 
-        function EjecutarAjax(url, type, values, funcionSuccess, variable) {
+                var sendHeaders = {};
+                if (types.indexOf(type) > -1 && token != null && token !== "") {
+                    sendHeaders["__RequestVerificationToken"] = token;
+                }
 
-            var types = ["POST", "PUT", "DELETE"];
-            var token = GetRequestVerificationToken();
-
-            var sendHeaders = {};
-            if (types.indexOf(type) > -1 && token != null && token !== "") {
-                sendHeaders["__RequestVerificationToken"] = token;
-            }
-
-            $.ajax({
-                cache: false,
-                url: url,
-                type: type,
-                data: values,
-                headers: sendHeaders,
-                success: function (data) {
-                    if (data.error == true) {
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'No hay empleados disponibles en el horario ingresado',
-                        });
-                    } else {
-                        $("#id_usuario_atiende").removeAttr("disabled");
-                        if (data.empleados_no_disponibles.length > 0) {
-                            data.empleados_no_disponibles.forEach(function (item) {
-                                $("#id_usuario_atiende option[value='" + item + "']").remove();
+                $.ajax({
+                    cache: false,
+                    url: url,
+                    type: type,
+                    data: values,
+                    headers: sendHeaders,
+                    success: function (data) {
+                        if (data.error == true) {
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'No hay empleados disponibles en el horario ingresado',
                             });
+                            $("#id_usuario_atiende").empty();
+                            $("#id_usuario_atiende").attr("disabled", "true");
+                        } else {
+                            $("#id_usuario_atiende").removeAttr("disabled");
+                            $("#id_usuario_atiende").empty();
+                            $.each(data.lisusr_atiende, function (i, item) {
+                                $("#id_usuario_atiende").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                            });
+
+                            if (data.empleados_no_disponibles.length > 0) {
+                                data.empleados_no_disponibles.forEach(function (item) {
+                                    $("#id_usuario_atiende option[value='" + item + "']").remove();
+                                });
+                            }
                         }
+                    },
+                    error: function (jqXHR, exception) {
+                        var errorAjax = "";
+                        if (jqXHR.status === 0) {
+                            errorAjax += "No cuenta con conexion a internet, \xF3 su sesion ha caducado.";
+                            alert(errorAjax);
+                            return;
+                        } else if (jqXHR.status === 404) {
+                            alert(errorAjax, 404);
+                        } else if (jqXHR.status === 500) {
+                            alert(errorAjax, 500);
+                        } else if (exception === "parsererror") {
+                            errorAjax += "Error al convertir el objeto en JSON";
+                            alert(errorAjax);
+                        } else if (exception === "timeout") {
+                            errorAjax += "Tiempo de espera agotado. Por favor comuniquese con el administrador del sistema";
+                            alert(errorAjax);
+                        } else if (exception === "abort") {
+                            errorAjax += "Petición AJAX abortada. Por favor comuniquese con el administrador del sistema";
+                            alert(errorAjax);
+                        } else {
+                            errorAjax += "Error inesperado (" + jqXHR.responseText + "). Por favor comuniquese con el administrador del sistema";
+                            alert(errorAjax);
+                        }
+                    },
+                    complete: function (data) {
+
                     }
-                },
-                error: function (jqXHR, exception) {
-                    var errorAjax = "";
-                    if (jqXHR.status === 0) {
-                        errorAjax += "No cuenta con conexion a internet, \xF3 su sesion ha caducado.";
-                        alert(errorAjax);
-                        return;
-                    } else if (jqXHR.status === 404) {
-                        alert(errorAjax, 404);
-                    } else if (jqXHR.status === 500) {
-                        alert(errorAjax, 500);
-                    } else if (exception === "parsererror") {
-                        errorAjax += "Error al convertir el objeto en JSON";
-                        alert(errorAjax);
-                    } else if (exception === "timeout") {
-                        errorAjax += "Tiempo de espera agotado. Por favor comuniquese con el administrador del sistema";
-                        alert(errorAjax);
-                    } else if (exception === "abort") {
-                        errorAjax += "Petición AJAX abortada. Por favor comuniquese con el administrador del sistema";
-                        alert(errorAjax);
-                    } else {
-                        errorAjax += "Error inesperado (" + jqXHR.responseText + "). Por favor comuniquese con el administrador del sistema";
-                        alert(errorAjax);
+
+                });
+            }
+
+            $("#addServices").click(function () {
+                Swal.fire({
+                    title: '¿Desea crear el registro?',
+                    showCancelButton: true,
+                    confirmButtonText: `Aceptar`,
+                    denyButtonText: `Cancelar`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Agregar();
+                    } else if (result.isDenied) {
                     }
-                },
-                complete: function (data) {
-
-                }
-
-            });
-        }
-
-        $("#addServices").click(function () {
-            Swal.fire({
-                title: '¿Desea crear el registro?',
-                showCancelButton: true,
-                confirmButtonText: `Aceptar`,
-                denyButtonText: `Cancelar`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Swal.fire('Saved!', '', 'success')
-                    Agregar();
-                } else if (result.isDenied) {
-                    // Swal.fire('Changes are not saved', '', 'info')
-                }
+                });
             });
         });
+
+
 
     </script>
-    }
+}

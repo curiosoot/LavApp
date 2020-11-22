@@ -28,7 +28,7 @@ namespace Proyecto_LavApp.Models
         public int id_tipo_vehiculo { get; set; }
 
         [Display(Name = "Placa")]
-        [MaxLength(7, ErrorMessage = "La placa puede superar los 7 digitos")]
+        [MaxLength(7, ErrorMessage = "La placa no puede superar los 7 digitos")]
         public string txt_placa { get; set; }
 
         [Display(Name = "Id Marca Vehículo ")]

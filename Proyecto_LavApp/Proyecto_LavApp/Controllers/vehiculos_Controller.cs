@@ -84,18 +84,40 @@ namespace Proyecto_LavApp.Controllers
             llenar_marcas();
             ViewBag.lista = listmarcas;
             llenar_tipo_veh();
-            ViewBag.listaveh = listtipoveh;
-            llenar_modelos(0);
-            ViewBag.listmodelo = listmodelo;
-            llenar_colores(0);
-            ViewBag.listcol = listcolor;
+            ViewBag.listaveh = listtipoveh;             
             llenar_personas();
             ViewBag.listapersonas = listpersonas;
-            return View(admin.Consultar(id));
+
+            var vehiculo = admin.Consultar(id);
+
+            llenar_modelos(vehiculo.id_marca_vehiculo);
+            ViewBag.listmodelo = listmodelo;
+            llenar_colores(vehiculo.id_marca_vehiculo);
+            ViewBag.listcol = listcolor;
+
+            return View(vehiculo);
         }
 
-        public ActionResult Modificar(vehiculos modelo)
+        [HttpPost]
+        public ActionResult Editar(vehiculos modelo)
         {
+            if (!ModelState.IsValid)
+            {
+                llenar_marcas();
+                ViewBag.lista = listmarcas;
+                llenar_tipo_veh();
+                ViewBag.listaveh = listtipoveh;
+                llenar_personas(); 
+                ViewBag.listapersonas = listpersonas;
+
+                llenar_modelos(modelo.id_marca_vehiculo);
+                ViewBag.listmodelo = listmodelo;
+                llenar_colores(modelo.id_marca_vehiculo);
+                ViewBag.listcol = listcolor;
+
+                return View(modelo);
+            }
+
             admin.Modificar(modelo);
             llenar_marcas();
             ViewBag.lista = listmarcas;
@@ -112,9 +134,25 @@ namespace Proyecto_LavApp.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            vehiculos modelo = admin.Consultar(id);
-            admin.Eliminar(modelo);
-            return View("Index", admin.Consultar());
+            bool error = false;
+            string message = string.Empty;
+
+            try
+            {
+                admin.Eliminar(id);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                message = $"Se presento un error no controlado: {ex.Message}";
+                if (ex.InnerException?.InnerException?.Message?.Contains("FK_") == true)
+                {
+                    message = $"El vehiculo se encuentra asociado a una o mas reservas";
+                }
+            }
+
+            var objeto = new { error, message };
+            return Json(objeto, JsonRequestBehavior.AllowGet);
         }
 
         private void llenar_marcas()

@@ -59,8 +59,10 @@
                     @Html.DisplayFor(modelItem => item.tipo_vehiculos.txt_tipo_vehiculo)
                 </td>
                 <td class="text-center">
-                    <a href="/vehiculos_/Editar/@item.id_vehiculo" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                    <a href="/vehiculos_/Eliminar/@item.id_vehiculo" class="btn btn-danger"><i class="fas fa-minus-circle"></i></a>
+                    <a href="/vehiculos_/Editar/@item.id_vehiculo" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Vehiculo"><i class="fas fa-edit"></i></a>
+                    @*<button onclick="eliminarVehiculo(@item.id_vehiculo)" class="btn btn-danger" data-id="@item.id_vehiculo" data-toggle="tooltip" data-placement="top" title="Eliminar Vehiculo"><i class="fas fa-minus-circle"></i></button>*@
+                    @*<a href="/vehiculos_/Eliminar/@item.id_vehiculo" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar Vehiculo"><i class="fas fa-minus-circle"></i></a>*@
+                    <button class="btn btn-danger" data-id="@item.id_vehiculo" data-toggle="tooltip" data-placement="top" title="Eliminar Vehiculo"><i class="fas fa-minus-circle"></i></button>
                 </td>
             </tr>
         }
@@ -72,6 +74,97 @@
 
 @section scripts{
     <script>
+
+        $('#table_id tbody').on('click', 'button', function () {
+            var table = $('#table_id').DataTable();
+            var id = $(this).data("id");
+
+            eliminarVehiculo(id, () => {
+                table.row($(this).parents('tr')).remove().draw();
+                Swal.fire('Registro Eliminado!');
+            });
+
+        });
+
+        function eliminarVehiculo(id, funcionSuccess) {
+            Swal.fire({
+                title: '¿Desea eliminar el registro?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: `Aceptar`,
+                denyButtonText: `Cancelar`,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    EjecutarAjax("@Url.Action("Eliminar", "vehiculos_")", "GET", { id }, funcionSuccess);
+                }
+            })
+        };
+
+        function GetRequestVerificationToken() {
+            return $("input:hidden[name=\"__RequestVerificationToken\"]").val();
+        }
+
+        function EjecutarAjax(url, type, values, funcionSuccess, variable) {
+
+            var types = ["POST", "PUT", "DELETE"];
+            var token = GetRequestVerificationToken();
+
+            var sendHeaders = {};
+            if (types.indexOf(type) > -1 && token != null && token !== "") {
+                sendHeaders["__RequestVerificationToken"] = token;
+            }
+
+            $.ajax({
+                cache: false,
+                url: url,
+                type: type,
+                data: values,
+                headers: sendHeaders,
+                success: function (data) {                    
+                    if (data.error == true) {
+                        Swal.fire({
+                            icon: 'error',
+                            text: data.message,
+                        });
+                    } else {                        
+                        funcionSuccess();
+                        //btn btn-danger
+                        //$('#table_id').row($(this).parents('tr')).remove().draw();                        
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    var errorAjax = "";
+                    if (jqXHR.status === 0) {
+                        errorAjax += "No cuenta con conexion a internet, \xF3 su sesion ha caducado.";
+                        alert(errorAjax);
+                        return;
+                    } else if (jqXHR.status === 404) {
+                        alert(errorAjax, 404);
+                    } else if (jqXHR.status === 500) {
+                        alert(errorAjax, 500);
+                    } else if (exception === "parsererror") {
+                        errorAjax += "Error al convertir el objeto en JSON";
+                        alert(errorAjax);
+                    } else if (exception === "timeout") {
+                        errorAjax += "Tiempo de espera agotado. Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    } else if (exception === "abort") {
+                        errorAjax += "Petición AJAX abortada. Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    } else {
+                        errorAjax += "Error inesperado (" + jqXHR.responseText + "). Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    }
+                },
+                complete: function (data) {
+
+                }
+
+            });
+        }
+
         $(document).ready(function () {
             $('#table_id').DataTable({
                 "language": {

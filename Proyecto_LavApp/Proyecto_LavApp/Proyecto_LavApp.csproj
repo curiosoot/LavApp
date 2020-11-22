@@ -196,6 +196,7 @@
     <Compile Include="Models\personas.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\POCO\PersonaPOCO.cs" />
     <Compile Include="Models\POCO\ReservaPOCO.cs" />
     <Compile Include="Models\registro_servicio.cs">
       <DependentUpon>DB.tt</DependentUpon>
@@ -281,6 +282,8 @@
     <Content Include="Images\image3.jpg" />
     <Content Include="Images\image4.jpg" />
     <Content Include="Images\image5.jpg" />
+    <Content Include="Images\logo_app.jpg" />
+    <Content Include="Images\vehiculos.jpg" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DB.Context.cs</LastGenOutput>
@@ -405,6 +408,8 @@
     <Content Include="Views\reserva_tipo_serv_\Index.cshtml" />
     <Content Include="Views\reserva_tipo_serv_\Crear.cshtml" />
     <Content Include="Views\reserva_servicio_\Editar.cshtml" />
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\ptallappal\PanelCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard LavApp Cliente</title>
+    @Styles.Render("~/Content/css");
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/libs/fontawesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 navbar-dark bg-primary text-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal px-4">
+            <i class="fas fa-car"></i>
+            <span class="px-2">
+                <a href="/ptallappal/PanelCliente" class="text-decoration-none text-white">
+                    LavApp - Smart car wash
+                </a>
+            </span>
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" href="/vehiculos_">Vehiculos</a>
+            <a class="p-2 text-white" href="/reserva_servicio_">Reservas</a>            
+        </nav>
+        <a class="nav-link text-decoration-none btn btn-outline-light bg-primary text-white mx-4" href="@Url.Action("cerrarsesion", "login_")">Cerrar Sesión</a>
+    </div>
+
+    <div class="row-fluid">
+        <div class="container-fluid px-5">
+            @RenderBody()           
+        </div>
+    </div>
+
+    
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    @section scripts{
+        <script>
+          
+        </script>
+    }
+</body>
+</html>

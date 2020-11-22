@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Panel Cliente";
+}
+
+<h1 class="text-center text-black-50">Panel Clientes</h1>
+
+<div class="row">
+    <div class="col-md-6 my-2 card-main">
+        <div class="m-2 bg-dark p-4 text-white rounded-card card-autos" id="card_vehiculo">
+            <h1 class="text-center text-white-50">Tus Vehiculos</h1>
+        </div>
+    </div>
+    <div class="col-md-6 my-2 card-main">
+        <div class="m-2 bg-dark p-4 text-white rounded-card card-reservas" id="card_reserva">
+            <h1 class="text-center text-white-50">Tus Reservas</h1>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#card_vehiculo").click(function () {
+            document.location.href="@Url.Action("Index", "vehiculos_")"; 
+        });
+
+        $("#card_reserva").click(function () {
+            document.location.href="@Url.Action("Index", "reserva_servicio_")";
+        });
+    </script>
+}

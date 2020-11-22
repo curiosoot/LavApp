@@ -31,70 +31,60 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.id_reserva, "id_reserva", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_reserva", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_reserva, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group offset-2">
-            <div class="col-md-offset-2 col-md-10">
-                <!--<input type="submit" value="Create" class="btn btn-default" />-->
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Agregar Servicio
+            <div class="col-md-10">
+                <button type="button" class="btn btn-primary" id="addService">
+                    Agregar Servicios
                 </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div style="padding:1em">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" onclick="Agregar()" class="btn btn-primary">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Close Button trigger modal -->
-
             </div>
         </div>
+
     </div>
 }
 
-<script>
-    function Agregar() {
-        var frmcrearrestip = document.getElementById("frmcrearrestip");
-        frmcrearrestip.submit();
-    }
 
-    var cboTipoServ = document.getElementById("id_tipo_servicio");
-    cboTipoServ.onchange = function () {
-        //$("#id_tipo_servicio").empty();
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: '/reserva_tipo_serv_/obtenerValorServicio',
-            data: { id: $(this).val() },
-            success: function (Data) {
-                $.each(Data, function (i, data) {
-                    //alert(data);
-                    $("#txtvalorserv").val(data);
-                });
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-            }
+@section scripts{
+
+    <script>
+        function AgregarServ() {
+            var frmcrearrestip = document.getElementById("frmcrearrestip");
+            frmcrearrestip.submit();
+        }
+
+        var cboTipoServ = document.getElementById("id_tipo_servicio");
+        cboTipoServ.onchange = function () {
+            //$("#id_tipo_servicio").empty();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '/reserva_tipo_serv_/obtenerValorServicio',
+                data: { id: $(this).val() },
+                success: function (Data) {
+                    $.each(Data, function (i, data) {
+                        //alert(data);
+                        $("#txtvalorserv").val(data);
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                }
+            });
+        }
+
+        $("#addService").click(function () {
+            Swal.fire({
+                title: '¿Desea crear el registro?',
+                showCancelButton: true,
+                confirmButtonText: `Aceptar`,
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Swal.fire('Saved!', '', 'success')
+                    AgregarServ();
+                } else if (result.isDenied) {
+                    // Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
         });
-    }
+    </script>
 
-</script>
-
+}

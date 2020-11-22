@@ -9,152 +9,133 @@
     List<SelectListItem> listpersonas = (List<SelectListItem>)ViewBag.listapersonas;
 }
 
-<h2>Crear</h2>
+<h2 class="text-center"><i class="fas fa-car"></i> Crear Vehiculo</h2>
 
 @using (Html.BeginForm("Crear", "vehiculos_", FormMethod.Post, new { @id = "frmcrearveh", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>vehiculos</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.id_vehiculo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.id_vehiculo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.id_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.id_tipo_vehiculo, "Tipo Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("id_tipo_vehiculo", listtipoveh, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id_tipo_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.txt_placa, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.txt_placa, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.txt_placa, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.id_marca_vehiculo, "Marca Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("id_marca_vehiculo", listmarcas, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id_marca_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.id_modelo_vehiculo, "Modelo Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("id_modelo_vehiculo", listmodelo, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id_modelo_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.id_color_vehiculo, "Color Vehículo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("id_color_vehiculo", listcolor, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id_color_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ano_vehiculo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ano_vehiculo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ano_vehiculo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.personas.txt_nombre, "id_persona", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("id_persona", listpersonas, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.id_persona, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <!--<input type="submit" value="Create" class="btn btn-default" />-->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Crear
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div style="padding:1em">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" onclick="Agregar()" class="btn btn-primary">Aceptar</button>
-                        </div>
-                    </div>
+        <div class="form-row">
+            <div class="col-md-12">
+                <h6 class="ml-3">Datos Vehiculo</h6>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.id_tipo_vehiculo, "Tipo Vehículo", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_tipo_vehiculo", listtipoveh, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_tipo_vehiculo, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <!-- Close Button trigger modal -->
 
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.id_marca_vehiculo, "Marca Vehículo", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_marca_vehiculo", listmarcas, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_marca_vehiculo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.txt_placa, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.txt_placa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.txt_placa, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.id_modelo_vehiculo, "Modelo Vehículo", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_modelo_vehiculo", listmodelo, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_modelo_vehiculo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.id_color_vehiculo, "Color Vehículo", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_color_vehiculo", listcolor, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_color_vehiculo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.ano_vehiculo, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ano_vehiculo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ano_vehiculo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12 ml-3">
+                <button type="button" class="btn btn-primary" id="btnCrearAuto">
+                    Crear
+                </button>
+            </div>
+        </div>
+               
     </div>
-</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-<script>
-    function Agregar() {
-        var frmcrearveh = document.getElementById("frmcrearveh");
-        frmcrearveh.submit();
-    }
 
-    var cboMarcas = document.getElementById("id_marca_vehiculo");
-    cboMarcas.onchange = function () {
-        $("#id_modelo_vehiculo").empty();
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: '/vehiculos_/SaveEmployeeRecord',
-            data: { id: $(this).val() },
-            success: function (Data) {
-                //console.log(Data.listmodelo);
-                //console.log(Data.listcolor);
+@section scripts{
+    
+        <script>
 
-                $.each(Data.listmodelo, function (i, data) {
-                    $("#id_modelo_vehiculo").append('<option value="' + data.Value + '">' +
-                        data.Text + '</option>');
-                    // here we are adding option for States  
+            $("#btnCrearAuto").click(function () {
+                Swal.fire({
+                    title: '¿Desea crear el registro?',
+                    showCancelButton: true,
+                    confirmButtonText: `Aceptar`,
+                    denyButtonText: `Cancelar`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Swal.fire('Saved!', '', 'success')
+                        AgregarAuto();
+                    } else if (result.isDenied) {
+                        // Swal.fire('Changes are not saved', '', 'info')
+                    }
                 });
+            });
 
-                $.each(Data.listcolor, function (i, data) {
-                    $("#id_color_vehiculo").append('<option value="' + data.Value + '">' +
-                        data.Text + '</option>');
-                    // here we are adding option for States  
-                });
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-            
+            function AgregarAuto() {
+                var frmcrearveh = document.getElementById("frmcrearveh");
+                frmcrearveh.submit();
             }
-        });
-    }
-</script>
+
+            var cboMarcas = document.getElementById("id_marca_vehiculo");
+            cboMarcas.onchange = function () {
+                $("#id_modelo_vehiculo").empty();
+                $("#id_color_vehiculo").empty();
+                $.ajax({
+                type: 'POST',
+                    dataType: 'json',
+                    url: '/vehiculos_/SaveEmployeeRecord',
+                    data: {id: $(this).val() },
+                    success: function (Data) {
+
+                        $.each(Data.listmodelo, function (i, data) {
+                            $("#id_modelo_vehiculo").append('<option value="' + data.Value + '">' + data.Text + '</option>');
+                        });
+
+                        $.each(Data.listcolor, function (i, data) {
+                            $("#id_color_vehiculo").append('<option value="' + data.Value + '">' + data.Text + '</option>');
+                        });
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                });
+            }
+    </script>
+}

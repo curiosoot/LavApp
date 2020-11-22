@@ -37,26 +37,27 @@ namespace Proyecto_LavApp.Controllers
             llenar_vehiculos();
             ViewBag.listavehiculos = listvehiculos;
 
-            var usuario = new usuarios();
-            var modelo = new reserva_servicio();
-            if (Session["Usuario"] != null)
-            {
-                usuario = (usuarios)Session["Usuario"];
-                using (LavApp_BDEntities contexto = new LavApp_BDEntities())
-                {
-                    var persona = contexto.personas.Where(x => x.id_persona == usuario.id_persona).FirstOrDefault();
-                    if(persona != null)
-                    {
-                        modelo.cedula = (int)persona.txt_documento;
-                        modelo.txt_nombre = persona.txt_nombre + " " + persona.txt_apellido1 + " " + persona.txt_apellido2;
-                        modelo.fecha_servicio = DateTime.Now;
-                        modelo.hora_servicio = DateTime.Now;
+            //var usuario = new usuarios();
+            //var modelo = new reserva_servicio();
+            //if (Session["Usuario"] != null)
+            //{
+            //    usuario = (usuarios)Session["Usuario"];
+            //    using (LavApp_BDEntities contexto = new LavApp_BDEntities())
+            //    {
+            //        var persona = contexto.personas.Where(x => x.id_persona == usuario.id_persona).FirstOrDefault();
+            //        if(persona != null)
+            //        {
+            //            modelo.cedula = (int)persona.txt_documento;
+            //            modelo.txt_nombre = persona.txt_nombre + " " + persona.txt_apellido1 + " " + persona.txt_apellido2;
+            //            modelo.fecha_servicio = DateTime.Now;
+            //            modelo.hora_servicio = DateTime.Now;
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
-            return View(modelo);
+            //return View(modelo);
+            return View();
         }
          
         [HttpPost]
@@ -114,9 +115,26 @@ namespace Proyecto_LavApp.Controllers
         }
 
         public ActionResult Eliminar(int id)
-        {            
-            admin.Eliminar(id);
-            return View("Index", admin.Consultar());
+        {
+            bool error = false;
+            string message = string.Empty;
+
+            try
+            {
+                admin.Eliminar(id);
+            }
+            catch (Exception ex)
+            {
+                error = true;
+                message = $"Se presento un error no controlado: {ex.Message}";
+                if (ex.InnerException?.InnerException?.Message?.Contains("FK_") == true)
+                {
+                    message = $"La reserva se encuentra asociado a otro proceso";
+                }
+            }
+
+            var objeto = new { error, message };
+            return Json(objeto, JsonRequestBehavior.AllowGet);
         }
 
         private void llenar_vehiculos()
@@ -192,17 +210,21 @@ namespace Proyecto_LavApp.Controllers
                                                 }).ToList();
 
                     var empleados_no_disponibles = empleados_con_reservas.Where(x => x.fecha_servicio == fecha.Date &&
-                                                    x.hora_servicio.Hour <= hora.Hour && x.hora_servicio.Hour + 1 >= hora.Hour && 
-                                                    x.hora_servicio.Minute >= hora.Minute)
+                                                    //x.hora_servicio.Hour <= hora.Hour && x.hora_servicio.Hour + 1 >= hora.Hour && 
+                                                    //x.hora_servicio.Minute >= hora.Minute)
+                                                    (x.hora_servicio.Hour == hora.Hour) ||
+                                                    (x.hora_servicio.Hour + 1 == hora.Hour && x.hora_servicio.Minute > hora.Minute))
+                                                    // (x.hora_servicio.Hour < hora.Hour && x.hora_servicio.Minute < hora.Minute))
                                                     .Select(x => x.id_usuario_atiende).ToList();
-
-                    var objeto = new { empleados_no_disponibles, error = empleados_no_disponibles.Count == empleados.Count };
+                    llenar_usr_atiende();
+                    var objeto = new { lisusr_atiende, empleados_no_disponibles, error = empleados_no_disponibles.Count == empleados.Count };
                     
                     return Json(objeto, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    var objeto = new { message = ex.Message, error = true };
+                    return Json(objeto, JsonRequestBehavior.AllowGet); 
                 }
             }
         }

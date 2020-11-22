@@ -3,60 +3,192 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Crear Nueva", "Crear")
+<h2 class="text-center"><i class="fas fa-users"></i> Personas</h2>
+
+<p class="text-right">
+    <a href="/personas_/Crear" class="btn btn-primary"><span class="mr-2">Crear Persona </span><i class="fas fa-plus-circle text-white"></i></a>
 </p>
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_documento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_apellido1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.txt_apellido2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fec_nacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tipo_documento.txt_tipo_doc)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_documento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_apellido1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.txt_apellido2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fec_nacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo_documento.txt_tipo_doc)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id=item.id_persona }) |
-            @Html.ActionLink("Detalles", "Detalle", new { id=item.id_persona }) |
-            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id_persona })
-        </td>
-    </tr>
-}
+<table id="table_id" class="table table-bordered table-hover">
+    <thead>
 
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_apellido1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.txt_apellido2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fec_nacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipo_documento.txt_tipo_doc)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.txt_apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fec_nacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo_documento.txt_tipo_doc)
+                </td>
+                <td class="text-center">
+                    <a href="/personas_/Editar/@item.id_persona" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                    <button class="btn btn-danger" data-id="@item.id_persona" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-minus-circle"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+@section scripts{
+    <script>
+
+        $('#table_id tbody').on('click', 'button', function () {
+            var table = $('#table_id').DataTable();
+            var id = $(this).data("id");
+
+            eliminarPersona(id, () => {
+                table.row($(this).parents('tr')).remove().draw();
+                Swal.fire('Registro Eliminado!');
+            });
+        });
+
+        function eliminarPersona(id, funcionSuccess) {
+            Swal.fire({
+                title: '¿Desea eliminar el registro?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: `Aceptar`,
+                denyButtonText: `Cancelar`,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    EjecutarAjax("@Url.Action("Eliminar", "personas_")", "GET", { id }, funcionSuccess);
+                }
+            })
+        };
+
+        function GetRequestVerificationToken() {
+            return $("input:hidden[name=\"__RequestVerificationToken\"]").val();
+        }
+
+        function EjecutarAjax(url, type, values, funcionSuccess, variable) {
+
+            var types = ["POST", "PUT", "DELETE"];
+            var token = GetRequestVerificationToken();
+
+            var sendHeaders = {};
+            if (types.indexOf(type) > -1 && token != null && token !== "") {
+                sendHeaders["__RequestVerificationToken"] = token;
+            }
+
+            $.ajax({
+                cache: false,
+                url: url,
+                type: type,
+                data: values,
+                headers: sendHeaders,
+                success: function (data) {
+                    if (data.error == true) {
+                        Swal.fire({
+                            icon: 'error',
+                            text: data.message,
+                        });
+                    } else {
+                        funcionSuccess();
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    var errorAjax = "";
+                    if (jqXHR.status === 0) {
+                        errorAjax += "No cuenta con conexion a internet, \xF3 su sesion ha caducado.";
+                        alert(errorAjax);
+                        return;
+                    } else if (jqXHR.status === 404) {
+                        alert(errorAjax, 404);
+                    } else if (jqXHR.status === 500) {
+                        alert(errorAjax, 500);
+                    } else if (exception === "parsererror") {
+                        errorAjax += "Error al convertir el objeto en JSON";
+                        alert(errorAjax);
+                    } else if (exception === "timeout") {
+                        errorAjax += "Tiempo de espera agotado. Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    } else if (exception === "abort") {
+                        errorAjax += "Petición AJAX abortada. Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    } else {
+                        errorAjax += "Error inesperado (" + jqXHR.responseText + "). Por favor comuniquese con el administrador del sistema";
+                        alert(errorAjax);
+                    }
+                },
+                complete: function (data) {
+
+                }
+
+            });
+        }
+
+        $(document).ready(function () {
+
+            $('#table_id').DataTable({
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    "buttons": {
+                        "copy": "Copiar",
+                        "colvis": "Visibilidad"
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -34,7 +34,9 @@ namespace Proyecto_LavApp.Controllers
             ViewBag.lista = listpersonas;
             return View();
         }
-        public ActionResult Guardar(usuarios modelo)
+
+        [HttpPost] 
+        public ActionResult Crear(usuarios modelo)
         {
             if (!ModelState.IsValid)
             {

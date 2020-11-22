@@ -5,57 +5,50 @@
     List<SelectListItem> listpersonas = (List<SelectListItem>)ViewBag.lista;
 }
 
-<h2>Crear</h2>
+<h2 class="text-center"><i class="fas fa-user"></i> Crear Usuario</h2>
 
-
-@using (Html.BeginForm("Guardar", "usuarios_", FormMethod.Post, new { @id = "frmcrearusuario", @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Crear", "usuarios_", FormMethod.Post, new { @id = "frmcrearusuario", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>usuarios</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_usuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-row">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.txt_password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.txt_password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.txt_password, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_persona, "id_persona", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_persona", listpersonas, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_persona, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.txt_password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.txt_password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.txt_password, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fec_vto_password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fec_vto_password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fec_vto_password, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.id_persona, "Persona", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_persona", listpersonas, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_persona, "", new { @class = "text-danger" })
         </div>
+    </div>
 
+    <div class="form-group col-md-3">
+        @Html.LabelFor(model => model.fec_vto_password, htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fec_vto_password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fec_vto_password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <!--<input type="submit" value="Create" class="btn btn-default" />-->
@@ -71,14 +64,14 @@
                             <div class="modal-header">
                                 @{
                                     if (Session["rol"] != null)
-                                        {
-                                            <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
-                                        }
-                                    else 
-                                        { 
-                                            <h5 class="modal-title" id="exampleModalLabel">Registro creado con Exito</h5>
-                                        }
-                                 }
+                                    {
+                                        <h5 class="modal-title" id="exampleModalLabel">¿Desea crear el registro?</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="modal-title" id="exampleModalLabel">Registro creado con Exito</h5>
+                                    }
+                                }
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -94,21 +87,20 @@
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Regresar", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-<script>
-    function Agregar()
-    {
-        var frmcrearusuario = document.getElementById("frmcrearusuario");
-        frmcrearusuario.submit();
     }
 
-</script>
+    <div>
+        @Html.ActionLink("Regresar", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <script>
+        function Agregar() {
+            var frmcrearusuario = document.getElementById("frmcrearusuario");
+            frmcrearusuario.submit();
+        }
+
+    </script>

@@ -4,14 +4,14 @@
     ViewBag.Title = "Editar";
 }
 
-<h2>Editar</h2>
+<h2 class="text-center"><i class="fas fa-car"></i> Editar Tipo Servicio</h2>
 
 @using (Html.BeginForm("Modificar", "tipo_servicio_", FormMethod.Post, new { @id = "frmeditartiposerv", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Tipo Servicio</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_tipo_servicio)
@@ -65,7 +65,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 

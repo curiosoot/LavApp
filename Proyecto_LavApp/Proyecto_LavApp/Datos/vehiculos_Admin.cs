@@ -123,11 +123,12 @@ namespace Proyecto_LavApp.Datos
             }
         }
 
-        public void Eliminar(vehiculos modelo)
+        public void Eliminar(int id)
         {
             using (LavApp_BDEntities contexto = new LavApp_BDEntities())
             {
-                contexto.Entry(modelo).State = EntityState.Deleted;
+                var modelo = contexto.vehiculos.Find(id);
+                contexto.vehiculos.Remove(modelo);
                 contexto.SaveChanges();
             }
         }

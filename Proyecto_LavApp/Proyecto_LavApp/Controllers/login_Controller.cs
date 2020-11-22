@@ -39,7 +39,7 @@ namespace Proyecto_LavApp.Controllers
                 else {
                     usuarios usr = contexto.usuarios.Where(p => p.Username == username && p.txt_password == password).First();
                     Session["Usuario"] = usr;
-                    List<rolesCls> listroles = (from roles in contexto.roles
+                    rolesCls rol = (from roles in contexto.roles
                                              join usuario_rol in contexto.usuario_rol
                                              on roles.id_rol equals usuario_rol.id_rol
                                              where usuario_rol.id_usuario == usr.id_usuario
@@ -51,12 +51,15 @@ namespace Proyecto_LavApp.Controllers
                                                  sn_empleado = roles.sn_empleado,
                                                  sn_cliente = roles.sn_cliente
                                              }
-                                            ).ToList();
-                    Session["rol"] = listroles;
+                                            // ).ToList();
+                                            ).FirstOrDefault();
+                    Session["rol"] = rol;
+                    if (rol.sn_cliente)
+                        mensaje = "2";
                 }
             }
 
-                return mensaje;
+            return mensaje;
         }
 
     }

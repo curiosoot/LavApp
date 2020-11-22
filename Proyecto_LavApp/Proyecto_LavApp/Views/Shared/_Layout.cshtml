@@ -10,186 +10,245 @@
 
     <title>Dashboard LavApp</title>
     @Styles.Render("~/Content/css");
-    @*@Styles.Render("~/bundles/sweetalert/css");
-    @Styles.Render("~/bundles/datatables/css");*@
+    @Scripts.Render("~/bundles/modernizr")
 
     <link href="~/Content/libs/fontawesome/css/all.css" rel="stylesheet" />
 
-    @*<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">*@
-
-    <!-- Bootstrap core CSS -->
-    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
-
-
-    <!--<style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }-->
-    @*@media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }*@
-    <!--</style>-->
-    <!-- Custom styles for this template -->
-    @*<link href="~/Content/dashboard.css" rel="stylesheet" />*@
 </head>
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="~/ptallappal/Index">LavApp - Smart car wash</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Bootstrap NavBar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="/ptallappal">
+            <span class="menu-collapsed">LavApp - Smart car wash</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                @{
+                    if (Session["Usuario"] != null)
+                    {
+                        var rol = (rolesCls)Session["rol"];
 
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="@Url.Action("cerrarsesion", "login_")">Cerrar Sesión</a>
-            </li>
-        </ul>
-    </nav>
+                        if (rol.sn_admin)
+                        {
+                            <li class="nav-item dropdown d-sm-block d-md-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Personas
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu1">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "tipo_documento_")">Tipos Documento</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "roles_")">Roles</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "personas_")">Personas</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "usuarios_")">Usuarios</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "usuario_rol_")">Usuario por Rol</a>
+                                </div>
+                            </li><!-- Smaller devices menu END -->
+                            <li class="nav-item dropdown d-sm-block d-md-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Vehiculo
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu2">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "tipo_vehiculos_")">Tipos</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "marca_vehiculos_")">Marcas</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "modelo_vehiculos_")">Modelos</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "color_vehiculo_")">Colores</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown d-sm-block d-md-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Servicios
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu3">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "tipo_servicio_")">Tipos</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "estado_servicio_")">Estados</a>
+                                </div>
+                            </li>
+                        }
+                        else if (rol.sn_empleado)
+                        {
+                            <li class="nav-item dropdown d-sm-block d-md-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Menu
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "reserva_servicio_")">Reservas</a>
+                                </div>
+                            </li><!-- Smaller devices menu END -->
+                        }
+                    }
+                }
+            </ul>
+        </div>
+        <a class="nav-link text-decoration-none btn btn-outline-light bg-primary text-white mx-4" href="@Url.Action("cerrarsesion", "login_")">Cerrar Sesión</a>
+    </nav><!-- NavBar END -->
+    <!-- Bootstrap row -->
+    <div class="row" id="body-row">
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+            <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+            <!-- Bootstrap List Group -->
+            <ul class="list-group">
+                <!-- Separator with title -->
 
-    <div class="container-fluid">
-    @*<div class="container body-content">*@
-        <div class="row">
-            <div class="position-fixed">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="sidebar-sticky pt-3">
-                        <ul class="nav flex-column">
+                @{
+                    if (Session["Usuario"] != null)
+                    {
+                        var rol = (rolesCls)Session["rol"];
 
-                            @{
-                                usuarios usuario = new usuarios();
+                        if (rol.sn_admin)
+                        {
+                            <li class="list-group-item sidebar-separator-title text-muted text-white-50 d-flex align-items-center menu-collapsed">
+                                Parametrizacion
+                            </li>
 
-                                if (Session["rol"] != null)
-                                {
+                            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-start align-items-center">
+                                    <span class="fa fa-users fa-fw mr-3"></span>
+                                    <span class="menu-collapsed">Persona</span>
+                                    <span class="fas fa-caret-down fa-fw ml-auto"></span>
+                                </div>
+                            </a>
 
-                                    foreach (rolesCls roles in (List<rolesCls>)Session["rol"])
-                                    {
-                                        if (roles.sn_admin == true)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#" )">
-                                                    <span data-feather="home"></span>
-                                                    Parametrización <span class="sr-only">(current)</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "tipo_documento_")">
-                                                    <span data-feather="file"></span>
-                                                    Tipo Documento
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "roles_")">
-                                                    <span data-feather="file"></span>
-                                                    Roles
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "personas_")">
-                                                    <span data-feather="shopping-cart"></span>
-                                                    Personas
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "usuarios_")">
-                                                    <span data-feather="users"></span>
-                                                    Usuarios
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "usuario_rol_")">
-                                                    <span data-feather="bar-chart-2"></span>
-                                                    Usuarios por Rol
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "tipo_vehiculos_")">
-                                                    <span data-feather="layers"></span>
-                                                    Tipos Vehiculos
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "marca_vehiculos_")">
-                                                    <span data-feather="layers"></span>
-                                                    Marcas Vehiculos
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "modelo_vehiculos_")">
-                                                    <span data-feather="layers"></span>
-                                                    Modelos Vehiculos
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "color_vehiculo_")">
-                                                    <span data-feather="layers"></span>
-                                                    Colores Vehiculos
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "tipo_servicio_")">
-                                                    <span data-feather="layers"></span>
-                                                    Servicios Prestados
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "estado_servicio_")">
-                                                    <span data-feather="layers"></span>
-                                                    Estados Servicios
-                                                </a>
-                                            </li>
-                                        }
-                                        if (roles.sn_cliente == true)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "vehiculos_")">
-                                                    <span data-feather="layers"></span>
-                                                    Vehiculos
-                                                </a>
-                                            </li>
-                                        }
-                                        if (roles.sn_cliente == true || roles.sn_empleado == true)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("Index", "reserva_servicio_")">
-                                                    <span data-feather="layers"></span>
-                                                    Reservas
-                                                </a>
-                                            </li>
-                                        }
-                                    }
-                                }
-                            }
+                            <!-- Submenu content -->
+                            <div id='submenu1' class="collapse sidebar-submenu">
+                                <a href="@Url.Action("Index", "tipo_documento_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Tipo Documento</span>
+                                </a>
+                                <a href="@Url.Action("Index", "roles_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Roles</span>
+                                </a>
+                                <a href="@Url.Action("Index", "personas_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Personas</span>
+                                </a>
+                                <a href="@Url.Action("Index", "usuarios_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Usuarios</span>
+                                </a>
+                                <a href="@Url.Action("Index", "usuario_rol_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Usuarios por Rol</span>
+                                </a>
+                            </div>
 
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-2">
-                <div class="my-4 mx-4">
+                            <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-start align-items-center">
+                                    <span class="fa fa-car fa-fw mr-3"></span>
+                                    <span class="menu-collapsed">Vehiculo</span>
+                                    <span class="fas fa-caret-down fa-fw ml-auto"></span>
+                                </div>
+                            </a>
+
+                            <!-- Submenu content -->
+                            <div id='submenu2' class="collapse sidebar-submenu">
+                                <a href="@Url.Action("Index", "tipo_vehiculos_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Tipos</span>
+                                </a>
+                                <a href="@Url.Action("Index", "marca_vehiculos_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Marcas</span>
+                                </a>
+                                <a href="@Url.Action("Index", "modelo_vehiculos_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Modelos</span>
+                                </a>
+                                <a href="@Url.Action("Index", "color_vehiculo_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Colores</span>
+                                </a>
+                            </div>
+
+                            <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-start align-items-center">
+                                    <span class="fa fa-concierge-bell fa-fw mr-3"></span>
+                                    <span class="menu-collapsed">Servicio</span>
+                                    <span class="fas fa-caret-down fa-fw ml-auto"></span>
+                                </div>
+                            </a>
+
+                            <!-- Submenu content -->
+                            <div id='submenu3' class="collapse sidebar-submenu">
+                                <a href="@Url.Action("Index", "tipo_servicio_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Tipo</span>
+                                </a>
+                                <a href="@Url.Action("Index", "estado_servicio_")" class="list-group-item list-group-item-action bg-dark text-white">
+                                    <span class="menu-collapsed">Estados</span>
+                                </a>                               
+                            </div>
+
+                        }
+                        else if (rol.sn_empleado)
+                        {
+                            <li class="list-group-item sidebar-separator-title text-muted text-white-50 d-flex align-items-center menu-collapsed">
+                                <small>Menu</small>
+                            </li>
+
+                            <a href="@Url.Action("Index", "reserva_servicio_")" class="bg-dark list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-start align-items-center">
+                                    <span class="fa fa-calendar fa-fw mr-3"></span>
+                                    <span class="menu-collapsed">Reservas</span>
+                                </div>
+                            </a>
+                        }
+
+                        <!-- Separator without title -->
+                        <li class="list-group-item sidebar-separator menu-collapsed"></li>
+                        <!-- /END Separator -->
+
+                        <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                            <div class="d-flex w-100 justify-content-start align-items-center">
+                                <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                                <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                            </div>
+                        </a>
+
+                    }
+
+                }
+            </ul><!-- List Group END-->
+        </div><!-- sidebar-container END -->
+        <!-- MAIN -->
+        <div class="col">
+            <div class="row-fluid">
+                <div class="container-fluid px-5 pt-4">
                     @RenderBody()
                 </div>
             </div>
-        </div>
-    </div>
+        </div><!-- Main Col END -->
 
-    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>*@
-
+    </div><!-- body-row END -->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*@Scripts.Render("~/bundles/sweetalert/js");*@
-    @*@Scripts.Render("~/bundles/datatables/js");*@
     @RenderSection("scripts", required: false)
-</body>
-</html>
+           
+    <script>
+        // Hide submenus
+        //$('#body-row .collapse').collapse('hide');
+
+        // Collapse/Expand icon
+        $('#collapse-icon').addClass('fa-angle-double-left');
+
+        // Collapse click
+        $('[data-toggle=sidebar-colapse]').click(function () {
+            SidebarCollapse();
+        });
+
+        function SidebarCollapse() {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+                SeparatorTitle.removeClass('d-flex');
+            } else {
+                SeparatorTitle.addClass('d-flex');
+            }
+
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+        }
+    </script>
+  
+</body >
+</html >

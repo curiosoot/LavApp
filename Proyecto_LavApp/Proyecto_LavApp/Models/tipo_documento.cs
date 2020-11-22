@@ -25,7 +25,7 @@ namespace Proyecto_LavApp.Models
         [Display(Name = "Id Tipo Documento")]
         public int id_tipo_documento { get; set; }
 
-        [Display(Name = "Descripción Tipo Documento")]
+        [Display(Name = "Tipo Documento")]
         public string txt_tipo_doc { get; set; }
 
         [Display(Name = "Activo")]

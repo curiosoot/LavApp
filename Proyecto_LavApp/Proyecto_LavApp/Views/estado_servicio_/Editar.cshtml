@@ -4,28 +4,29 @@
     ViewBag.Title = "Editar";
 }
 
-<h2>Editar</h2>
+<h2 class="text-center"><i class="fas fa-concierge-bell"></i> Editar Estado</h2>
 
 @using (Html.BeginForm("Modificar", "estado_servicio_", FormMethod.Post, new { @id = "frmeditarestserv", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>estado_servicio</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_estado_servicio)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.txt_estado_Servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.txt_estado_Servicio, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.txt_estado_Servicio, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.txt_estado_Servicio, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sn_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.sn_activo, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.sn_activo)
@@ -34,8 +35,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sn_cancelado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.sn_cancelado, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.sn_cancelado)
@@ -44,8 +45,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sn_finalizado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group col-md-3">
+            @Html.LabelFor(model => model.sn_finalizado, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.sn_finalizado)
@@ -53,6 +54,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -80,14 +82,13 @@
                     </div>
                 </div>
                 <!-- Close Button trigger modal -->
-
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 <script>

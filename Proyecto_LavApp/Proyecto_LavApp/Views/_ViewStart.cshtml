@@ -1,3 +1,19 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using Proyecto_LavApp.Models
+
+@{
+    usuarios usuario = new usuarios();
+
+    if (Session["rol"] != null)
+    {
+        var rol = (rolesCls)Session["rol"];
+        
+        if (rol.sn_cliente == true)
+        {
+            Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
 }

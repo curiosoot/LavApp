@@ -39,8 +39,7 @@ namespace Proyecto_LavApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Content/libs/datatables/datatables.js",
-                      "~/Content/libs/sweetalert/sweetalert2.all.js"                      
-                      ));
+                      "~/Content/libs/sweetalert/sweetalert2.all.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -48,7 +47,7 @@ namespace Proyecto_LavApp
                       "~/Content/libs/sweetalert/sweetalert2.css",
                       "~/Content/libs/datatables/datatables.css",
                       "~/Content/libs/fontawesome/css/all.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }

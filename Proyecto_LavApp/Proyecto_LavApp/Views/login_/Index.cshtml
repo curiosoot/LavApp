@@ -81,7 +81,7 @@
                 <div class="opcioncontra"><a href="">Olvidaste tu contraseña?</a></div>
                 <div class="opcioncontra"><a href="~/personas_/Crear">Registrese</a></div>
 
-                <div id="divRespuesta"></div>
+                @*<div id="divRespuesta" class="d-none"></div>*@
             }
 
         </div>
@@ -99,7 +99,11 @@
     {
         if (rpta=="1") {
             document.location.href="@Url.Action("Index", "ptallappal")";
-        } else {
+        }
+        else if (rpta == "2") {
+            document.location.href="@Url.Action("PanelCliente", "ptallappal")";
+        }
+        else {
             alert("Usuario o contraseña incorrecta!");
         }
     }

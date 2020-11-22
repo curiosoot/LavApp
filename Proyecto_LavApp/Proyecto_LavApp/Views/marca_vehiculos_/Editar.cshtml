@@ -4,28 +4,29 @@
     ViewBag.Title = "Editar";
 }
 
-<h2>Editar</h2>
+<h2 class="text-center"><i class="fas fa-car"></i> Editar Marca</h2>
 
 
-@using (Html.BeginForm("Modificar", "marca_vehiculos_", FormMethod.Post, new { @id="frmeditarmarca", @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Modificar", "marca_vehiculos_", FormMethod.Post, new { @id = "frmeditarmarca", @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>marca_vehiculos</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_marca_vehiculos)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.txt_desc_marca, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.txt_desc_marca, htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.txt_desc_marca, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.txt_desc_marca, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-6">
             @Html.LabelFor(model => model.sn_activo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -34,6 +35,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -68,7 +70,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 @section Scripts {
