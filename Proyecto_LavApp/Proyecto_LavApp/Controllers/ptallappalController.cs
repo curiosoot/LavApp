@@ -1,4 +1,5 @@
-﻿using Proyecto_LavApp.Filters;
+﻿using Proyecto_LavApp.Datos;
+using Proyecto_LavApp.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,10 @@ namespace Proyecto_LavApp.Controllers
         // GET: ptallappal
         public ActionResult Index()
         {
-            return View();
+            reserva_servicio_Admin admin = new reserva_servicio_Admin();
+            var result = admin.ObtenerTotalReservas(); 
+
+            return View(result);
         }
 
         public ActionResult PanelCliente()

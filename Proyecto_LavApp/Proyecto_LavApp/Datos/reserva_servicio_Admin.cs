@@ -1,4 +1,5 @@
 ﻿using Proyecto_LavApp.Models;
+using Proyecto_LavApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,6 +10,30 @@ namespace Proyecto_LavApp.Datos
 {
     public class reserva_servicio_Admin
     {
+
+        public PtallappViewModel ObtenerTotalReservas() 
+        {
+            PtallappViewModel result = new PtallappViewModel();
+
+            using (LavApp_BDEntities contexto = new LavApp_BDEntities())
+            {
+                var reservas = contexto.reserva_servicio.Where(x => 
+                                (x.fecha_servicio.Month == DateTime.Today.Month && 
+                                 x.fecha_servicio.Day == DateTime.Today.Day)).ToList();
+
+                var servicios = (from reserva_servicio in reservas
+                                 join reserva_tipo_servicio in contexto.reserva_tipo_servicio
+                                on reserva_servicio.id_reserva equals reserva_tipo_servicio.id_reserva
+                                select reserva_tipo_servicio).ToList();
+
+                result.Total = servicios.Sum(x => x.total_servicios_sol);
+                result.Cantidad = reservas.Count; 
+            }
+
+            return result;
+        }
+
+
         public List<reserva_servicio> Consultar()
         {
             usuarios_Admin usr_Admin = new usuarios_Admin();

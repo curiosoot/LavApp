@@ -234,6 +234,7 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vehiculos_Cls.cs" />
+    <Compile Include="Models\ViewModels\ptallappViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -54,8 +54,12 @@ namespace Proyecto_LavApp.Controllers
                                             // ).ToList();
                                             ).FirstOrDefault();
                     Session["rol"] = rol;
-                    if (rol.sn_cliente)
+                    if (rol.sn_admin)
+                        mensaje = "1";
+                    else if (rol.sn_cliente)
                         mensaje = "2";
+                    else if (rol.sn_empleado)
+                        mensaje = "3";
                 }
             }
 
