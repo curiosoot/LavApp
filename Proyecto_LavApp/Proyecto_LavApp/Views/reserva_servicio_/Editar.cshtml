@@ -144,15 +144,107 @@
             var fecha = $("#fecha_servicio");
 
             hora.change(function () {
-                if (fecha.val() != "" && hora.val() !== "") {
-                    EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
-                }
+                var currentHour = new Date().getHours();
+                    var currentMinute = new Date().getMinutes();
+
+                    var selectedHour = hora.val().split(':')[0];
+                    var selectedMinute = hora.val().split(':')[1];
+
+                    var dateParse = fecha.val().replace('/', '-').replace('\\', '-').split('-');
+
+                    /*
+                    var date1 = new Date(fecha.val());
+                    var day1 = date1.getDate();
+                    var month1 = date1.getMonth() + 1;
+                    var year1 = date1.getFullYear();
+                    */
+
+                    // var date1 = new Date(fecha.val());
+                    var day1 = dateParse[2];
+                    var month1 = dateParse[1];
+                    var year1 = dateParse[0];
+
+                    var date2 = new Date();
+                    var day2 = date2.getDate();
+                    var month2 = date2.getMonth() + 1;
+                    var year2 = date2.getFullYear();
+
+                    console.log(currentHour, currentMinute, selectedHour, selectedMinute, fecha.val());
+
+                    var isCurrent = (year1 == year2 && month1 == month2 && day1 == day2);
+
+                    if (isCurrent) {
+                        if (selectedHour < currentHour) {
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'La hora ingresada no puede ser menor o igual a la actual',
+                            });
+                            hora.val("");
+                            return;
+                        } else if (currentHour == selectedHour && currentMinute > selectedMinute) {
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'La hora ingresada no puede ser menor o igual a la actual',
+                            });
+                            hora.val("");
+                            return;
+                        }
+                        EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                    } else {
+                        EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                    }
             });
 
             fecha.change(function () {
-                if (fecha.val() != "" && hora.val() !== "") {
-                    EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
-                }
+                var currentHour = new Date().getHours();
+                    var currentMinute = new Date().getMinutes();
+
+                    var selectedHour = hora.val().split(':')[0];
+                    var selectedMinute = hora.val().split(':')[1];
+
+                    var dateParse = fecha.val().replace('/', '-').replace('\\', '-').split('-');
+
+                    /*
+                    var date1 = new Date(fecha.val());
+                    var day1 = date1.getDate();
+                    var month1 = date1.getMonth() + 1;
+                    var year1 = date1.getFullYear();
+                    */
+
+                    // var date1 = new Date(fecha.val());
+                    var day1 = dateParse[2];
+                    var month1 = dateParse[1];
+                    var year1 = dateParse[0];
+
+                    var date2 = new Date();
+                    var day2 = date2.getDate();
+                    var month2 = date2.getMonth() + 1;
+                    var year2 = date2.getFullYear();
+
+                    console.log(currentHour, currentMinute, selectedHour, selectedMinute, fecha.val());
+
+                    var isCurrent = (year1 == year2 && month1 == month2 && day1 == day2);
+
+                    if (isCurrent) {
+                        if (selectedHour < currentHour) {
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'La hora ingresada no puede ser menor o igual a la actual',
+                            });
+                            hora.val("");
+                            return;
+                        } else if (currentHour == selectedHour && currentMinute > selectedMinute) {
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'La hora ingresada no puede ser menor o igual a la actual',
+                            });
+                            hora.val("");
+                            return;
+                        }
+                        EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                    } else {
+                        EjecutarAjax("@Url.Action("ValidarHorarioEmpleado", "reserva_servicio_")", "GET", { fecha: fecha.val(), hora: hora.val() });
+                    }
             });
 
 
@@ -252,7 +344,7 @@
 
         });
 
-        
+
 
     </script>
 }
